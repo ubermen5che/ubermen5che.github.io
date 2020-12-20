@@ -1,0 +1,36 @@
+I"1<h2 id="education">Education</h2>
+<p>2018.3.1 ~ B.E. in Department of Computer Science &amp; Engineering, Kyungpook National University , Korea 😃</p>
+
+<figure class="third ">
+  
+    
+      <a href="/assets/images/Knuemblem00.jpg">
+          <img src="/assets/images/Knuemblem00.jpg" alt="splash layout example" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/KNU_CSE.jpg">
+          <img src="/assets/images/KNU_CSE.jpg" alt="single layout with comments and related posts" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/KNU_pic1.jpg">
+          <img src="/assets/images/KNU_pic1.jpg" alt="archive layout example" />
+      </a>
+    
+  
+  
+    <figcaption>Examples of included layouts <code class="language-plaintext highlighter-rouge">splash</code>, <code class="language-plaintext highlighter-rouge">single</code>, and <code class="language-plaintext highlighter-rouge">archive</code>.
+</figcaption>
+  
+</figure>
+
+<h2 id="interests">Interests</h2>
+<ul>
+  <li>Artifitial Intelligence</li>
+  <li>Block Chain</li>
+  <li>Neuromorphic computing</li>
+</ul>
+:ET
