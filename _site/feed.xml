@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2020-12-20T12:13:46+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Site Title</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name></author><entry><title type="html">First post Yong</title><link href="https://ubermen5che.github.io/First-Post-yong/" rel="alternate" type="text/html" title="First post Yong" /><published>2020-12-20T00:00:00+09:00</published><updated>2020-12-20T00:00:00+09:00</updated><id>https://ubermen5che.github.io/First%20Post%20-yong-</id><content type="html" xml:base="https://ubermen5che.github.io/First-Post-yong/">&lt;h2 id=&quot;2020년-12월-20일-블로그-첫번째-포스팅&quot;&gt;2020년 12월 20일 블로그 첫번째 포스팅.&lt;/h2&gt;
+&lt;p&gt;앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것이다.
+이번 겨울방학 동안 다룰 첫번째 주제로는 Deep-learning이다. 최대한 시간을 내어 내용을 잘 정리해서 포스팅하고자한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;블록 인용할거야&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;인용구지롱&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;_ 코드를 이쁘게 표현 _&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello, World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;deeplearning&lt;/li&gt;
+  &lt;li&gt;web&lt;/li&gt;
+  &lt;li&gt;jekyll&lt;/li&gt;
+  &lt;li&gt;markdown&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.google.co.kr“구글”&quot;&gt;Google&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/dcurtis/markdown-mark/master/png/208x128.png&quot; alt=&quot;markdown_logo&quot; /&gt;&lt;/p&gt;</content><author><name>YongJun Kwon</name></author><summary type="html">2020년 12월 20일 블로그 첫번째 포스팅. 앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것이다. 이번 겨울방학 동안 다룰 첫번째 주제로는 Deep-learning이다. 최대한 시간을 내어 내용을 잘 정리해서 포스팅하고자한다.</summary></entry></feed>
