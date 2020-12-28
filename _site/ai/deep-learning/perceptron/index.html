@@ -9,28 +9,32 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Ubermen5che's Blog</title>
-<meta name="description" content="My first private blog">
+<!-- begin _includes/seo.html --><title>딥러닝 - 퍼셉트론(perceptron) - Ubermen5che’s Blog</title>
+<meta name="description" content="이번 글에서는 퍼셉트론 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.">
 
 
   <meta name="author" content="YongJun Kwon">
   
+  <meta property="article:author" content="YongJun Kwon">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Ubermen5che's Blog">
-<meta property="og:title" content="Ubermen5che’s Blog">
-<meta property="og:url" content="https://ubermen5che.github.io/">
+<meta property="og:title" content="딥러닝 - 퍼셉트론(perceptron)">
+<meta property="og:url" content="https://ubermen5che.github.io/ai/deep-learning/perceptron/">
 
 
-  <meta property="og:description" content="My first private blog">
-
-
-
+  <meta property="og:description" content="이번 글에서는 퍼셉트론 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.">
 
 
 
+
+
+
+
+  <meta property="article:published_time" content="2020-12-21T00:00:00+09:00">
 
 
 
@@ -41,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://ubermen5che.github.io/">
+<link rel="canonical" href="https://ubermen5che.github.io/ai/deep-learning/perceptron/">
 
 
 
@@ -103,7 +107,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--single">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -276,33 +280,18 @@
 
 
 
-  <div class="archive">
-    
-      <h1 id="page-title" class="page__title"></h1>
-    
-    
-
-<h3 class="archive__subtitle">Recent posts</h3>
-
-
-
-
-<div class="entries-list">
-  
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="딥러닝 - 퍼셉트론(perceptron)">
+    <meta itemprop="description" content="이번 글에서는 퍼셉트론 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.">
+    <meta itemprop="datePublished" content="2020-12-21T00:00:00+09:00">
     
 
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <div class="page__inner-wrap">
       
-        <a href="/ai/deep-learning/perceptron/" rel="permalink">딥러닝 - 퍼셉트론(perceptron)
-</a>
-      
-    </h2>
-    
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">딥러닝 - 퍼셉트론(perceptron)
+</h1>
+          
 
   <p class="page__meta">
     
@@ -323,17 +312,128 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">이번 글에서는 퍼셉트론 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>이번 글에서는 <strong>퍼셉트론</strong> 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.</p>
+
+<h3 id="퍼셉트론이란">퍼셉트론이란?</h3>
+
+<p>퍼셉트론은 다수의 신호를 입력으로 받아 하나의 신호를 출력합니다.</p>
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/76172759/102718800-7de9dd80-432d-11eb-9cf9-e55d594e5787.png" alt="perceptron thumbnail" width="300" />
 </p>
-  </article>
-</div>
+<p align="center" style="color:gray">
+    <em>Perceptron image</em>
+</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
 
   
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
     
+      
+      
+      <a href="/tags/#ai" class="page__taxonomy-item" rel="tag">AI</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#deep-learning" class="page__taxonomy-item" rel="tag">Deep-Learning</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#perceptron" class="page__taxonomy-item" rel="tag">perceptron</a>
+    
+    </span>
+  </p>
 
 
 
-<div class="list__item">
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ai" class="page__taxonomy-item" rel="tag">AI</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#deep-learning" class="page__taxonomy-item" rel="tag">Deep-Learning</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-12-21T00:00:00+09:00">December 21, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EB%94%A5%EB%9F%AC%EB%8B%9D+-+%ED%8D%BC%EC%85%89%ED%8A%B8%EB%A1%A0%28perceptron%29%20https%3A%2F%2Fubermen5che.github.io%2Fai%2Fdeep-learning%2Fperceptron%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Fai%2Fdeep-learning%2Fperceptron%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Fai%2Fdeep-learning%2Fperceptron%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/First-Post-yong/" class="pagination--pager" title="First post  Yong
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -370,14 +470,13 @@
   </article>
 </div>
 
+        
+      </div>
+    </div>
+  
   
 </div>
 
-
-
-
-  </div>
-</div>
     </div>
 
     

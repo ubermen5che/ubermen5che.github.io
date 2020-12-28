@@ -4,5 +4,7 @@ main:
     url: /about/
   - title: "Tags"
     url: /tags/
+  - title: "categories"
+    url: /categories/
 #  - title: "Sitemap"
 #    url: /sitemap/
