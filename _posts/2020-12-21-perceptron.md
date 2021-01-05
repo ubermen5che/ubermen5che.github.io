@@ -19,5 +19,5 @@ tags:
     <img src="https://user-images.githubusercontent.com/76172759/102718800-7de9dd80-432d-11eb-9cf9-e55d594e5787.png" alt="perceptron thumbnail" width=300 />
 </p>
 <p align="center" style="color:gray">
-    <em>Perceptron image</em>
+    <em>[그림 1-1] 입력이 2개인 퍼셉트론</em>
 </p>

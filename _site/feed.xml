@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2020-12-28T22:14:22+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">딥러닝 - 퍼셉트론(perceptron)</title><link href="https://ubermen5che.github.io/ai/deep-learning/perceptron/" rel="alternate" type="text/html" title="딥러닝 - 퍼셉트론(perceptron)" /><published>2020-12-21T00:00:00+09:00</published><updated>2020-12-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/ai/deep-learning/perceptron</id><content type="html" xml:base="https://ubermen5che.github.io/ai/deep-learning/perceptron/">&lt;p&gt;이번 글에서는 &lt;strong&gt;퍼셉트론&lt;/strong&gt; 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-01-06T02:32:18+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">Logic and Computer Science - 논리학 기초 - 논리</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - 논리" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-Statements%1D</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/">&lt;h3 id=&quot;what-is-logic&quot;&gt;What is Logic?&lt;/h3&gt;
+&lt;p&gt;논리(Logic)란 올바른 추론의 규칙 체계이다. 논리는 논증이 올바른 형식을 가지고 있는지 아닌지 결정하는데 도움을 준다. 이 때 올바른 추론(right reasoning)이란 말에 다음과 같은 의문점을 가질 수 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;어떤 누군가가 무엇이 옳고 그름을 정한건가요? 논리는 단지 어떤 나이들어 이미 이 세상에 존재하지않는 어떤 사람이 발명해낸것이 아닌가요? 왜 그 그들이 우리가 생각하는 방법이 옳고 틀린지를 결정하나요?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 의문점에 대한 답은…&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;첫번째로&lt;/strong&gt;, 논리학자들이 “옳음”이라는 용어를 사용한다고 해서 논리가 우리에게 무엇을 생각하라고 말하는 것은 아니다. 논리는 보수적이거나 진보적인것 또는 사회주의, 자본주의, 애플유저와 마이크로소프트유저와 같은것을 생각하라고 말하는 것이 아니다. 이러한 ideas은 생각들에 대한 내용을 구성한다. 논리는 주로 우리의 생각의 구조에 대해 다룬다. 우리가 아무리 2+2가 47과 같다는 것을 증명하려고해도 하지 못하는것 처럼, 어떤 관계들은 서로 상대적인 것이어야 하고, 논리는 우리가 그 관게가 어떤 것이어야 하는지 알아내는 데 도움을 준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;두번째로&lt;/strong&gt;, 논리는 수학처럼 발명되어진것이 아니라 발견되어졌다. 아리스토텔레스 또는 Ada Lovelace와 같은 논리학자들은 idea와 term의 관계를 알아냈고, 어떤 것이 효과가 있고 어떤 것이 그렇지 않은지를 발견하고 효과가 있는 관계에 대한 규칙을 만들었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-science-of-logic&quot;&gt;The Science of Logic&lt;/h3&gt;
+
+&lt;p&gt;논리학은 적절하게 질서정연한 사고를 위한 규칙을 제공하고 논리 분석은 그러한 규칙들을 우리의 사고에 적용하는 과학이다. 구체적으로 말하자면, 논리는 논증을 분석하는데에 도움을 준다. 앞으로 논증이 무엇인지 알아볼 것이다 그전에 앞서 아래에 논리가 무엇인지 더 설명하기 위한 몇가지 terms들이 열거되어 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;논리학은 적절하게 질서정연된 생각들에 대한 규칙을 공부하는 학문이다. 그 규칙들은 또다른 ideas와 연관되어있는 ideas를 정확한 방법으로 설명한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;논리학은 진리값에 대해 연구한다. – 참은 올바른 추론에서 역할을 한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;논리의 법칙은 ideas의 진리값을 전달하기 위해 사용되는 arguments를 구성한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;논리학은 fallacies라고 불리우는 부정확한 추론에 대해 연구한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;definition-lists&quot;&gt;Definition Lists&lt;/h2&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;idea&lt;/dt&gt;
+  &lt;dd&gt;어떤것에 대한 이미지 또는 지적인 표현.&lt;/dd&gt;
+  &lt;dt&gt;term&lt;/dt&gt;
+  &lt;dd&gt;idea에 대한 구두적인 표현.&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is Logic? 논리(Logic)란 올바른 추론의 규칙 체계이다. 논리는 논증이 올바른 형식을 가지고 있는지 아닌지 결정하는데 도움을 준다. 이 때 올바른 추론(right reasoning)이란 말에 다음과 같은 의문점을 가질 수 있다.</summary></entry><entry><title type="html">딥러닝 - 퍼셉트론(perceptron)</title><link href="https://ubermen5che.github.io/ai/deep-learning/perceptron/" rel="alternate" type="text/html" title="딥러닝 - 퍼셉트론(perceptron)" /><published>2020-12-21T00:00:00+09:00</published><updated>2020-12-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/ai/deep-learning/perceptron</id><content type="html" xml:base="https://ubermen5che.github.io/ai/deep-learning/perceptron/">&lt;p&gt;이번 글에서는 &lt;strong&gt;퍼셉트론&lt;/strong&gt; 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;퍼셉트론이란&quot;&gt;퍼셉트론이란?&lt;/h3&gt;
 
@@ -8,7 +49,7 @@
     &lt;img src=&quot;https://user-images.githubusercontent.com/76172759/102718800-7de9dd80-432d-11eb-9cf9-e55d594e5787.png&quot; alt=&quot;perceptron thumbnail&quot; width=&quot;300&quot; /&gt;
 &lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;color:gray&quot;&gt;
-    &lt;em&gt;Perceptron image&lt;/em&gt;
+    &lt;em&gt;[그림 1-1] 입력이 2개인 퍼셉트론&lt;/em&gt;
 &lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="AI" /><category term="Deep-Learning" /><category term="perceptron" /><category term="AI" /><category term="Deep-Learning" /><summary type="html">이번 글에서는 퍼셉트론 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.</summary></entry><entry><title type="html">First post Yong</title><link href="https://ubermen5che.github.io/First-Post-yong/" rel="alternate" type="text/html" title="First post Yong" /><published>2020-12-20T00:00:00+09:00</published><updated>2020-12-20T00:00:00+09:00</updated><id>https://ubermen5che.github.io/First%20Post%20-yong-</id><content type="html" xml:base="https://ubermen5che.github.io/First-Post-yong/">&lt;h2 id=&quot;2020년-12월-20일-블로그-첫번째-포스팅&quot;&gt;2020년 12월 20일 블로그 첫번째 포스팅.&lt;/h2&gt;
 &lt;p&gt;앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것이다.
 이번 겨울방학 동안 다룰 첫번째 주제로는 Deep-learning이다. 최대한 시간을 내어 내용을 잘 정리해서 포스팅하고자한다.&lt;/p&gt;
