@@ -14,6 +14,12 @@ var store = [{
         "title": "Logic and Computer Science - 논리학 기초 - 논리",
         "excerpt":"What is Logic? 논리(Logic)란 올바른 추론의 규칙 체계이다. 논리는 논증이 올바른 형식을 가지고 있는지 아닌지 결정하는데 도움을 준다. 이 때 올바른 추론(right reasoning)이란 말에 다음과 같은 의문점을 가질 수 있다. 어떤 누군가가 무엇이 옳고 그름을 정한건가요? 논리는 단지 어떤 나이들어 이미 이 세상에 존재하지않는 어떤 사람이 발명해낸것이 아닌가요? 왜 그...","categories": ["Logic","Computer Science"],
         "tags": ["Logic","Computer Science","논리","컴퓨터과학"],
-        "url": "https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/",
+        "url": "https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-An-Introduction-to-Logic/",
+        "teaser": null
+      },{
+        "title": "Logic and Computer Science - 논리학 기초 - 논쟁(argument)",
+        "excerpt":"What is an arguments? 이전 포스팅에서 논리학은 적절하게 정리된 생각에 관한 과학이라고 했다. 모든과학분야에서 해당 연구분야에 대한 초점과 목표를 가지는데, 논리학에서의 목표는 논쟁이다. 논쟁은 우리의 생각을 구조화하는 방법이다 우리는 가끔 말싸움을 하며 논쟁을 벌이기도 한다. 만약 친구, 동료, 가족들과 논쟁을 벌이는거라면 어떤일에 대해 논쟁의 대상자의 의견에 동의하지않거나 본인이 주장하는 의견과...","categories": ["Logic","Computer Science"],
+        "tags": ["Logic","Computer Science","논리","컴퓨터과학"],
+        "url": "https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Arguments/",
         "teaser": null
       }]
