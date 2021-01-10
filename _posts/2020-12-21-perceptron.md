@@ -1,5 +1,4 @@
 ---
-layout: posts
 title: "딥러닝 - 퍼셉트론(perceptron)"
 categories:
   - AI
@@ -9,6 +8,7 @@ tags:
   - AI
   - Deep-Learning
 ---
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 이번 글에서는 **퍼셉트론** 알고리즘에 대해 알아보겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.
 
