@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-01-06T23:51:55+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">Logic and Computer Science - 논리학 기초 - 논리</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-An-Introduction-to-Logic/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - 논리" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-An%20Introduction%20to%20Logic%1D</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-An-Introduction-to-Logic/">&lt;h3 id=&quot;what-is-logic&quot;&gt;What is Logic?&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-01-23T16:44:33+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">Logic and Computer Science - 논리학 기초 - Statements</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - Statements" /><published>2021-01-23T00:00:00+09:00</published><updated>2021-01-23T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-Statements</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/">&lt;h3 id=&quot;what-is-an-statements&quot;&gt;What is an statements?&lt;/h3&gt;
+&lt;p&gt;statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;모든 한국시민들은 한국에 살고 있다.&lt;/li&gt;
+    &lt;li&gt;서울에 있는 모든 기업들은 사무실에서 레드 카펫을 사용하고있다.&lt;/li&gt;
+    &lt;li&gt;애플은 마이크로소프트보다 더 많은 자본을 가지고 있다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위의 예를 잘 살펴보면, 각 statements는 참을 나타내려고 시도하고 있는 것처럼 보인다. 물론 첫 번쨰, 두 번째 문장들이 거짓이고 세 번째 문장은 참이지만 논리학의 관점에서 보았을 때, 각 문장들은 statement로서 자격을 갖추었다. 왜냐하면 참일 가능성이 있는 문장을 나타내고 있기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;영어에서는 이러한 문장들을 “declarative”하다고불린다. 논리학에서는 오직 declaratives만이 statements의 자격을 가진다. 아래의 다양한 종류의 문장들이 있는데, 이 문장들을 비교하고 대조해보자.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;Question or “interrogative” - What time is it?&lt;/li&gt;
+    &lt;li&gt;Commands or “imperative” - Close the door!&lt;/li&gt;
+    &lt;li&gt;Exclamations or “exclamatory” - Ouch!&lt;/li&gt;
+    &lt;li&gt;Performatives - “I promise,” “I thee wed”&lt;/li&gt;
+    &lt;li&gt;Declarative - “Carbon is an element”&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;1,2,3,4와 같은 종류의 문장의 경우 참 또는 거짓을 논할 수 없는 문장이다. 따라서 오직 5번과 같은 종류의 문장만 statements라고 말할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;simple-and-compound-statements&quot;&gt;Simple and Compound statements&lt;/h3&gt;
+
+&lt;p&gt;오직 하나의 진실만을 공표하는 statement를 &lt;strong&gt;simple statement&lt;/strong&gt;라고 한다.&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;p&gt;Ann is home&lt;/p&gt;
+
+  &lt;p&gt;Bob is home&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이러한 문장들은 각각 어떤 것이 참인지 그리고 어떤 사건에 대한 오직 하나의 상황 또는 상태가 참인지 볼 수 있다. 논리적인 arguments를 작성할 때, 나의 전제들을 내가 분해할 수 있을 만큼 simple statements로 분해하는 것은 좋은 연습이 될 수 있다. 이 연습이 나의 argument에 statements에 대한 진리를 결정하는데 도움을 줄 수 있다.&lt;/p&gt;
+
+&lt;p&gt;만약 내 전제에서 하나 이상의 진리를 선언하고 싶다면 어떻게 할 것인가? 이 경우 &lt;strong&gt;statment operator&lt;/strong&gt;를 사용하여 두개이상의 simple statments를
+합칠 수 있다. statement operator는 simple statements를 연결하여 &lt;strong&gt;compound statment&lt;/strong&gt;를 만들어준다. 예를 들어,&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Ann is hime AND Bob is home&lt;/p&gt;
+
+  &lt;p&gt;The screen door has a hole in it OR I’m seeing things&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위의 각 문장에서, AND, OR에 의해 합쳐진 두개의 simple statments 볼 수 있다. 이러한 연산자들은 simple statments를 사용하여 하나 이상의 진리를 선언하도록 허용해준다. 추후에 이루어질 포스팅에서는 다양한 연산자들을 알아볼 것이다.&lt;/p&gt;
+
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an statements? statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.</summary></entry><entry><title type="html">Logic and Computer Science - 논리학 기초 - 논리</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-An-Introduction-to-Logic/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - 논리" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-An%20Introduction%20to%20Logic%1D</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-An-Introduction-to-Logic/">&lt;h3 id=&quot;what-is-logic&quot;&gt;What is Logic?&lt;/h3&gt;
 &lt;p&gt;논리(Logic)란 올바른 추론의 규칙 체계이다. 논리는 논증이 올바른 형식을 가지고 있는지 아닌지 결정하는데 도움을 준다. 이 때 올바른 추론(right reasoning)이란 말에 다음과 같은 의문점을 가질 수 있다.&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -91,40 +144,28 @@
 
 &lt;p&gt;정리해보자면 논쟁은 전제, 결론, 논리적 관계의 요소를 포함하며, 논쟁은 누군가를 설득시키기 위해 고안된 체계적인 문장들의 집합이므로 나의 주장을 상대방에게 펼칠 때 결론을 충분히 뒷받침해줄만한 적절한 근거를 제시해야하며, 결론과 전제가 충분히 논리적 관계를 형성하는지 따져봐야한다는것이다.&lt;/p&gt;
 
-&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an arguments? 이전 포스팅에서 논리학은 적절하게 정리된 생각에 관한 과학이라고 했다. 모든과학분야에서 해당 연구분야에 대한 초점과 목표를 가지는데, 논리학에서의 목표는 논쟁이다.</summary></entry><entry><title type="html">딥러닝 - 퍼셉트론(perceptron)</title><link href="https://ubermen5che.github.io/ai/deep-learning/perceptron/" rel="alternate" type="text/html" title="딥러닝 - 퍼셉트론(perceptron)" /><published>2020-12-21T00:00:00+09:00</published><updated>2020-12-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/ai/deep-learning/perceptron</id><content type="html" xml:base="https://ubermen5che.github.io/ai/deep-learning/perceptron/">&lt;p&gt;이번 글에서는 &lt;strong&gt;퍼셉트론&lt;/strong&gt; 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.&lt;/p&gt;
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an arguments? 이전 포스팅에서 논리학은 적절하게 정리된 생각에 관한 과학이라고 했다. 모든과학분야에서 해당 연구분야에 대한 초점과 목표를 가지는데, 논리학에서의 목표는 논쟁이다.</summary></entry><entry><title type="html">딥러닝 - 퍼셉트론(perceptron)</title><link href="https://ubermen5che.github.io/ai/deep-learning/perceptron/" rel="alternate" type="text/html" title="딥러닝 - 퍼셉트론(perceptron)" /><published>2020-12-21T00:00:00+09:00</published><updated>2020-12-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/ai/deep-learning/perceptron</id><content type="html" xml:base="https://ubermen5che.github.io/ai/deep-learning/perceptron/">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;이번 글에서는 &lt;strong&gt;퍼셉트론&lt;/strong&gt; 알고리즘에 대해 알아보겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;퍼셉트론이란&quot;&gt;퍼셉트론이란?&lt;/h3&gt;
 
-&lt;p&gt;퍼셉트론은 다수의 신호를 입력으로 받아 하나의 신호를 출력합니다.&lt;/p&gt;
+&lt;p&gt;퍼셉트론은 다수의 신호를 입력으로 받아 하나의 신호를 출력합니다. 아래 그림[1-1]은 2개의 신호를 받은 퍼셉트론의 예를 보여줍니다. \(x_1\)과 \(x_2\)는 입력 신호, \(y\)는 출력 신호, \(w_1\)과 \(w_2\)는 가중치를 뜻합니다. 그림의 원을 &lt;strong&gt;뉴런&lt;/strong&gt; 혹은 &lt;strong&gt;노드&lt;/strong&gt;라고 부릅니다. 입력신호가 뉴런에 보내질 때는 각각의 고유한 &lt;strong&gt;가중치(weight)&lt;/strong&gt;가 곱해집니다. 뉴런에서 보내온 신호의 총합이 정해진 한계를 넘어설 때만 1을 출력합니다(이를 뉴런을 활성화한다라고 표현하기도 합니다). 일반적으로 ‘한계’를 &lt;strong&gt;임계값&lt;/strong&gt;이라 하며, 기호\(θ\)로 나타냅니다.&lt;/p&gt;
+
+&lt;p&gt;위의 내용을 수식으로 표현하면, 이래와 같습니다.&lt;/p&gt;
+
+\[y =
+\begin{cases}
+0(w_1x_1 + w_2x_2)\leq θ &amp;amp;  \\
+1(w_1x_1 + w_2x_2)&amp;gt; θ
+\end{cases}\]
+
+&lt;p&gt;퍼셉트론은 복수의 입력 신호 각각에 고유한 가중치를 부여합니다. 가중치가 크면 해당 신호가 그 만큼 더 중요함을 나타냅니다.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
     &lt;img src=&quot;https://user-images.githubusercontent.com/76172759/102718800-7de9dd80-432d-11eb-9cf9-e55d594e5787.png&quot; alt=&quot;perceptron thumbnail&quot; width=&quot;300&quot; /&gt;
 &lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;color:gray&quot;&gt;
     &lt;em&gt;[그림 1-1] 입력이 2개인 퍼셉트론&lt;/em&gt;
-&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="AI" /><category term="Deep-Learning" /><category term="perceptron" /><category term="AI" /><category term="Deep-Learning" /><summary type="html">이번 글에서는 퍼셉트론 알고리즘에 대해 알아보는 시간을 가지도록 하겠습니다. 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기 때문에 퍼셉트론의 구조를 이해하는 것은 딥러닝을 배우는데에 있어서 중요한 아이디어를 배우는 일입니다.</summary></entry><entry><title type="html">First post Yong</title><link href="https://ubermen5che.github.io/First-Post-yong/" rel="alternate" type="text/html" title="First post Yong" /><published>2020-12-20T00:00:00+09:00</published><updated>2020-12-20T00:00:00+09:00</updated><id>https://ubermen5che.github.io/First%20Post%20-yong-</id><content type="html" xml:base="https://ubermen5che.github.io/First-Post-yong/">&lt;h2 id=&quot;2020년-12월-20일-블로그-첫번째-포스팅&quot;&gt;2020년 12월 20일 블로그 첫번째 포스팅.&lt;/h2&gt;
-&lt;p&gt;앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것이다.
-이번 겨울방학 동안 다룰 첫번째 주제로는 Deep-learning이다. 최대한 시간을 내어 내용을 잘 정리해서 포스팅하고자한다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;블록 인용할거야&lt;/p&gt;
-  &lt;blockquote&gt;
-    &lt;p&gt;인용구지롱&lt;/p&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;_ 코드를 이쁘게 표현 _&lt;/p&gt;
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello, World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;deeplearning&lt;/li&gt;
-  &lt;li&gt;web&lt;/li&gt;
-  &lt;li&gt;jekyll&lt;/li&gt;
-  &lt;li&gt;markdown&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.google.co.kr“구글”&quot;&gt;Google&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.github.com/dcurtis/markdown-mark/master/png/208x128.png&quot; alt=&quot;markdown_logo&quot; /&gt;&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html">2020년 12월 20일 블로그 첫번째 포스팅. 앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것이다. 이번 겨울방학 동안 다룰 첫번째 주제로는 Deep-learning이다. 최대한 시간을 내어 내용을 잘 정리해서 포스팅하고자한다.</summary></entry></feed>
+&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="AI" /><category term="Deep-Learning" /><category term="perceptron" /><category term="AI" /><category term="Deep-Learning" /><summary type="html"></summary></entry><entry><title type="html">First post Yong</title><link href="https://ubermen5che.github.io/First-Post-yong/" rel="alternate" type="text/html" title="First post Yong" /><published>2020-12-20T00:00:00+09:00</published><updated>2020-12-20T00:00:00+09:00</updated><id>https://ubermen5che.github.io/First%20Post%20-yong-</id><content type="html" xml:base="https://ubermen5che.github.io/First-Post-yong/">&lt;h2 id=&quot;2020년-12월-20일-블로그-첫번째-포스팅&quot;&gt;2020년 12월 20일 블로그 첫번째 포스팅.&lt;/h2&gt;
+&lt;p&gt;앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것입니다. 또한 관심분야에 대한 포스팅도 이어나갈 예정입니다!&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html">2020년 12월 20일 블로그 첫번째 포스팅. 앞으로 공부하면서 부딫힌 문제들을 해결하고 이곳에 기록할 것입니다. 또한 관심분야에 대한 포스팅도 이어나갈 예정입니다!</summary></entry></feed>
