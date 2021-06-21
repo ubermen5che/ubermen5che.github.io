@@ -1,4 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-01-23T16:44:33+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">Logic and Computer Science - 논리학 기초 - Statements</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - Statements" /><published>2021-01-23T00:00:00+09:00</published><updated>2021-01-23T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-Statements</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/">&lt;h3 id=&quot;what-is-an-statements&quot;&gt;What is an statements?&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-06-21T14:11:46+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">Linear algebra Vector</title><link href="https://ubermen5che.github.io/Linear-algebra-Vector/" rel="alternate" type="text/html" title="Linear algebra Vector" /><published>2021-06-21T00:00:00+09:00</published><updated>2021-06-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/Linear%20algebra-Vector</id><content type="html" xml:base="https://ubermen5che.github.io/Linear-algebra-Vector/">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;
+
+&lt;h1 id=&quot;선형대수-기본-벡터&quot;&gt;선형대수 기본 벡터&lt;/h1&gt;
+
+&lt;h1 id=&quot;linear-algebra---essence-of-linear-algebravector&quot;&gt;Linear Algebra - Essence of linear algebra(Vector)&lt;/h1&gt;
+
+&lt;h2 id=&quot;벡터-개념의-필요성&quot;&gt;벡터 개념의 필요성&lt;/h2&gt;
+
+&lt;p&gt;최근 정보검색, 데이터과학기초(Fundementals of data science)과목을 수강하면서 벡터의 중요성을 깨닫게 되었습니다. 정보검색에서 document와 query의 similarity를 측정하기 위해 벡터가 필요하였고, 데이터과학기초에서는 Supervised learning 범주에 속하는 SVM(Support Vector Machine)에서 벡터 개념이 필요하였습니다. 지난학기 벡터 개념이 제대로 정립이 되어있지 않아 공부하는데 어려움이 있었던 경험을 계기로 이번 포스팅을 작성하게되었습니다.&lt;/p&gt;
+
+&lt;p&gt;출저를 먼저 밝히자면 유튜브 Blue1Brown 채널의 선형대수 시리즈 영상을 보며 정리했음을 알립니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;벡터-개요&quot;&gt;벡터 개요&lt;/h2&gt;
+
+&lt;p&gt;기본적으로 선형 대수의 구성요소는 벡터입니다. 따라서 선형대수의 기본 구성요소인 벡터에 대해 명확히 알고가는것은 중요한 일 일것입니다.&lt;/p&gt;
+
+&lt;p&gt;벡터는 물리학, 수학, CS분야에서 뜻하는바가 조금씩 다릅니다. 이번 포스팅에서는 CS분야에 사용되는 벡터에 대해 중점적으로 기술하겠습니다.&lt;/p&gt;
+
+&lt;p&gt;CS관점에서 Vector가 의미하는 바는 순차 숫자 리스트입니다. 예를들어 한화를 기준으로 비트코인에 대한 정보를 2차원(길이가 2인) 벡터로 모델링 해본다면 다음과 같습니다.&lt;/p&gt;
+
+&lt;p&gt;1은 비트코인의 수량을 뜻합니다. 즉 비트코인 1개당 4500만원이라는 정보를 모델링 하고 있는것 입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/bitcoin.png&quot; alt=&quot;bitcoin.png&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+\[\begin{bmatrix}1 \\45,000,000\end{bmatrix}\]
+
+&lt;p&gt;우리는 기하학 관점에서 벡터를 원점에 뿌리를 둔 화살표라고 생각하면 벡터를 이해하기 수월할 것 입니다. 이는 벡터는 원점이 아닌 다른 좌표에 벡터를 표시할 수 있는 물리학 관점과 달리 선형대수학에서는 기본적으로 벡터는 원점에 뿌리를 둔 벡터라고 생각하면 이해하기 편합니다. CS관점에서 우리는 숫자-리스트라는 관점으로 벡터를 이해 해보려고 합니다. 숫자리스트는 곧 벡터의 좌표를 의미합니다.&lt;/p&gt;
+
+&lt;p&gt;벡터의 좌표는 숫자쌍입니다. 이 숫자쌍은 꼬리(원점)에서 시작한 벡터가 끝에 어떻게 다다를지 알려줍니다. 첫 번째 숫자는 원점을 기준으로 x축을 따라 얼마나 떨어졌는지가에 대한 정보를 포함하고 양수면 오른쪽, 음수면 왼쪽을 의미합니다. 마찬가지로 두번 째 숫자의 경우 y축에 대한 좌표 정보를 가집니다. 마찬가지로 양수이면 위쪽 음수이면 아래쪽을 의미하게됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector1.png&quot; alt=&quot;vector1.png&quot; class=&quot;align-center&quot; width=&quot;50%&amp;quot;, height=&amp;quot;50%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림에서 첫번째 원소(-2)는 x축에 평행하면서 -2만큼 이동하라는 의미이고, 두번째 원소(4)는 y축과 평행하여 4만큼 이동하라는 뜻입니다. 이는 3차원,4차원…n차원으로 확장가능한 개념이며, 3차원까지는 우리가 간단하게 시각화를 할 수 있지만 그 이상의 차원은 상상해보기가 힘듭니다.&lt;/p&gt;
+
+\[\begin{bmatrix}2\\3\\5\end{bmatrix},\begin{bmatrix}2\\3\\5\\7\end{bmatrix} ...\]
+
+&lt;h2 id=&quot;벡터의-연산&quot;&gt;벡터의 연산&lt;/h2&gt;
+
+&lt;h3 id=&quot;벡터의-합&quot;&gt;벡터의 합&lt;/h3&gt;
+
+&lt;p&gt;결국 선형대수의 모든 주제는 덧셈과, 곱셈 두가지 연산을 중심으로 일어납니다. 덧셈에 대해 먼저 논해보자면 아래와 그림과 같이 두 벡터가 있다고 가정해봅시다. 벡터v는 오른쪽 위쪽을 향한 벡터이고 벡터w는 오른쪽 아랫방향을 가리키고 있습니다. 이 두 벡터를 더하는 행위는 한 벡터의 꼬리를 다른 벡터의 끝으로 옮기는것을 말합니다.&lt;/p&gt;
+
+&lt;p&gt;그리고나서 벡터v의 꼬리부분에서 옮겨진 벡터w의 끝을 가리키는 새 벡터를 그리면 바로 이 새 벡터가 두 벡터의 합을 나타냅니다. 흥미로운 부분은 선형대수에서 유일하게 벡터를 원점으로부터 멀리 이탈시키는 순간이라는 점입니다.&lt;/p&gt;
+
+\[\]
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_sum.png&quot; alt=&quot;vector_sum.png&quot; class=&quot;align-center&quot; width=&quot;50%&amp;quot;, height=&amp;quot;50%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;벡터의 덧셈을 좀 더 간단히 생각해보면 아래 그림과 같이 생각해볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_sum_2.png&quot; alt=&quot;vector_sum_2.png&quot; class=&quot;align-center&quot; width=&quot;50%&amp;quot;, height=&amp;quot;50%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;단순히 벡터의 합을 각 벡터의 원소에 대응하는 숫자의 합이라고 생각하면 이해하기 쉽습니다. 즉 두 벡터의 합으로 생성된 새 벡터는 두 벡터의 x좌표 정보를 나타내는 원소의 합(2+3=5) y좌표 정보를 나타내는 원소들의 합(3+(-2))로 새 벡터를 나타낼 수 있습니다. 원점을 기준으로 x축의 방향 5칸 이동, y축의 방향으로 1칸이동한 위치에 점을 찍고 화살표를 그림으로 써 동일한 결과를 얻을 수 있습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;벡터의-곱스칼라-곱&quot;&gt;벡터의 곱(스칼라 곱)&lt;/h3&gt;
+
+&lt;p&gt;벡터의 곱은 합보다 더욱 간단합니다.&lt;/p&gt;
+
+\[2*\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}4\\6\end{bmatrix}\]
+
+&lt;p&gt;어떤 벡터의 각 원소에 Scalar(Number)를 곱하면 그것이 곧 벡터의 곱이됩니다. 기하학적으로 생각하면 벡터를 Scalar만큼 늘리거나 줄이는 것에 해당합니다. 벡터를 늘리는 연산은 위와같이 분수가 아닌 정수 형태의 곱으로 나타나고 줄이는 연산은 분수형태의 Scalar가 곱해지게됩니다. 음수의 경우도 생각해 보아야하는데요, 음수의 경우는 벡터의 방향을 현재 벡터의 정 반대의 방향을 가지는 벡터로 변환하는 기능을 합니다. 아래의 벡터의 스칼라 곱 연산을 시각화 해본 그림입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_scalar.png&quot; alt=&quot;vector_scalar.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html"></summary></entry><entry><title type="html">Linear Algebra</title><link href="https://ubermen5che.github.io/linear%20algebra/mathmatics/computer%20science/Python-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%A0%95%EB%A6%AC/" rel="alternate" type="text/html" title="Linear Algebra" /><published>2021-04-24T00:00:00+09:00</published><updated>2021-04-24T00:00:00+09:00</updated><id>https://ubermen5che.github.io/linear%20algebra/mathmatics/computer%20science/Python%20%EC%9E%90%EB%A3%8C%ED%98%95%20%EC%A0%95%EB%A6%AC</id><content type="html" xml:base="https://ubermen5che.github.io/linear%20algebra/mathmatics/computer%20science/Python-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%A0%95%EB%A6%AC/">&lt;h1 id=&quot;linear-algebra---essence-of-linear-algebravector&quot;&gt;Linear Algebra - Essence of linear algebra(Vector)&lt;/h1&gt;
+
+&lt;h2 id=&quot;벡터-개념의-필요성&quot;&gt;벡터 개념의 필요성&lt;/h2&gt;
+
+&lt;p&gt;최근 데이터과학기초(Fundementals of data science)과목을 수강하면서 SVM(Support Vector Machine), KNN, Naive Bayes를 이용하여 spam mail filtering에 대한 토이 프로젝트를 진행한적이 있습니다.&lt;/p&gt;
+
+&lt;p&gt;특히 이중에서 SVM이란 Supervised learning 의 한 종류로써 classification문제에 대해서 최근까지도 종종 쓰이는 꽤나 강력한 성능을 가진 유용한 도구입니다. SVM을 공부하면서 최적의 decision boundary를 찾는과정에서 나오는 수식중 벡터개념이 나왔는데 벡터개념이 확실하게 정립되지 않아 이번 포스팅에서는 벡터개념에 대해 명확히 정리해볼 것입니다.&lt;/p&gt;
+
+&lt;p&gt;출저를 먼저 밝히자면 유튜브 Blue1Brown 채널의 선형대수 시리즈 영상을 보며 정리했음을 알립니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;벡터-개요&quot;&gt;벡터 개요&lt;/h2&gt;
+
+&lt;p&gt;기본적으로 선형 대수의 구성요소는 벡터입니다. 따라서 선형대수의 기본 구성요소인 벡터에 대해 명확히 알고가는것은 중요한 일 일것입니다.&lt;/p&gt;
+
+&lt;p&gt;벡터는 물리학, 수학, CS분야에서 뜻하는바가 조금씩 다릅니다. 이번 포스팅에서는 CS분야에 사용되는 벡터에 대해 중점적으로 기술하겠습니다.&lt;/p&gt;
+
+&lt;p&gt;CS관점에서 Vector가 의미하는 바는 순차 숫자 리스트입니다. 예를들어 한화를 기준으로 비트코인에 대한 정보를 2차원 벡터로 모델링 해본다면 다음과 같습니다.&lt;/p&gt;
+
+&lt;p&gt;\begin{bmatrix}a &amp;amp; b \\c &amp;amp; d\end{bmatrix}&lt;/p&gt;
+
+&lt;p&gt;1은 비트코인의 수량을 뜻합니다. 즉 비트코인 1개당 4500만원이라는 정보를 모델링 하고 있는것 입니다.
+위의 정의를 볼 때 2개의 구성요소를 확인할 수 있을 것이다. 그러나 실제로 논쟁은 3개의 중요한 요소로 구성되어있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;전제(Premises): 인용된 이유 또는 증거&lt;/li&gt;
+  &lt;li&gt;결론(Conclusion): 전제에 의해 증명되고있는 진술(statement)&lt;/li&gt;
+  &lt;li&gt;논리적 관계(A logical relation): 결론와 결론의 논리적 연결.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;우리가 논쟁을 할 때, A라는 사람이 B라는 사람에게 자신의 주장을 펼쳤다고 한다면, B는 A의 의견을 들어야 하며, 그 전제로부터 결론을 이끌어내야 한다. A가 주장한 전제는 결론이 충분히 참이라는것을 동의하도록 B를 설득시킬 수 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;다음의 예제를 보며 논쟁에서 논리적 관계에 중요성에 대해 살펴보도록 하자.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;전제1: 팀쿡은 애플의 CEO이다.&lt;/li&gt;
+  &lt;li&gt;전제2: 잔디밭에 있는 풀들의 색은 초록색이다.&lt;/li&gt;
+  &lt;li&gt;결론: 그러므로 내일 아침에도 해가 뜰것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위의 예제를 볼 때, 2개의 전제 및 결론을 가진다. 이는 논쟁의 3가지 구성요소를 가지는것을 볼 수 있다. 그러나 이 전제들은 비록 전제들이 모두 참일지라도 결론을 결코 뒷받침해주지 않고 결론이 참인것을 신뢰하도록 하는 근거가 되지못한다.&lt;/p&gt;
+
+&lt;p&gt;또 다른 예시를 봐보자.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;전제1: 모든 나무들은 식물이다.&lt;/li&gt;
+  &lt;li&gt;전제2: 소나무는 나무이다.&lt;/li&gt;
+  &lt;li&gt;결론: 그러므로 소나무는 식물이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위의 예시는 논쟁의 구성요소를 모두 갖추었다. 첫번째 예시와는 달리 논리적 관계또한 올바르게 설정되어있는것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;정리해보자면 논쟁은 전제, 결론, 논리적 관계의 요소를 포함하며, 논쟁은 누군가를 설득시키기 위해 고안된 체계적인 문장들의 집합이므로 나의 주장을 상대방에게 펼칠 때 결론을 충분히 뒷받침해줄만한 적절한 근거를 제시해야하며, 결론과 전제가 충분히 논리적 관계를 형성하는지 따져봐야한다는것이다.&lt;/p&gt;
+
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Linear algebra" /><category term="Mathmatics" /><category term="Computer Science" /><category term="Linear algebra" /><category term="Mathmatics" /><category term="Computer Science" /><summary type="html">Linear Algebra - Essence of linear algebra(Vector)</summary></entry><entry><title type="html">Logic and Computer Science - 논리학 기초 - Statements</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - Statements" /><published>2021-01-23T00:00:00+09:00</published><updated>2021-01-23T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-Statements</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/">&lt;h3 id=&quot;what-is-an-statements&quot;&gt;What is an statements?&lt;/h3&gt;
 &lt;p&gt;statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.&lt;/p&gt;
 
 &lt;blockquote&gt;

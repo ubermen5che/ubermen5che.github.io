@@ -28,4 +28,16 @@ var store = [{
         "tags": ["Logic","Computer Science","논리","컴퓨터과학"],
         "url": "https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/",
         "teaser": null
+      },{
+        "title": "Linear Algebra",
+        "excerpt":"Linear Algebra - Essence of linear algebra(Vector) 벡터 개념의 필요성 최근 데이터과학기초(Fundementals of data science)과목을 수강하면서 SVM(Support Vector Machine), KNN, Naive Bayes를 이용하여 spam mail filtering에 대한 토이 프로젝트를 진행한적이 있습니다. 특히 이중에서 SVM이란 Supervised learning 의 한 종류로써 classification문제에 대해서 최근까지도 종종 쓰이는 꽤나 강력한 성능을 가진 유용한 도구입니다....","categories": ["Linear algebra","Mathmatics","Computer Science"],
+        "tags": ["Linear algebra","Mathmatics","Computer Science"],
+        "url": "https://ubermen5che.github.io/linear%20algebra/mathmatics/computer%20science/Python-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%A0%95%EB%A6%AC/",
+        "teaser": null
+      },{
+        "title": "Linear algebra Vector",
+        "excerpt":"선형대수 기본 벡터 Linear Algebra - Essence of linear algebra(Vector) 벡터 개념의 필요성 최근 정보검색, 데이터과학기초(Fundementals of data science)과목을 수강하면서 벡터의 중요성을 깨닫게 되었습니다. 정보검색에서 document와 query의 similarity를 측정하기 위해 벡터가 필요하였고, 데이터과학기초에서는 Supervised learning 범주에 속하는 SVM(Support Vector Machine)에서 벡터 개념이 필요하였습니다. 지난학기 벡터 개념이 제대로 정립이 되어있지 않아...","categories": [],
+        "tags": [],
+        "url": "https://ubermen5che.github.io/Linear-algebra-Vector/",
+        "teaser": null
       }]
