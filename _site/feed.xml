@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-06-21T14:11:46+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">Linear algebra Vector</title><link href="https://ubermen5che.github.io/Linear-algebra-Vector/" rel="alternate" type="text/html" title="Linear algebra Vector" /><published>2021-06-21T00:00:00+09:00</published><updated>2021-06-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/Linear%20algebra-Vector</id><content type="html" xml:base="https://ubermen5che.github.io/Linear-algebra-Vector/">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-06-29T22:27:53+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">삼성sds 랜선 멘토링</title><link href="https://ubermen5che.github.io/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/" rel="alternate" type="text/html" title="삼성sds 랜선 멘토링" /><published>2021-06-29T00:00:00+09:00</published><updated>2021-06-29T00:00:00+09:00</updated><id>https://ubermen5che.github.io/%EC%82%BC%EC%84%B1SDS%20%EB%9E%9C%EC%84%A0%20%EB%A9%98%ED%86%A0%EB%A7%81</id><content type="html" xml:base="https://ubermen5che.github.io/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/">&lt;h1 id=&quot;삼성-sds-랜선-멘토링&quot;&gt;삼성 SDS 랜선 멘토링&lt;/h1&gt;
+
+&lt;p&gt;2021년 6월 29일 화요일 운이좋게도 삼성 SDS랜선 멘토링에 참여하게되었습니다. 오늘 강의해주셨던 내용들을 단순 기억에 의존하여 작성한 내용이니 참고해주시면 좋을것 같습니다. 주된내용은 좋은개발이 무엇인지, 개발자에 대한 덕목에 대한 내용입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-29/mentoring.png&quot; alt=&quot;mentoring.png&quot; class=&quot;align-center&quot; width=&quot;60%&amp;quot;, height=&amp;quot;60%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;개발의-시작은-두가지&quot;&gt;개발의 시작은 두가지&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 다른 사람으로 부터 오는 요구사항을 개발.
+- 나의 생각에 따른 개발.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;개발자에게-가장-중요한-덕목&quot;&gt;개발자에게 가장 중요한 덕목&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;개발자는 어떠한 문제가 존재할 때 최적의 방법을 찾아 해결할 수 있는 문제해결능력이 가장 중요하다!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;삼성SDS 시니어 개발자인 박준수 프로님의 사례를 예를들어 설명해보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;현재 수많은 사람들이 잔여 백신 접종 신청을 위해 많은 시간을 모니터를 보며 새로고침을 하고있습니다. 앞으로 개발자가 될 생각이라면? 우리는 이 문제를 프로그래밍을 해서 자동화하는 방법을 찾을 수 있을것입니다. 위에서 개발의 시작은 두가지라고 했습니다. 이 경우 나의 생각에 따른 개발이며, 잔여 백신 접종 신청을 자동화 하는것이 요구사항일 것입니다. 이 사례를 예로 든 이유는 우리가 해결해야할 문제는 우리의 일상속 어딘가에 분명히 존재하며, 개발자는 이러한 문제들을 프로그래밍을 통해 어떻게 효율적으로 잘 해결해야할 것인지 항상 고민해야하는 존재라는것으로 받아들였습니다.&lt;/p&gt;
+
+&lt;p&gt;개발자의 길이 나에게 맞는지 잘 모르겠다면, 이러한 사고에 익숙한지 따져보면 알 수 있을것이라고 언급하셨습니다..익숙하지 않다면 개발자의 길을 다시한번 심사숙고 해보는것이 좋을것이라고 조언해주셨습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;좋은-개발이란&quot;&gt;좋은 개발이란?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;주어진 요구사항을 잘 분석하여 적절한 개발을 하자!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;1부터 10까지 더해보는 문제를 해결해보고자 합니다. 우리는 이 때 단순히 1+2+3+…+10 방식으로 문제를 해결해 볼 수도 있고 $10 * (10+1) / 2$ 수식을 사용하여 좀 더 빠르게 문제를 해결하거나 1~N으로 일반화 하여 문제를 해결해 볼 수 있을것입니다. 우리는 이 때 요구사항에 집중해보는것이 필요합니다. 요구사항에서는 단지 1~10까지 더하라는 요구만 있을뿐이기 때문에 주어진 요구사항에 맞게 적절한 방법을 사용하여 문제를 해결해나가면 되는것입니다. 최근 하드웨어가 좋아지면서 때로는 $O(N^2)$  복잡도를 가진 알고리즘이 $O(N)$ 보다 좋아보일때도 있다. 코드를 누구나 쉽게 구현할 수 있다면 말이죠.&lt;/p&gt;
+
+&lt;p&gt;처음부터 문제를 일반화하여 거창하고 어렵게 해결할 필요가 없습니다. 요구사항에 한하여 문제를 간단히 생각해보고 필요하다면 일반화하여 개선해나가면 되는것이기 때문입니다. 따라서 요구사항 분석을 철저히 하고 그에 맞는 개발을 하라는것입니다.&lt;/p&gt;
+
+&lt;p&gt;최근 사람들은 워라밸을 중시합니다. 개발자들이 워라밸을 지키기 위해서는 누구나 보기쉬운 깔끔한 코드를 짜야 라이프 밸런스가 보장됩니다. 실무에서는 수많은 사람들과 협업하며 내가 짠 코드를 누군가가 유지보수를 할 수 있는 상황이 오기 때문에 최대한 간결하고 직관적인 코드를 짜야합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;어떤-기술스택-언어를-습득해야할까요&quot;&gt;어떤 기술스택, 언어를 습득해야할까요?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;현재 가장 익숙한 언어를 사용하는것이 좋을것이다. 해당 언어를 마스터했다면 다른 언어를 공부해봐도 좋다. 다른 언어를 공부할 때는 내가 익숙한 언어와의 차이점이 무엇인지에 대해 생각해보면서 학습해보면 좋을것입니다.&lt;/li&gt;
+  &lt;li&gt;주로쓰던 언어를 마스터하였다면 트렌드에 맞는 언어를 선택해서 학습해봅시다.&lt;/li&gt;
+  &lt;li&gt;어떤 기술스택을 쓰던 내게 주어진 문제를 해결할 수 있는것이면 됩니다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html">삼성 SDS 랜선 멘토링</summary></entry><entry><title type="html">Linear algebra Vector</title><link href="https://ubermen5che.github.io/Linear-algebra-Vector/" rel="alternate" type="text/html" title="Linear algebra Vector" /><published>2021-06-21T00:00:00+09:00</published><updated>2021-06-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/Linear%20algebra-Vector</id><content type="html" xml:base="https://ubermen5che.github.io/Linear-algebra-Vector/">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;
 
 &lt;h1 id=&quot;선형대수-기본-벡터&quot;&gt;선형대수 기본 벡터&lt;/h1&gt;
 

@@ -40,4 +40,10 @@ var store = [{
         "tags": [],
         "url": "https://ubermen5che.github.io/Linear-algebra-Vector/",
         "teaser": null
+      },{
+        "title": "삼성sds 랜선 멘토링",
+        "excerpt":"삼성 SDS 랜선 멘토링 2021년 6월 29일 화요일 운이좋게도 삼성 SDS랜선 멘토링에 참여하게되었습니다. 오늘 강의해주셨던 내용들을 단순 기억에 의존하여 작성한 내용이니 참고해주시면 좋을것 같습니다. 주된내용은 좋은개발이 무엇인지, 개발자에 대한 덕목에 대한 내용입니다. 개발의 시작은 두가지 - 다른 사람으로 부터 오는 요구사항을 개발. - 나의 생각에 따른 개발. 개발자에게 가장 중요한...","categories": [],
+        "tags": [],
+        "url": "https://ubermen5che.github.io/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/",
+        "teaser": null
       }]
