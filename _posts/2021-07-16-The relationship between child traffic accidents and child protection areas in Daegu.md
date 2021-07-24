@@ -1,5 +1,5 @@
 ---
-title: "The relationship between child traffic accidents and child protection areas in Daegu"
+title: "대구시 어린이 교통사고와 어린이 보호구역의 연관성"
 
 categories:
   - Data visualization
@@ -8,7 +8,6 @@ tags:
 ---
 <<<<<<< HEAD:_posts/2021-07-16-The relationship between child traffic accidents and child protection areas in Daegu.md
 =======
-# 대구시 어린이 교통사고와 어린이 보호구역의 연관성
 
 >>>>>>> 79d1ff7339b26c71831727e864ae28f3db50cb2e:_posts/2021-07-16-[데이터시각화] 대구시 어린이 교통사고와 어린이 보호구역의 연관성.md
 ## 시각화 자료 정보
