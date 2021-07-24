@@ -29,21 +29,39 @@ var store = [{
         "url": "https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/",
         "teaser": null
       },{
-        "title": "Linear Algebra",
-        "excerpt":"Linear Algebra - Essence of linear algebra(Vector) 벡터 개념의 필요성 최근 데이터과학기초(Fundementals of data science)과목을 수강하면서 SVM(Support Vector Machine), KNN, Naive Bayes를 이용하여 spam mail filtering에 대한 토이 프로젝트를 진행한적이 있습니다. 특히 이중에서 SVM이란 Supervised learning 의 한 종류로써 classification문제에 대해서 최근까지도 종종 쓰이는 꽤나 강력한 성능을 가진 유용한 도구입니다....","categories": ["Linear algebra","Mathmatics","Computer Science"],
-        "tags": ["Linear algebra","Mathmatics","Computer Science"],
-        "url": "https://ubermen5che.github.io/linear%20algebra/mathmatics/computer%20science/Python-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%A0%95%EB%A6%AC/",
-        "teaser": null
-      },{
         "title": "Linear algebra Vector",
         "excerpt":"선형대수 기본 벡터 Linear Algebra - Essence of linear algebra(Vector) 벡터 개념의 필요성 최근 정보검색, 데이터과학기초(Fundementals of data science)과목을 수강하면서 벡터의 중요성을 깨닫게 되었습니다. 정보검색에서 document와 query의 similarity를 측정하기 위해 벡터가 필요하였고, 데이터과학기초에서는 Supervised learning 범주에 속하는 SVM(Support Vector Machine)에서 벡터 개념이 필요하였습니다. 지난학기 벡터 개념이 제대로 정립이 되어있지 않아...","categories": [],
         "tags": [],
         "url": "https://ubermen5che.github.io/Linear-algebra-Vector/",
         "teaser": null
       },{
-        "title": "삼성sds 랜선 멘토링",
-        "excerpt":"2021년 6월 29일 화요일 운이좋게도 삼성 SDS랜선 멘토링에 참여하게되었습니다. 오늘 강의해주셨던 내용들을 단순 기억에 의존하여 작성한 내용이니 참고해주시면 좋을것 같습니다. 주된내용은 좋은개발이 무엇인지, 개발자에 대한 덕목에 대한 내용입니다. 개발의 시작은 두가지 - 다른 사람으로 부터 오는 요구사항을 개발. - 나의 생각에 따른 개발. 개발자에게 가장 중요한 덕목 개발자는 어떠한 문제가...","categories": [],
-        "tags": [],
-        "url": "https://ubermen5che.github.io/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/",
+        "title": "자바 기초 정리",
+        "excerpt":"Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적) Object(instance of the class): 클래스의 오브젝트 또는 클래스의 인스턴스라고도 불려진다. 오브젝트는...","categories": ["Java"],
+        "tags": ["Java"],
+        "url": "https://ubermen5che.github.io/java/Java-%EA%B8%B0%EC%B4%88-%EC%A0%95%EB%A6%AC/",
+        "teaser": null
+      },{
+        "title": "[대외활동] 삼성 SDS 멘토링",
+        "excerpt":"2021년 6월 29일 화요일 운이좋게도 삼성 SDS랜선 멘토링에 참여하게되었습니다. 오늘 강의해주셨던 내용들을 단순 기억에 의존하여 작성한 내용이니 참고해주시면 좋을것 같습니다. 주된내용은 좋은개발이 무엇인지, 개발자에 대한 덕목에 대한 내용입니다. 개발의 시작은 두가지 - 다른 사람으로 부터 오는 요구사항을 개발. - 나의 생각에 따른 개발. 개발자에게 가장 중요한 덕목 개발자는 어떠한 문제가...","categories": ["대외활동"],
+        "tags": ["삼성SDS","멘토링","프로그래머","개발자"],
+        "url": "https://ubermen5che.github.io/%EB%8C%80%EC%99%B8%ED%99%9C%EB%8F%99/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/",
+        "teaser": null
+      },{
+        "title": "[Web] 스프링 웹 개발 기초",
+        "excerpt":"[Web] 스프링 웹 개발 기초 정적 컨텐츠 간단히 말해서 요청이 들어올 시 서버에서 웹 브라우저에 파일을 전송해주면 웹브라우저는 파일을 받아서 그대로 보여주는 방식 스프링에서 정적 컨텐츠는 project에 /static 경로를 찾아서 클라이언트에게 뿌려줌. 웹브라우저가 정적 페이지를 요청을 하면, Spring 내장 Tomcat서버를 거쳐 우선 스프링 컨테이너 안에 해당 요청에 관한 컨트롤러가 있는지...","categories": ["Java","Spring"],
+        "tags": ["Java","MVC","API","템플릿 엔진","Template engine"],
+        "url": "https://ubermen5che.github.io/java/spring/Web-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EC%B4%88/",
+        "teaser": null
+      },{
+        "title": "[스프링 핵심 원리] SOLID ",
+        "excerpt":"SRP: 단일 책임 원칙(Single responsibility principle) 한 클래스는 하나의 책임만 가져야 한다. 하나의 책임이라는 것은 모호하다. 클 수 있고, 작을 수 있다. 문맥과 상황에 따라 다르다. 중요한 기준은 변경이다. 변경이 있을 때 파급 효과가 적으면 단일 책임 원칙을 잘 따른 것 예) UI변경, 객체의 생성과 사용을 분리 ⭐️OCP: 개방-폐쇄 원칙(Open/closed...","categories": ["Java","Spring"],
+        "tags": ["Java","Spring","SOLID"],
+        "url": "https://ubermen5che.github.io/java/spring/%EC%9E%90%EB%B0%94-%EC%8A%A4%ED%94%84%EB%A7%81-SOLID/",
+        "teaser": null
+      },{
+        "title": "대구시 어린이 교통사고와 어린이 보호구역의 연관성",
+        "excerpt":"Folium을 이용한 데이터 시각화   시각화 자료 정보  - 마커로 표시된 위치는 2013년도부터 2020년도 까지의 대구시 어린이 교통사고 발생 위치를 나타냄. - 클릭시 세부정보 확인 가능. - 노란색 원은 어런이 보호구역을 나타냄. - 원의 반지름은 200M로 설정하였음.           ","categories": ["Data visualization"],
+        "tags": ["Folium"],
+        "url": "https://ubermen5che.github.io/data%20visualization/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-%EB%8C%80%EA%B5%AC%EC%8B%9C-%EC%96%B4%EB%A6%B0%EC%9D%B4-%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0%EC%99%80-%EC%96%B4%EB%A6%B0%EC%9D%B4-%EB%B3%B4%ED%98%B8%EA%B5%AC%EC%97%AD%EC%9D%98-%EC%97%B0%EA%B4%80%EC%84%B1/",
         "teaser": null
       }]
