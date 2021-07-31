@@ -60,8 +60,20 @@ var store = [{
         "teaser": null
       },{
         "title": "대구시 어린이 교통사고와 어린이 보호구역의 연관성",
-        "excerpt":"Folium을 이용한 데이터 시각화   시각화 자료 정보  - 마커로 표시된 위치는 2013년도부터 2020년도 까지의 대구시 어린이 교통사고 발생 위치를 나타냄. - 클릭시 세부정보 확인 가능. - 노란색 원은 어런이 보호구역을 나타냄. - 원의 반지름은 200M로 설정하였음.           ","categories": ["Data visualization"],
+        "excerpt":"Folium을 이용한 데이터 시각화   시각화 자료 정보  - 마커로 표시된 위치는 2013년도부터 2020년도 까지의 대구시 어린이 교통사고 발생 위치를 나타냄. - 클릭시 세부정보 확인 가능. - 노란색 원은 어런이 보호구역을 나타냄. - 원의 반지름은 200M로 설정하였음.           ","categories": ["Datavisualization"],
         "tags": ["Folium"],
-        "url": "https://ubermen5che.github.io/data%20visualization/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-%EB%8C%80%EA%B5%AC%EC%8B%9C-%EC%96%B4%EB%A6%B0%EC%9D%B4-%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0%EC%99%80-%EC%96%B4%EB%A6%B0%EC%9D%B4-%EB%B3%B4%ED%98%B8%EA%B5%AC%EC%97%AD%EC%9D%98-%EC%97%B0%EA%B4%80%EC%84%B1/",
+        "url": "https://ubermen5che.github.io/datavisualization/The-relationship-between-child-traffic-accidents-and-child-protection-areas-in-Daegu/",
+        "teaser": null
+      },{
+        "title": "[Spring] 싱글톤 컨테이너",
+        "excerpt":"웹 어플리케이션과 싱글톤 웹 어플리케이션은 보통 수많은 클라이언트가 동시에 요청을 한다. 만약 클라이언트의 요청마다 새로운 객체(Controller)를 생성해서 서비스하게 된다면 JVM에 수많은 객체가 등록되고 결국 OOM(Out Of Memory)가 발생하여 정상적으로 서비스를 할 수 없게 될것이다. 이를 해결하기 위해 나온것이 싱글톤 컨테이너이다. 그림1(DI 컨테이너) 그림1은 스프링 없는 순수한 DI 컨테이너인 AppConfig가 요청을...","categories": ["Spring","Design pattern"],
+        "tags": ["Spring","singleton"],
+        "url": "https://ubermen5che.github.io/spring/design%20pattern/Spring-%EC%8B%B1%EA%B8%80-%ED%86%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88/",
+        "teaser": null
+      },{
+        "title": "[컨트리뷰톤] Git/GitHub 기본실습-1",
+        "excerpt":"오픈소스 프로젝트 복사 / 다운 받기(Fork &amp; Clone) 우선 Fork하는 행위에 대한 의미를 알아보자. Fork를 이해하려면 우선 commit의 기본개념을 알아야한다. 커밋이란? 소스파일의 변화분이다. 그림1(커밋 로그) Fork는 Fork한 프로젝트의 commit내역을 모두 복사한것과 동일하다고 생각하면 쉽다. 즉 내가 fork한 프로젝트와는 별개의 복사된 프로젝트라고 보면된다. 복사된 프로젝트이니 당연히 fork한 프로젝트를 수정한다고 해서 원본...","categories": ["Git","대외 활동"],
+        "tags": ["Git/Github"],
+        "url": "https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1/",
         "teaser": null
       }]
