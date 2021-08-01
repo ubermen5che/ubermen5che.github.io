@@ -73,7 +73,13 @@ var store = [{
       },{
         "title": "[컨트리뷰톤] Git/GitHub 기본실습-1",
         "excerpt":"오픈소스 프로젝트 복사 / 다운 받기(Fork &amp; Clone) 우선 Fork하는 행위에 대한 의미를 알아보자. Fork를 이해하려면 우선 commit의 기본개념을 알아야한다. 커밋이란? 소스파일의 변화분이다. 그림1(커밋 로그) Fork는 Fork한 프로젝트의 commit내역을 모두 복사한것과 동일하다고 생각하면 쉽다. 즉 내가 fork한 프로젝트와는 별개의 복사된 프로젝트라고 보면된다. 복사된 프로젝트이니 당연히 fork한 프로젝트를 수정한다고 해서 원본...","categories": ["Git","대외 활동"],
-        "tags": ["Git/Github"],
+        "tags": ["Git/Github","git 명령"],
         "url": "https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1/",
+        "teaser": null
+      },{
+        "title": "[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1",
+        "excerpt":"Rebase의 필요성 평소 개인프로젝트를 할때 당연히 혼자만 commit을 하게된다. 또한 학교에서 팀프로젝트를 하게되는 경우 다수의 팀원들과 git을 이용하여 프로젝트를 진행하지만 모두가 push권한을 가지고 하는경우가 많은것 같다. 이는 협업이 아니며 분업이라고 해야할 것이다. 오픈소스 프로젝트 특성상 다수의 사람이 PR을 날리게 된다. 만약 내가 수정하고 있는 모듈과 다른사람이 수정한 모듈에 연관관계가 있는경우,...","categories": ["Git","대외 활동"],
+        "tags": ["Git/Github","git 명령어","rebase","오픈소스"],
+        "url": "https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/",
         "teaser": null
       }]

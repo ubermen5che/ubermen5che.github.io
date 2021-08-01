@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-01T00:41:22+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[컨트리뷰톤] Git/GitHub 기본실습-1</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1/" rel="alternate" type="text/html" title="[컨트리뷰톤] Git/GitHub 기본실습-1" /><published>2021-07-31T00:00:00+09:00</published><updated>2021-07-31T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1/">&lt;h1 id=&quot;오픈소스-프로젝트-복사--다운-받기fork--clone&quot;&gt;오픈소스 프로젝트 복사 / 다운 받기(Fork &amp;amp; Clone)&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-01T23:29:58+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/" rel="alternate" type="text/html" title="[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1" /><published>2021-08-01T00:00:00+09:00</published><updated>2021-08-01T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/">&lt;h1 id=&quot;rebase의-필요성&quot;&gt;Rebase의 필요성&lt;/h1&gt;
+
+&lt;p&gt;평소 개인프로젝트를 할때 당연히 혼자만 commit을 하게된다. 또한 학교에서 팀프로젝트를 하게되는 경우 다수의 팀원들과 git을 이용하여 프로젝트를 진행하지만 모두가 push권한을 가지고 하는경우가 많은것 같다. 이는 협업이 아니며 분업이라고 해야할 것이다. 오픈소스 프로젝트 특성상 다수의 사람이 PR을 날리게 된다.&lt;/p&gt;
+
+&lt;p&gt;만약 내가 수정하고 있는 모듈과 다른사람이 수정한 모듈에 연관관계가 있는경우, 내가 PR한것 말고 다른 contributor가 날린 PR이 먼저 merge된다면 내가 fork한 프로젝트는 예전 base(이전 commit 목록)가 되기때문에 충돌이 발생한다. 이때 필요한것이 rebase인데 충돌이 어떻게 해결되는지 원리를 이해하기 위해서는 rebase 명령어에 대한 자세한 사항을 알아둘 필요가 있다. 우선 rewind에 대해 알아보자.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h1 id=&quot;commit-과거-시점으로-되감기rewind&quot;&gt;Commit 과거 시점으로 되감기(rewind)&lt;/h1&gt;
+
+&lt;p&gt;아래 명령어는 commit을 과거 시점으로 되감기위해 사용하는 명령어이다. -i 옵션은 interactive를 의미한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git rebase &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--root&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아래 그림은 명령어의 결과를 보여준다. 자세히 보면 commit ID와 commit message가 보이는데 여기서 주의해야할점은 git log 명령어의 순서와는 반대인것이다. git log는 가장 최근 commit이 상단에 위치하는데 반해서 rebase명령어는 가장 오래된 commit을 최상단에 보여준다. 그림1과 그림2를 보면 정말로 그런것을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/rebase_i.png&quot; alt=&quot;rebase_i.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림1(rebase -i)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/git_log.png&quot; alt=&quot;git_log.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(git log —oneline)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;필자는 두번째로 가장 오래된 commit 시점으로 rewind를 해볼것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rewind 순서&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;git rebase -i —root&lt;/li&gt;
+  &lt;li&gt;되감고 싶은 시점에 해당하는 commit에 가장 앞에 위치한 pick을 edit으로 바꾼다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/rebase_i.png&quot; alt=&quot;rebase_i.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(git rebase_i)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/rebase_i_result.png&quot; alt=&quot;rebase_i_result.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(git rebase -i 결과)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 다음과 같은 결과 메세지를 볼 수 있다. 864cf0f… ID를 가지는 commit 시점으로 바뀐것이다.&lt;/p&gt;
+
+&lt;p&gt;정말로 그런지 git log —oneline으로 확인해보자!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/rewind_result.png&quot; alt=&quot;rewind_result.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(rewind 결과)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;정말로 해당 시점으로 되감아진것을 확인할 수 있다. 마치 타임머신처럼 기능을 한다🤩&lt;/p&gt;
+
+&lt;p&gt;타임머신을 탔는데 다시 돌아올 방법이 없다면 정말 곤란할 것 같다… 다행히 rebase명령어는 다시 이전 시점으로 돌아올 수 있는 옵션을 제공한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git rebase &lt;span class=&quot;nt&quot;&gt;--continue&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h1 id=&quot;rebase-실습1&quot;&gt;Rebase 실습1&lt;/h1&gt;
+
+&lt;h2 id=&quot;가장-오래된-역사-부터-두번째-commit-이후에-새로운-commit-3개-넣기&quot;&gt;가장 오래된 역사 부터 두번째 commit 이후에 새로운 commit 3개 넣기&lt;/h2&gt;
+
+&lt;p&gt;위에 rewind에 관한 내용을 잘 숙지했다면 어려운 내용은 아닌것 같다.&lt;/p&gt;
+
+&lt;p&gt;가장 오래된 역사 두번째 commit으로 rewind후 commit을 3개 만들면 되는 간단한 실습이었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/practice_1.png&quot; alt=&quot;practice_1.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(practice 1 해답)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;마찬가지로 git log로 결과를 확인해보자. 확인해본결과 Add knapsack… commit이후 3개의 commit이 잘 들어간것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-01/practice_1_result.png&quot; alt=&quot;rebase_i.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(practice 1 git log)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; 해당 포스트는 리얼리눅스 송태웅님의 강의를 보고 정리한 내용임을 알립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Git" /><category term="대외 활동" /><category term="Git/Github" /><category term="git 명령어" /><category term="rebase" /><category term="오픈소스" /><summary type="html">Rebase의 필요성</summary></entry><entry><title type="html">[컨트리뷰톤] Git/GitHub 기본실습-1</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1/" rel="alternate" type="text/html" title="[컨트리뷰톤] Git/GitHub 기본실습-1" /><published>2021-07-31T00:00:00+09:00</published><updated>2021-07-31T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-1/">&lt;h1 id=&quot;오픈소스-프로젝트-복사--다운-받기fork--clone&quot;&gt;오픈소스 프로젝트 복사 / 다운 받기(Fork &amp;amp; Clone)&lt;/h1&gt;
 
 &lt;p&gt;우선 Fork하는 행위에 대한 의미를 알아보자. Fork를 이해하려면 우선 commit의 기본개념을 알아야한다.&lt;/p&gt;
 
@@ -8,13 +83,13 @@
   &lt;p&gt;소스파일의 변화분이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/commit_log.png&quot; alt=&quot;commit_log.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/commit_log.png&quot; alt=&quot;commit_log.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림1(커밋 로그)&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Fork는 Fork한 프로젝트의 commit내역을 모두 복사한것과 동일하다고 생각하면 쉽다. 즉 내가 fork한 프로젝트와는 별개의 복사된 프로젝트라고 보면된다. 복사된 프로젝트이니 당연히 fork한 프로젝트를 수정한다고 해서 원본 프로젝트에 대해 전혀 영향을 줄 수 없다! 만약 내가 fork해온 오픈소스 프로젝트에 대해 버그를 발견하거나 내용추가가 필요한 경우 어떻게 원본 프로젝트에 반영할 수 있을까? 해당내용은 뒤에서 다루도록 하겠다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/fork_clone.png&quot; alt=&quot;fork_clone.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/fork_clone.png&quot; alt=&quot;fork_clone.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림2(fork와 clone)&lt;/em&gt;&lt;/p&gt;
 
@@ -27,7 +102,7 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git shortlog &lt;span class=&quot;nt&quot;&gt;-sn&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;nl&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/shortlog_sn.png&quot; alt=&quot;shortlog_sn.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/shortlog_sn.png&quot; alt=&quot;shortlog_sn.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림3(git shortlog -sn)&lt;/em&gt;&lt;/p&gt;
 
@@ -59,7 +134,7 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git log &lt;span class=&quot;nt&quot;&gt;--oneline&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/git_log_oneline.png&quot; alt=&quot;git_log_oneline.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/git_log_oneline.png&quot; alt=&quot;git_log_oneline.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림3(git log —oneline)&lt;/em&gt;&lt;/p&gt;
 
@@ -68,13 +143,13 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git show &amp;lt;ID&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/git_show.png&quot; alt=&quot;git_show.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/git_show.png&quot; alt=&quot;git_show.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림4(git show)&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;필자는 6237748이라는 ID를 가지는 commit에 대해 git show를 하였고 위 그림4는 이에 대한 결과를 나타낸다. git show를 이용하면 해당 커밋에 대해서 수정한 소스파일 개수가 얼마나 되는지 알아볼 수 있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/git_show_diff.png&quot; alt=&quot;git_show_diff.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-07-31/git_show_diff.png&quot; alt=&quot;git_show_diff.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림5(소스파일 수정 개수)&lt;/em&gt;&lt;/p&gt;
 
@@ -124,8 +199,10 @@
     &lt;ul&gt;
       &lt;li&gt;최초 커밋을 확인할 때 유용.&lt;/li&gt;
     &lt;/ul&gt;
+
+    &lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; 해당 포스트는 리얼리눅스 송태웅님의 강의를 보고 정리한 내용임을 알립니다.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Git" /><category term="대외 활동" /><category term="Git/Github" /><summary type="html">오픈소스 프로젝트 복사 / 다운 받기(Fork &amp;amp; Clone)</summary></entry><entry><title type="html">[Spring] 싱글톤 컨테이너</title><link href="https://ubermen5che.github.io/spring/design%20pattern/Spring-%EC%8B%B1%EA%B8%80-%ED%86%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88/" rel="alternate" type="text/html" title="[Spring] 싱글톤 컨테이너" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>https://ubermen5che.github.io/spring/design%20pattern/%5BSpring%5D%20%EC%8B%B1%EA%B8%80%1D%ED%86%A4%20%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88</id><content type="html" xml:base="https://ubermen5che.github.io/spring/design%20pattern/Spring-%EC%8B%B1%EA%B8%80-%ED%86%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88/">&lt;h1 id=&quot;웹-어플리케이션과-싱글톤&quot;&gt;웹 어플리케이션과 싱글톤&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Git" /><category term="대외 활동" /><category term="Git/Github" /><category term="git 명령" /><summary type="html">오픈소스 프로젝트 복사 / 다운 받기(Fork &amp;amp; Clone)</summary></entry><entry><title type="html">[Spring] 싱글톤 컨테이너</title><link href="https://ubermen5che.github.io/spring/design%20pattern/Spring-%EC%8B%B1%EA%B8%80-%ED%86%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88/" rel="alternate" type="text/html" title="[Spring] 싱글톤 컨테이너" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>https://ubermen5che.github.io/spring/design%20pattern/%5BSpring%5D%20%EC%8B%B1%EA%B8%80%1D%ED%86%A4%20%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88</id><content type="html" xml:base="https://ubermen5che.github.io/spring/design%20pattern/Spring-%EC%8B%B1%EA%B8%80-%ED%86%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88/">&lt;h1 id=&quot;웹-어플리케이션과-싱글톤&quot;&gt;웹 어플리케이션과 싱글톤&lt;/h1&gt;
 
 &lt;p&gt;웹 어플리케이션은 보통 수많은 클라이언트가 동시에 요청을 한다. 만약 클라이언트의 요청마다 새로운 객체(Controller)를 생성해서 서비스하게 된다면 JVM에 수많은 객체가 등록되고 결국 OOM(Out Of Memory)가 발생하여 정상적으로 서비스를 할 수 없게 될것이다. 이를 해결하기 위해 나온것이 싱글톤 컨테이너이다.&lt;/p&gt;
 
@@ -574,56 +651,4 @@
 
 &lt;p&gt;위의 각 문장에서, AND, OR에 의해 합쳐진 두개의 simple statments 볼 수 있다. 이러한 연산자들은 simple statments를 사용하여 하나 이상의 진리를 선언하도록 허용해준다. 추후에 이루어질 포스팅에서는 다양한 연산자들을 알아볼 것이다.&lt;/p&gt;
 
-&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an statements? statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.</summary></entry><entry><title type="html">Logic and Computer Science - 논리학 기초 - 논쟁(argument)</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Arguments/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - 논쟁(argument)" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-Arguments</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Arguments/">&lt;h3 id=&quot;what-is-an-arguments&quot;&gt;What is an arguments?&lt;/h3&gt;
-&lt;p&gt;이전 포스팅에서 논리학은 적절하게 정리된 생각에 관한 과학이라고 했다. 모든과학분야에서 해당 연구분야에 대한 초점과 목표를 가지는데, 논리학에서의 목표는 논쟁이다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;논쟁은 우리의 생각을 구조화하는 방법이다&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;우리는 가끔 말싸움을 하며 논쟁을 벌이기도 한다. 만약 친구, 동료, 가족들과 논쟁을 벌이는거라면 어떤일에 대해 논쟁의 대상자의 의견에 동의하지않거나 본인이 주장하는 의견과 거리가 멀어서 일어날 것이다.&lt;/p&gt;
-
-&lt;p&gt;이러한 일생생활에서 발생하는 논쟁이 매우 논리적일수도 있겠지만, 단지 소리만 지르며 끝나는 논쟁이라고 한다면 이는 논리학과는 거리가 멀다. 논리학에서 논쟁은 더욱더 구체적인 목적을 가지고 정형화된 구조를 가진다.&lt;/p&gt;
-
-&lt;p&gt;특히 논쟁은 누군가를 설득시키기 위해 고안된 체계적인 문장들의 집합이다. 그 구조는 매우 중요하다. 논리학자들은 구조를 더욱 명확히 정의하기 위해 논쟁을 구성하는 몇몇의 요소에 이름을 부여했다. 교과서 적인 논쟁의 정의를 나열해보자면 다음과 같다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;논쟁(arguments)&lt;/dt&gt;
-    &lt;dd&gt;논쟁은 주장(결론이라 불리우는)에 힘을 실어주는 이유(전제)들로 구성되어있다.&lt;/dd&gt;
-  &lt;/dl&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;위의 정의를 볼 때 2개의 구성요소를 확인할 수 있을 것이다. 그러나 실제로 논쟁은 3개의 중요한 요소로 구성되어있다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;전제(Premises): 인용된 이유 또는 증거&lt;/li&gt;
-  &lt;li&gt;결론(Conclusion): 전제에 의해 증명되고있는 진술(statement)&lt;/li&gt;
-  &lt;li&gt;논리적 관계(A logical relation): 결론와 결론의 논리적 연결.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;우리가 논쟁을 할 때, A라는 사람이 B라는 사람에게 자신의 주장을 펼쳤다고 한다면, B는 A의 의견을 들어야 하며, 그 전제로부터 결론을 이끌어내야 한다. A가 주장한 전제는 결론이 충분히 참이라는것을 동의하도록 B를 설득시킬 수 있어야 한다.&lt;/p&gt;
-
-&lt;p&gt;다음의 예제를 보며 논쟁에서 논리적 관계에 중요성에 대해 살펴보도록 하자.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;전제1: 팀쿡은 애플의 CEO이다.&lt;/li&gt;
-  &lt;li&gt;전제2: 잔디밭에 있는 풀들의 색은 초록색이다.&lt;/li&gt;
-  &lt;li&gt;결론: 그러므로 내일 아침에도 해가 뜰것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;위의 예제를 볼 때, 2개의 전제 및 결론을 가진다. 이는 논쟁의 3가지 구성요소를 가지는것을 볼 수 있다. 그러나 이 전제들은 비록 전제들이 모두 참일지라도 결론을 결코 뒷받침해주지 않고 결론이 참인것을 신뢰하도록 하는 근거가 되지못한다.&lt;/p&gt;
-
-&lt;p&gt;또 다른 예시를 봐보자.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;전제1: 모든 나무들은 식물이다.&lt;/li&gt;
-  &lt;li&gt;전제2: 소나무는 나무이다.&lt;/li&gt;
-  &lt;li&gt;결론: 그러므로 소나무는 식물이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;위의 예시는 논쟁의 구성요소를 모두 갖추었다. 첫번째 예시와는 달리 논리적 관계또한 올바르게 설정되어있는것을 확인할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;정리해보자면 논쟁은 전제, 결론, 논리적 관계의 요소를 포함하며, 논쟁은 누군가를 설득시키기 위해 고안된 체계적인 문장들의 집합이므로 나의 주장을 상대방에게 펼칠 때 결론을 충분히 뒷받침해줄만한 적절한 근거를 제시해야하며, 결론과 전제가 충분히 논리적 관계를 형성하는지 따져봐야한다는것이다.&lt;/p&gt;
-
-&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an arguments? 이전 포스팅에서 논리학은 적절하게 정리된 생각에 관한 과학이라고 했다. 모든과학분야에서 해당 연구분야에 대한 초점과 목표를 가지는데, 논리학에서의 목표는 논쟁이다.</summary></entry></feed>
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an statements? statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.</summary></entry></feed>
