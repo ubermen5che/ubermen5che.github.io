@@ -1,4 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-01T23:29:58+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/" rel="alternate" type="text/html" title="[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1" /><published>2021-08-01T00:00:00+09:00</published><updated>2021-08-01T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/">&lt;h1 id=&quot;rebase의-필요성&quot;&gt;Rebase의 필요성&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-06T00:33:46+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[컨트리뷰톤] Git/GitHub 기본실습-2</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/" rel="alternate" type="text/html" title="[컨트리뷰톤] Git/GitHub 기본실습-2" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/">&lt;h1 id=&quot;오픈소스-개발참여를-위한-commit-작업branch--commit&quot;&gt;오픈소스 개발참여를 위한 commit 작업(branch &amp;amp; commit)&lt;/h1&gt;
+
+&lt;h2 id=&quot;branch란&quot;&gt;Branch란?&lt;/h2&gt;
+
+&lt;p&gt;브랜치는 다음과 같은 표현으로 간결하게 설명할 수 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“같은 폴더 다른세상”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;아래의 터미널을 보면  check-fosslight branch에서 hi.txt를 생성하고 commit을 한것을 볼 수 있다. 해당 브랜치에서 생성하고 commit한 파일을 main branch에서 찾아볼 수 있을까? 지난 포스팅에서 배운 git log 명령어를 이용하여 commit내역을 보면 확실하게 알 수 있을것이다!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/branch.png&quot; alt=&quot;branch.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림1(main외에 브랜치에서 hi.txt생성)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;파이프라인을 명령어를 사용하여 HEAD -1을 하면 가장 상위 1개의 commit내역을 가져올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;아래의 사진을 통해 결과를 확인해보자. check-fosslight branch에는 hi.txt파일을 추가한 commit내역을 확인할 수 있다. &lt;strong&gt;그러나 main branch에서는 확인할 수 없었다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;즉, &lt;strong&gt;같은 폴더 다른세상&lt;/strong&gt;이라는 표현이 아주 적절한 표현임을 알 수 있었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git log &lt;span class=&quot;nt&quot;&gt;--oneline&lt;/span&gt; | HEAD &lt;span class=&quot;nt&quot;&gt;-1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/checkout.png&quot; alt=&quot;checkout.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;브랜치-관련-명령어-모음&quot;&gt;브랜치 관련 명령어 모음&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;브랜치 생성&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;브랜치 이름&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;브랜치 삭제&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#삭제하고자 하는 브랜치로 이동&lt;/span&gt;
+git checkout &amp;lt;브랜치 이름&amp;gt;
+git branch &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &amp;lt;브랜치 이름&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;현재 프랜치 확인 및 소스파일 상태확인&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git status
+On branch main
+Your branch is up to &lt;span class=&quot;nb&quot;&gt;date &lt;/span&gt;with &lt;span class=&quot;s1&quot;&gt;'origin/main'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+
+nothing to commit, working tree clean
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;현재는 nothing to commit(수정내역이 없음)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;소스파일-수정-후-최신역사와의-차이점-확인&quot;&gt;소스파일 수정 후 최신역사와의 차이점 확인&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#소스파일 수정 확인 명령어&lt;/span&gt;
+git diff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아래의 사진을 보면 빨간색으로 표시된 부분은 이전 역사와 달리 코드가 삭제된 부분을 나타내고, 초록색으로 나타는 부분은 새롭게 추가된 코드를 보여준다. 코드를 수정하고 commit하기 전에 이전과 달리 어느부분을 수정했는지 한눈에 파악하기 쉽게 만들어주는점에서 아주 유용한 명령어인것 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/git_diff.png&quot; alt=&quot;git_diff.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;stash와-checkout&quot;&gt;stash와 checkout&lt;/h2&gt;
+
+&lt;h3 id=&quot;stash&quot;&gt;Stash&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;임시저장소에 현재까지의 변경사항을 넣어두자!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git stash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;stash를 설명하기에 앞서 stash를 적용해볼 수 있는 적절한 시나리오를 생각해보자.&lt;/p&gt;
+
+&lt;p&gt;현재 내가 프로젝트내에 어떤 부분에 버그를 수정하기 위해 소스코드를 수정하였지만  commit으로 만들기는 아직 많은 테스트가 필요하기때문에 애매하고 버그 수정전과 후를 비교해보고싶은 경우라고 가정해보자. 이 때 적절하게 사용할 수 있는 명령어가 stash이다. stash를 이용하면 수정한 코드들을 임시 저장함으로써 수정전의 상태로 돌아갈 수 있다. 다시 버그 수정후의 역사로 돌아가고싶다면 임시저장한 코드를 stash pop을 이용해서 원래상태로 돌아갈 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git stash pop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/stash.png&quot; alt=&quot;stash.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;checkout&quot;&gt;Checkout&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;.git에 저장되어 있는 최신역사를 꺼낸다!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &amp;lt;특정 파일&amp;gt;
+&lt;span class=&quot;c&quot;&gt;#ex) git checkout -- README.md&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;checkout은 clone받은 프로젝트 폴더내에 숨김파일로 존재하는 .git폴더에 저장되어 있는(가장 최근 프로젝트 정보를 지니고있다) 프로젝트 log를 꺼내오는 명령어이다. 코드를 수정하다가 도저히 해결하기 어려운 버그를 오류를 만났을 때 깔끔하게 예전상태로 돌아가고싶다면 checkout만한 명령어가 없을것이다. 가장 최근의 기준 프로젝트 로그를 가지고있기 때문에 그냥 .git에서 꺼내오고 복구시키면 그만이기 때문이다.(undo 역할을 함) 브랜치를 변경할 때도 checkout을 사용한다. 같은 맥락으로 .git에 브랜치 정보가 저장되어있어 이것을 꺼내오는것이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;add-명령-취소-및-commit-삭제-명령어&quot;&gt;Add 명령 취소 및 commit 삭제 명령어&lt;/h2&gt;
+
+&lt;h3 id=&quot;add-취소&quot;&gt;Add 취소&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;commit-취소-명령어&quot;&gt;Commit 취소 명령어&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#HEAD~1은 가장 위에서 첫번째 내용을 삭제한다는 의미&lt;/span&gt;
+git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HEAD~1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;hard, soft 옵션의 차이점&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;hard의 경우 commit 내역 및 정보를 모두 삭제함&lt;/li&gt;
+  &lt;li&gt;soft는 커밋 내역만 삭제하고 코드 변화분은 그대로 남음
+    &lt;ul&gt;
+      &lt;li&gt;여러개의 commit을 합칠때 유용하게 사용됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;commit-수정-명령어&quot;&gt;Commit 수정 명령어&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit &lt;span class=&quot;nt&quot;&gt;--amend&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;ammend를 사용하여 commit message를 수정할 수 있다. 아래 사진을 자세히 보면 commit ID가 변경된것을 볼 수 있다. 이전 파일 정보가 하나라도 변경됐을경우 commit ID는 변경이 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/before_ammend.png&quot; alt=&quot;before_ammend.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;ammend 전&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/after_ammend.png&quot; alt=&quot;after_ammend.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;ammend 후&lt;/em&gt;&lt;/p&gt;
+
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; 해당 포스트는 리얼리눅스 송태웅님의 강의를 보고 정리한 내용임을 알립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Git" /><category term="대외 활동" /><category term="Git/Github" /><category term="git 명령어" /><category term="rebase" /><category term="오픈소스" /><category term="branch" /><summary type="html">오픈소스 개발참여를 위한 commit 작업(branch &amp;amp; commit)</summary></entry><entry><title type="html">[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/" rel="alternate" type="text/html" title="[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1" /><published>2021-08-01T00:00:00+09:00</published><updated>2021-08-01T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/">&lt;h1 id=&quot;rebase의-필요성&quot;&gt;Rebase의 필요성&lt;/h1&gt;
 
 &lt;p&gt;평소 개인프로젝트를 할때 당연히 혼자만 commit을 하게된다. 또한 학교에서 팀프로젝트를 하게되는 경우 다수의 팀원들과 git을 이용하여 프로젝트를 진행하지만 모두가 push권한을 가지고 하는경우가 많은것 같다. 이는 협업이 아니며 분업이라고 해야할 것이다. 오픈소스 프로젝트 특성상 다수의 사람이 PR을 날리게 된다.&lt;/p&gt;
 
@@ -598,57 +732,4 @@
 
 &lt;p&gt;어떤 벡터의 각 원소에 Scalar(Number)를 곱하면 그것이 곧 벡터의 곱이됩니다. 기하학적으로 생각하면 벡터를 Scalar만큼 늘리거나 줄이는 것에 해당합니다. 벡터를 늘리는 연산은 위와같이 분수가 아닌 정수 형태의 곱으로 나타나고 줄이는 연산은 분수형태의 Scalar가 곱해지게됩니다. 음수의 경우도 생각해 보아야하는데요, 음수의 경우는 벡터의 방향을 현재 벡터의 정 반대의 방향을 가지는 벡터로 변환하는 기능을 합니다. 아래의 벡터의 스칼라 곱 연산을 시각화 해본 그림입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_scalar.png&quot; alt=&quot;vector_scalar.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html"></summary></entry><entry><title type="html">Logic and Computer Science - 논리학 기초 - Statements</title><link href="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/" rel="alternate" type="text/html" title="Logic and Computer Science - 논리학 기초 - Statements" /><published>2021-01-23T00:00:00+09:00</published><updated>2021-01-23T00:00:00+09:00</updated><id>https://ubermen5che.github.io/logic/computer%20science/Logic%20and%20Computer%20Science-Logic-Statements</id><content type="html" xml:base="https://ubermen5che.github.io/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/">&lt;h3 id=&quot;what-is-an-statements&quot;&gt;What is an statements?&lt;/h3&gt;
-&lt;p&gt;statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;모든 한국시민들은 한국에 살고 있다.&lt;/li&gt;
-    &lt;li&gt;서울에 있는 모든 기업들은 사무실에서 레드 카펫을 사용하고있다.&lt;/li&gt;
-    &lt;li&gt;애플은 마이크로소프트보다 더 많은 자본을 가지고 있다.&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;위의 예를 잘 살펴보면, 각 statements는 참을 나타내려고 시도하고 있는 것처럼 보인다. 물론 첫 번쨰, 두 번째 문장들이 거짓이고 세 번째 문장은 참이지만 논리학의 관점에서 보았을 때, 각 문장들은 statement로서 자격을 갖추었다. 왜냐하면 참일 가능성이 있는 문장을 나타내고 있기 때문이다.&lt;/p&gt;
-
-&lt;p&gt;영어에서는 이러한 문장들을 “declarative”하다고불린다. 논리학에서는 오직 declaratives만이 statements의 자격을 가진다. 아래의 다양한 종류의 문장들이 있는데, 이 문장들을 비교하고 대조해보자.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;ol&gt;
-    &lt;li&gt;Question or “interrogative” - What time is it?&lt;/li&gt;
-    &lt;li&gt;Commands or “imperative” - Close the door!&lt;/li&gt;
-    &lt;li&gt;Exclamations or “exclamatory” - Ouch!&lt;/li&gt;
-    &lt;li&gt;Performatives - “I promise,” “I thee wed”&lt;/li&gt;
-    &lt;li&gt;Declarative - “Carbon is an element”&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;1,2,3,4와 같은 종류의 문장의 경우 참 또는 거짓을 논할 수 없는 문장이다. 따라서 오직 5번과 같은 종류의 문장만 statements라고 말할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;simple-and-compound-statements&quot;&gt;Simple and Compound statements&lt;/h3&gt;
-
-&lt;p&gt;오직 하나의 진실만을 공표하는 statement를 &lt;strong&gt;simple statement&lt;/strong&gt;라고 한다.&lt;/p&gt;
-&lt;blockquote&gt;
-
-  &lt;p&gt;Ann is home&lt;/p&gt;
-
-  &lt;p&gt;Bob is home&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이러한 문장들은 각각 어떤 것이 참인지 그리고 어떤 사건에 대한 오직 하나의 상황 또는 상태가 참인지 볼 수 있다. 논리적인 arguments를 작성할 때, 나의 전제들을 내가 분해할 수 있을 만큼 simple statements로 분해하는 것은 좋은 연습이 될 수 있다. 이 연습이 나의 argument에 statements에 대한 진리를 결정하는데 도움을 줄 수 있다.&lt;/p&gt;
-
-&lt;p&gt;만약 내 전제에서 하나 이상의 진리를 선언하고 싶다면 어떻게 할 것인가? 이 경우 &lt;strong&gt;statment operator&lt;/strong&gt;를 사용하여 두개이상의 simple statments를
-합칠 수 있다. statement operator는 simple statements를 연결하여 &lt;strong&gt;compound statment&lt;/strong&gt;를 만들어준다. 예를 들어,&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;Ann is hime AND Bob is home&lt;/p&gt;
-
-  &lt;p&gt;The screen door has a hole in it OR I’m seeing things&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;위의 각 문장에서, AND, OR에 의해 합쳐진 두개의 simple statments 볼 수 있다. 이러한 연산자들은 simple statments를 사용하여 하나 이상의 진리를 선언하도록 허용해준다. 추후에 이루어질 포스팅에서는 다양한 연산자들을 알아볼 것이다.&lt;/p&gt;
-
-&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Logic and Computer Science 시리즈는 마이크로소프트에서 제공하는 강좌를 토대로 내용을 정리하여 작성되었음을 알려드립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Logic" /><category term="Computer Science" /><category term="Logic" /><category term="Computer Science" /><category term="논리" /><category term="컴퓨터과학" /><summary type="html">What is an statements? statements는 참 또는 참일 가능성이 있는 문장이다. statements를 만들때 어떤 참또는 거짓을 보일 수 있는 문장을 만들어야한다.</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_scalar.png&quot; alt=&quot;vector_scalar.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html"></summary></entry></feed>

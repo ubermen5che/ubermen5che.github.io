@@ -82,4 +82,10 @@ var store = [{
         "tags": ["Git/Github","git 명령어","rebase","오픈소스"],
         "url": "https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B3%A0%EA%B8%89%EC%8B%A4%EC%8A%B5-1/",
         "teaser": null
+      },{
+        "title": "[컨트리뷰톤] Git/GitHub 기본실습-2",
+        "excerpt":"오픈소스 개발참여를 위한 commit 작업(branch &amp; commit) Branch란? 브랜치는 다음과 같은 표현으로 간결하게 설명할 수 있다. “같은 폴더 다른세상” 아래의 터미널을 보면 check-fosslight branch에서 hi.txt를 생성하고 commit을 한것을 볼 수 있다. 해당 브랜치에서 생성하고 commit한 파일을 main branch에서 찾아볼 수 있을까? 지난 포스팅에서 배운 git log 명령어를 이용하여 commit내역을 보면...","categories": ["Git","대외 활동"],
+        "tags": ["Git/Github","git 명령어","rebase","오픈소스","branch"],
+        "url": "https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/",
+        "teaser": null
       }]
