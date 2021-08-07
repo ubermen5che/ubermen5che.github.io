@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-06T00:33:46+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[컨트리뷰톤] Git/GitHub 기본실습-2</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/" rel="alternate" type="text/html" title="[컨트리뷰톤] Git/GitHub 기본실습-2" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/">&lt;h1 id=&quot;오픈소스-개발참여를-위한-commit-작업branch--commit&quot;&gt;오픈소스 개발참여를 위한 commit 작업(branch &amp;amp; commit)&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-07T23:56:54+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[JAVA] Privacy Leaks</title><link href="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/" rel="alternate" type="text/html" title="[JAVA] Privacy Leaks" /><published>2021-08-07T00:00:00+09:00</published><updated>2021-08-07T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/%5BJAVA%5DPrivacy%20Leaks</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/">&lt;p&gt;클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 information hiding을 달성할 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.&lt;/p&gt;
+
+&lt;h1 id=&quot;잘못-설계된-클래스-예&quot;&gt;잘못 설계된 클래스 예&lt;/h1&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;born&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;died&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;//생성자&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;//setter&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;//getter&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getBirthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;born&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;consistent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;birthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deathDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;birthDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deathDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;nf&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;birthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;precedes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deathDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;birthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deathDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위의 예에서 getBirthDate method를 살펴보자.&lt;/p&gt;
+
+&lt;p&gt;해당 메소드는 단지 born이라는 인스턴스 변수를 return하고 있다. 이론적으로 born의 레퍼런스를 return하기 때문에 어딘가 다른 class에서 아래와 같이 코드를 작성하게되면 Person클래스 내부에서 분명 private으로 born을 설정하였지만 getBirthDate 메소드를 통해 리턴받은 Date type 레퍼런스에 의해 setYear메소드를 사용할 수 있게 되었고 그에 따라 결국 private로 선언된 born의 인스턴스 변수의 값이 변경될 수 있음을 보여준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//Date class에는 instance variable로 String month, int day, int year 존재.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//모두 private으로 설정하였고, getter, setter 존재.&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bornDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBirthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bornDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setYear&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그러나 이러한 걱정은 자바에 의해 덜 수 있다. 자바는 private로 선언된 instance varialbes에 대해 내부적으로 clone하여 return해주기 때문에 위의 예시같은 일은 발생하지 않는다. 하지만 레퍼런스를 리턴하는 경우 뿐만 아니고 다른 privacy leaks을 발생시킬 수 있는 상황들이 존재하는데, 이상하게 정의된 생성자와 setter가 존재할 때 발생한다. 아래의 예시를 살펴보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//Person class내부에 정의된 메소드&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//consistent 메소드는 Person class내부에 정의된 static method로 올바른 입력인지 검사한다.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setBirthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;consistent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;died&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;born&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;//에러메세지 출력&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같은 메소드가 있다고 했을 때 아래의 코드를 실행한다면?&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;personObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Josephine&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+				&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;January&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dateName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Feburuary&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2002&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;personObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBirthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dateName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;dateName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setYear&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//문제 발생.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;personObject의 instance variable인 born에 클래스 타입이 Date인 object(dateName)의 레퍼런스가 들어가게된다. 따라서 dateName.setYear(1000)과 같이 메소드를 실행할 수 있게되고 이렇게되면 Person의 setBirthDate의 consistent함수를 거치지 않으므로 유효하지 않은 입력이 들어갈 수 있게될 뿐만 아니라 instance variable가 예기치 못하게 변경될 수 있는 문제점이 발생한다. 이를 해결하기 위해서는 아래와 같이 아주 조금만 코드 변경을 해주면 된다~&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setBirthDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;consistent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;died&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;born&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;스프링에서는&quot;&gt;스프링에서는&lt;/h1&gt;
+
+&lt;p&gt;Privacy Leaks을 공부하면서 의문이 들었다. 스프링에서는 아래와 같은 코드를 자주 접할 수 있었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MemberServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그러나 분명 위와 같이 코드를 짜면 privacy leaks이 발생하는것이 아닌가 하는 의문이 생겼다.&lt;/p&gt;
+
+&lt;p&gt;스프링 빈은 싱글톤으로 관리된다고 하였는데 이를 상기해보면 당연한 이치라고 생각된다. 왜냐하면 하나의 객체만 생성해서 공유하기 때문에 privacy leak이 발생할 수 밖에 없는 구조인것이다. 그러나 실제로는 무상태로 싱글톤을 설계한다면 privacy leak이 발생하지 않는 방향으로 갈 수 있지 않을까 생각한다…&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Spring" /><category term="private" /><category term="JAVA" /><category term="Spring" /><summary type="html">클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 information hiding을 달성할 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.</summary></entry><entry><title type="html">[컨트리뷰톤] Git/GitHub 기본실습-2</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/" rel="alternate" type="text/html" title="[컨트리뷰톤] Git/GitHub 기본실습-2" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/">&lt;h1 id=&quot;오픈소스-개발참여를-위한-commit-작업branch--commit&quot;&gt;오픈소스 개발참여를 위한 commit 작업(branch &amp;amp; commit)&lt;/h1&gt;
 
 &lt;h2 id=&quot;branch란&quot;&gt;Branch란?&lt;/h2&gt;
 
@@ -670,66 +758,4 @@ git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HEAD~1
   &lt;span class=&quot;n&quot;&gt;hashTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Java" /><category term="Java" /><summary type="html">Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)</summary></entry><entry><title type="html">Linear algebra Vector</title><link href="https://ubermen5che.github.io/Linear-algebra-Vector/" rel="alternate" type="text/html" title="Linear algebra Vector" /><published>2021-06-21T00:00:00+09:00</published><updated>2021-06-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/Linear%20algebra-Vector</id><content type="html" xml:base="https://ubermen5che.github.io/Linear-algebra-Vector/">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;
-
-&lt;h1 id=&quot;선형대수-기본-벡터&quot;&gt;선형대수 기본 벡터&lt;/h1&gt;
-
-&lt;h1 id=&quot;linear-algebra---essence-of-linear-algebravector&quot;&gt;Linear Algebra - Essence of linear algebra(Vector)&lt;/h1&gt;
-
-&lt;h2 id=&quot;벡터-개념의-필요성&quot;&gt;벡터 개념의 필요성&lt;/h2&gt;
-
-&lt;p&gt;최근 정보검색, 데이터과학기초(Fundementals of data science)과목을 수강하면서 벡터의 중요성을 깨닫게 되었습니다. 정보검색에서 document와 query의 similarity를 측정하기 위해 벡터가 필요하였고, 데이터과학기초에서는 Supervised learning 범주에 속하는 SVM(Support Vector Machine)에서 벡터 개념이 필요하였습니다. 지난학기 벡터 개념이 제대로 정립이 되어있지 않아 공부하는데 어려움이 있었던 경험을 계기로 이번 포스팅을 작성하게되었습니다.&lt;/p&gt;
-
-&lt;p&gt;출저를 먼저 밝히자면 유튜브 Blue1Brown 채널의 선형대수 시리즈 영상을 보며 정리했음을 알립니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;벡터-개요&quot;&gt;벡터 개요&lt;/h2&gt;
-
-&lt;p&gt;기본적으로 선형 대수의 구성요소는 벡터입니다. 따라서 선형대수의 기본 구성요소인 벡터에 대해 명확히 알고가는것은 중요한 일 일것입니다.&lt;/p&gt;
-
-&lt;p&gt;벡터는 물리학, 수학, CS분야에서 뜻하는바가 조금씩 다릅니다. 이번 포스팅에서는 CS분야에 사용되는 벡터에 대해 중점적으로 기술하겠습니다.&lt;/p&gt;
-
-&lt;p&gt;CS관점에서 Vector가 의미하는 바는 순차 숫자 리스트입니다. 예를들어 한화를 기준으로 비트코인에 대한 정보를 2차원(길이가 2인) 벡터로 모델링 해본다면 다음과 같습니다.&lt;/p&gt;
-
-&lt;p&gt;1은 비트코인의 수량을 뜻합니다. 즉 비트코인 1개당 4500만원이라는 정보를 모델링 하고 있는것 입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/bitcoin.png&quot; alt=&quot;bitcoin.png&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-\[\begin{bmatrix}1 \\45,000,000\end{bmatrix}\]
-
-&lt;p&gt;우리는 기하학 관점에서 벡터를 원점에 뿌리를 둔 화살표라고 생각하면 벡터를 이해하기 수월할 것 입니다. 이는 벡터는 원점이 아닌 다른 좌표에 벡터를 표시할 수 있는 물리학 관점과 달리 선형대수학에서는 기본적으로 벡터는 원점에 뿌리를 둔 벡터라고 생각하면 이해하기 편합니다. CS관점에서 우리는 숫자-리스트라는 관점으로 벡터를 이해 해보려고 합니다. 숫자리스트는 곧 벡터의 좌표를 의미합니다.&lt;/p&gt;
-
-&lt;p&gt;벡터의 좌표는 숫자쌍입니다. 이 숫자쌍은 꼬리(원점)에서 시작한 벡터가 끝에 어떻게 다다를지 알려줍니다. 첫 번째 숫자는 원점을 기준으로 x축을 따라 얼마나 떨어졌는지가에 대한 정보를 포함하고 양수면 오른쪽, 음수면 왼쪽을 의미합니다. 마찬가지로 두번 째 숫자의 경우 y축에 대한 좌표 정보를 가집니다. 마찬가지로 양수이면 위쪽 음수이면 아래쪽을 의미하게됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector1.png&quot; alt=&quot;vector1.png&quot; class=&quot;align-center&quot; width=&quot;50%&amp;quot;, height=&amp;quot;50%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림에서 첫번째 원소(-2)는 x축에 평행하면서 -2만큼 이동하라는 의미이고, 두번째 원소(4)는 y축과 평행하여 4만큼 이동하라는 뜻입니다. 이는 3차원,4차원…n차원으로 확장가능한 개념이며, 3차원까지는 우리가 간단하게 시각화를 할 수 있지만 그 이상의 차원은 상상해보기가 힘듭니다.&lt;/p&gt;
-
-\[\begin{bmatrix}2\\3\\5\end{bmatrix},\begin{bmatrix}2\\3\\5\\7\end{bmatrix} ...\]
-
-&lt;h2 id=&quot;벡터의-연산&quot;&gt;벡터의 연산&lt;/h2&gt;
-
-&lt;h3 id=&quot;벡터의-합&quot;&gt;벡터의 합&lt;/h3&gt;
-
-&lt;p&gt;결국 선형대수의 모든 주제는 덧셈과, 곱셈 두가지 연산을 중심으로 일어납니다. 덧셈에 대해 먼저 논해보자면 아래와 그림과 같이 두 벡터가 있다고 가정해봅시다. 벡터v는 오른쪽 위쪽을 향한 벡터이고 벡터w는 오른쪽 아랫방향을 가리키고 있습니다. 이 두 벡터를 더하는 행위는 한 벡터의 꼬리를 다른 벡터의 끝으로 옮기는것을 말합니다.&lt;/p&gt;
-
-&lt;p&gt;그리고나서 벡터v의 꼬리부분에서 옮겨진 벡터w의 끝을 가리키는 새 벡터를 그리면 바로 이 새 벡터가 두 벡터의 합을 나타냅니다. 흥미로운 부분은 선형대수에서 유일하게 벡터를 원점으로부터 멀리 이탈시키는 순간이라는 점입니다.&lt;/p&gt;
-
-\[\]
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_sum.png&quot; alt=&quot;vector_sum.png&quot; class=&quot;align-center&quot; width=&quot;50%&amp;quot;, height=&amp;quot;50%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;벡터의 덧셈을 좀 더 간단히 생각해보면 아래 그림과 같이 생각해볼 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_sum_2.png&quot; alt=&quot;vector_sum_2.png&quot; class=&quot;align-center&quot; width=&quot;50%&amp;quot;, height=&amp;quot;50%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;단순히 벡터의 합을 각 벡터의 원소에 대응하는 숫자의 합이라고 생각하면 이해하기 쉽습니다. 즉 두 벡터의 합으로 생성된 새 벡터는 두 벡터의 x좌표 정보를 나타내는 원소의 합(2+3=5) y좌표 정보를 나타내는 원소들의 합(3+(-2))로 새 벡터를 나타낼 수 있습니다. 원점을 기준으로 x축의 방향 5칸 이동, y축의 방향으로 1칸이동한 위치에 점을 찍고 화살표를 그림으로 써 동일한 결과를 얻을 수 있습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;벡터의-곱스칼라-곱&quot;&gt;벡터의 곱(스칼라 곱)&lt;/h3&gt;
-
-&lt;p&gt;벡터의 곱은 합보다 더욱 간단합니다.&lt;/p&gt;
-
-\[2*\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}4\\6\end{bmatrix}\]
-
-&lt;p&gt;어떤 벡터의 각 원소에 Scalar(Number)를 곱하면 그것이 곧 벡터의 곱이됩니다. 기하학적으로 생각하면 벡터를 Scalar만큼 늘리거나 줄이는 것에 해당합니다. 벡터를 늘리는 연산은 위와같이 분수가 아닌 정수 형태의 곱으로 나타나고 줄이는 연산은 분수형태의 Scalar가 곱해지게됩니다. 음수의 경우도 생각해 보아야하는데요, 음수의 경우는 벡터의 방향을 현재 벡터의 정 반대의 방향을 가지는 벡터로 변환하는 기능을 합니다. 아래의 벡터의 스칼라 곱 연산을 시각화 해본 그림입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-21/vector_scalar.png&quot; alt=&quot;vector_scalar.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Java" /><category term="Java" /><summary type="html">Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)</summary></entry></feed>
