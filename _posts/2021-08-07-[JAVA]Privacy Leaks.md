@@ -10,7 +10,7 @@ tags:
   - Spring
 ---
 
-클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 information hiding을 달성할 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.
+클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.
 
 # 잘못 설계된 클래스 예
 
@@ -29,22 +29,23 @@ public class Person(){
 	{
 		return born;
 	}
-	...
+	//...
 	private static boolean consistent(Date birthDate, Date deathDate)
 	{
-    if (birthDate == null)
+		if (birthDate == null)
 			return false;
-    else if (deathDate == null)
-      return true;
-    else
-      return (birthDate.precedes(deathDate) || birthDate.equals(deathDate));
-  }
+		else if (deathDate == null)
+			return true;
+		else
+			return (birthDate.precedes(deathDate) ||
+				birthDate.equals(deathDate));
+	}
 }
 ```
 
-위의 예에서 getBirthDate method를 살펴보자.
+**위의 예에서 getBirthDate method를 살펴보자.**
 
-해당 메소드는 단지 born이라는 인스턴스 변수를 return하고 있다. 이론적으로 born의 레퍼런스를 return하기 때문에 어딘가 다른 class에서 아래와 같이 코드를 작성하게되면 Person클래스 내부에서 분명 private으로 born을 설정하였지만 getBirthDate 메소드를 통해 리턴받은 Date type 레퍼런스에 의해 setYear메소드를 사용할 수 있게 되었고 그에 따라 결국 private로 선언된 born의 인스턴스 변수의 값이 변경될 수 있음을 보여준다.
+해당 메소드는 단지 **born**이라는 인스턴스 변수를 return하고 있다. 이론적으로 born의 레퍼런스를 return하기 때문에 어딘가 다른 class에서 아래와 같이 코드를 작성하게되면 Person클래스 내부에서 분명 private으로 **born**을 설정하였지만 **getBirthDate** 메소드를 통해 리턴받은 Date type 레퍼런스에 의해 **setYear**메소드를 사용할 수 있게 되었고 그에 따라 결국 private로 선언된 **born**의 인스턴스 변수의 값이 변경될 수 있음을 보여준다.
 
 ```java
 //Date class에는 instance variable로 String month, int day, int year 존재.
@@ -79,15 +80,15 @@ Person personObject = new Person("Josephine",
 Date dateName = new Date("Feburuary", 2, 2002);
 personObject.setBirthDate(dateName);
 
-dateName.setYear(1000); //문제 발생.
+dateName.setYear(1000); //문제 발생
 ```
 
-personObject의 instance variable인 born에 클래스 타입이 Date인 object(dateName)의 레퍼런스가 들어가게된다. 따라서 dateName.setYear(1000)과 같이 메소드를 실행할 수 있게되고 이렇게되면 Person의 setBirthDate의 consistent함수를 거치지 않으므로 유효하지 않은 입력이 들어갈 수 있게될 뿐만 아니라 instance variable가 예기치 못하게 변경될 수 있는 문제점이 발생한다. 이를 해결하기 위해서는 아래와 같이 아주 조금만 코드 변경을 해주면 된다~
+**personObject**의 instance variable인 **born**에 클래스 타입이 **Date**인 **object(dateName)**의 레퍼런스가 들어가게된다. 따라서 **dateName.setYear(1000)**과 같이 메소드를 실행할 수 있게되고 이렇게되면 **Person**의 **setBirthDate**의 **consistent**메소드를 거치지 않으므로 유효하지 않은 입력이 들어갈 수 있게될 뿐만 아니라 instance variable가 예기치 못하게 변경될 수 있는 문제점이 발생한다. 이를 해결하기 위해서는 아래와 같이 아주 조금만 코드 변경을 해주면 된다~
 
 ```java
 public void setBirthDate(Date newDate){
 	if (consistent(newDate, died))
-		born = new Date(newDate);
+		born = new Date(newDate);	//코드 수정
 	...
 ```
 

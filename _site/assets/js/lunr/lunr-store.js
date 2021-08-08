@@ -90,7 +90,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[JAVA] Privacy Leaks",
-        "excerpt":"클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 information hiding을 달성할 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다. 잘못 설계된 클래스 예 public class Person(){ private String name; private Date born; private Date died; //생성자 //setter //getter...","categories": ["JAVA","Spring"],
+        "excerpt":"클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다. 잘못 설계된 클래스 예 public class Person(){ private String name; private Date born; private Date died; //생성자 //setter //getter...","categories": ["JAVA","Spring"],
         "tags": ["private","JAVA","Spring"],
         "url": "https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/",
         "teaser": null
