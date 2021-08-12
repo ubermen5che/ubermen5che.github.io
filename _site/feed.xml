@@ -1,4 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-08T15:18:49+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[JAVA] Privacy Leaks</title><link href="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/" rel="alternate" type="text/html" title="[JAVA] Privacy Leaks" /><published>2021-08-07T00:00:00+09:00</published><updated>2021-08-07T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/%5BJAVA%5DPrivacy%20Leaks</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/">&lt;p&gt;클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-12T23:46:20+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[Spring] 다양한 의존관계 주입 방법</title><link href="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" rel="alternate" type="text/html" title="[Spring] 다양한 의존관계 주입 방법" /><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><id>https://ubermen5che.github.io/spring/%5BSpring%5D%EB%8B%A4%EC%96%91%ED%95%9C%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95</id><content type="html" xml:base="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/">&lt;h2 id=&quot;의존관계-주입은-크게-4가지-방법이-있다&quot;&gt;의존관계 주입은 크게 4가지 방법이 있다&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;생성자 주입&lt;/li&gt;
+  &lt;li&gt;수정자 주입(setter 주입)&lt;/li&gt;
+  &lt;li&gt;필드 주입&lt;/li&gt;
+  &lt;li&gt;일반 메서드 주입&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;생성자-주입&quot;&gt;생성자 주입&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;생성자를 통해서 의존 관계를 주입 받는 방법이다.&lt;/li&gt;
+  &lt;li&gt;특징
+    &lt;ul&gt;
+      &lt;li&gt;생성자 호출시점에서 딱 1번만 호출되는 것이 보장된다.&lt;/li&gt;
+      &lt;li&gt;불편, 필수 의존관계에 사용
+        &lt;ul&gt;
+          &lt;li&gt;ex) MVC패턴에서 Repository, Service등과 같이 필수적으로 사용되는 객체들&lt;/li&gt;
+          &lt;li&gt;거의 대부분의 서비스에서 생성자 주입방법을 사용한다.&lt;/li&gt;
+          &lt;li&gt;왜냐하면 웹 서비스를 공연으로 비유할 수 있는데, 공연이 진행되는 도중에 배우를 바꾸는 경우는 잘 없기 때문이다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OrderServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rateDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rateDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;⭐️ &lt;strong&gt;생성자가 딱 1개만 있으면 @Autowired를 생략해도 자동 주입된다.(물론 스프링 빈에만 해당)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;수정자-주입setter-주입_&quot;&gt;수정자 주입(setter 주입_&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;setter라 불리는 필드의 값을 변경하는 수정자 메서드를 통해서 의존관계를 주입하는 방법.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;선택, 변경 가능성이 있는 의존관계에 사용&lt;/li&gt;
+  &lt;li&gt;자바빈 프로퍼티 규약의 setter 메서드 방식을 사용하는 방법.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+		&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setMemberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고: @Autowired의 기본 동작은 스프링 컨테이너에서 해당 빈을 탐색하고 탐색결과 주입할 대상이 없으면 오류가 발생한다. 주입할 대상이 없어도 동작하게 할려면 @Autowired(required = false)로 지정하면 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;필드-주입&quot;&gt;필드 주입&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;필드에 바로 의존관계를 주입하는 방법.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;코드가 간결해서 많은 개발자들을 유혹하지만 외부에서 변경이 불가능해서 테스트 하기 힘들다는 치명적인 단점이 존재.&lt;/li&gt;
+  &lt;li&gt;DI 프레임워크가 없으면 아무것도 할 수 없다.&lt;/li&gt;
+  &lt;li&gt;사용하지 않는것이 좋지만 예외적으로 사용함.
+    &lt;ul&gt;
+      &lt;li&gt;애플리케이션의 실제 코드와 관계 없는 테스트 코드&lt;/li&gt;
+      &lt;li&gt;스프링 설정을 목적으로 하는 @Configuration 같은 곳에서만 특별한 용도로 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+		&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고: 순수한 자바 테스트 코드에는 당연히 @Autowired가 동작하지 않는다. @SpringBootTest처럼 스프링 컨테이너를 테스트에 통합한 경우에만 사용가능.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;다음 코드와 같이 @Bean에서 파라미터에 의존관계는 자동 주입된다. 수동 등록시 자동 등록된 빈의 의존관계가 필요할 때 문제를 해결할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;orderService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OrderServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;일반-메서드-주입&quot;&gt;일반 메서드 주입&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;일반 메서드를 통해서 주입 받을 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한번에 여러 필드를 주입 받을 수 있다.&lt;/li&gt;
+  &lt;li&gt;일반적으로 잘 사용하지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rateDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rateDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="DI" /><summary type="html">의존관계 주입은 크게 4가지 방법이 있다</summary></entry><entry><title type="html">[JAVA] Privacy Leaks</title><link href="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/" rel="alternate" type="text/html" title="[JAVA] Privacy Leaks" /><published>2021-08-07T00:00:00+09:00</published><updated>2021-08-07T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/%5BJAVA%5DPrivacy%20Leaks</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/">&lt;p&gt;클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.&lt;/p&gt;
 
 &lt;h1 id=&quot;잘못-설계된-클래스-예&quot;&gt;잘못 설계된 클래스 예&lt;/h1&gt;
 
@@ -703,60 +850,4 @@ git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HEAD~1
   &lt;li&gt;현재 가장 익숙한 언어를 사용하는것이 좋을것이다. 해당 언어를 마스터했다면 다른 언어를 공부해봐도 좋다. 다른 언어를 공부할 때는 내가 익숙한 언어와의 차이점이 무엇인지에 대해 생각해보면서 학습해보면 좋을것입니다.&lt;/li&gt;
   &lt;li&gt;주로쓰던 언어를 마스터하였다면 트렌드에 맞는 언어를 선택해서 학습해봅시다.&lt;/li&gt;
   &lt;li&gt;어떤 기술스택을 쓰던 내게 주어진 문제를 해결할 수 있는것이면 됩니다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="대외활동" /><category term="삼성SDS" /><category term="멘토링" /><category term="프로그래머" /><category term="개발자" /><summary type="html"></summary></entry><entry><title type="html">자바 기초 정리</title><link href="https://ubermen5che.github.io/java/Java-%EA%B8%B0%EC%B4%88-%EC%A0%95%EB%A6%AC/" rel="alternate" type="text/html" title="자바 기초 정리" /><published>2021-06-28T00:00:00+09:00</published><updated>2021-06-28T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/Java%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC</id><content type="html" xml:base="https://ubermen5che.github.io/java/Java-%EA%B8%B0%EC%B4%88-%EC%A0%95%EB%A6%AC/">&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Object(instance of the class): 클래스의 오브젝트 또는 클래스의 인스턴스라고도 불려진다. 오브젝트는 어떠한 정보를 저장하는 변수와, action을 담당하는 method로 이루어져있다. 흔히 클래스는 붕어빵틀에 비유되고 오브젝트는 붕어빵에 대응된다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Instance Variables: 클래스내에 정의된 변수들에 해당된다. 예는 다음과 같다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;June&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2021&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Call-by-value: Java에서 method의 parameter로 primitive type을 전달할 때는 Call-by-value형식으로 값이 전달된다. 간단하게 생각하면 값이 그대로 복사되어 호출된 method에 전달된다. 즉 parameter로 전달된 값은 그저 변수에 복사된 값이고 변수의 주소가 전달된다는 뜻이 아니라는것이다. Class Type을 parameter로 전달할 때는 Call-by-value와는 다른 방식으로 전달된다. 그러나 String의 경우는 primitive type과 동일하게 파라미터가 전달된다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;this parameter: method definition안에서 calling object의 이름을 this parameter로 대체할 수 있다. ex) date.month == this.month&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;this parameter는 instance variables와 parameter을 구분하는데 유용하게 사용된다&lt;/p&gt;
-
-    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monthString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;만약 this를 사용하지 않았다면 day = day에서 identifier와 parameter를 구분할 수 없다. 컴파일은 정상적으로 이루어질지 몰라도 우리가 원하는 결과를 얻지못한다&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Java에서 오브젝트를 담는 배열의 경우 각 배열에는 오브젝트를 가리키는 주소값만 저장된다. 따라서 객체 배열에 객체를 담을때는 생성자를 사용해서 담아주어야한다.&lt;/p&gt;
-
-    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hashing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hashtable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Hashing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hashtable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hashTable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;hashTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Java" /><category term="Java" /><summary type="html">Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="대외활동" /><category term="삼성SDS" /><category term="멘토링" /><category term="프로그래머" /><category term="개발자" /><summary type="html"></summary></entry></feed>

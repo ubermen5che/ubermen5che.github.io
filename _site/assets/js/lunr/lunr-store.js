@@ -94,4 +94,10 @@ var store = [{
         "tags": ["private","JAVA","Spring"],
         "url": "https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/",
         "teaser": null
+      },{
+        "title": "[Spring] 다양한 의존관계 주입 방법",
+        "excerpt":"의존관계 주입은 크게 4가지 방법이 있다 생성자 주입 수정자 주입(setter 주입) 필드 주입 일반 메서드 주입 생성자 주입 생성자를 통해서 의존 관계를 주입 받는 방법이다. 특징 생성자 호출시점에서 딱 1번만 호출되는 것이 보장된다. 불편, 필수 의존관계에 사용 ex) MVC패턴에서 Repository, Service등과 같이 필수적으로 사용되는 객체들 거의 대부분의 서비스에서 생성자 주입방법을...","categories": ["Spring"],
+        "tags": ["Spring","DI"],
+        "url": "https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/",
+        "teaser": null
       }]
