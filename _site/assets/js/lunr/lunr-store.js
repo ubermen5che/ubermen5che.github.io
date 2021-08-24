@@ -100,4 +100,16 @@ var store = [{
         "tags": ["Spring","DI"],
         "url": "https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/",
         "teaser": null
+      },{
+        "title": "[JAVA] Binding",
+        "excerpt":"Binding이란 Method invocation과 method definition을 연관짓는 process. Binding 종류 Early binding : 컴파일 타임에 binding이 일어남. Late binding : Run Time에 binding이 일어남. How late binding works? Note 설명하기 쉽도록 가정을 해보도록 하자. 우선 Figure라는 부모 클래스가 존재하고 자식클래스로는 Circle, Square, Triangle.. 여러 도형이 있을 수 있다고 가정한다. 그리고 Figure...","categories": ["JAVA"],
+        "tags": ["Binding","Late binding","Early binding","Dynamic binding","Polymorphism"],
+        "url": "https://ubermen5che.github.io/java/JAVA-Binding/",
+        "teaser": null
+      },{
+        "title": "[Spirng]빈 생명주기 콜백",
+        "excerpt":"데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다. 참고: 애플리케이션 시작 시점에 DB 커넥션 풀과 연결을 미리 해두는 이유는...","categories": ["JAVA","Spring"],
+        "tags": ["Bean","Bean Lifecycle","Callback"],
+        "url": "https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/",
+        "teaser": null
       }]

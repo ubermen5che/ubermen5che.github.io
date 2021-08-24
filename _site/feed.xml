@@ -1,4 +1,240 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-12T23:46:20+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[Spring] 다양한 의존관계 주입 방법</title><link href="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" rel="alternate" type="text/html" title="[Spring] 다양한 의존관계 주입 방법" /><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><id>https://ubermen5che.github.io/spring/%5BSpring%5D%EB%8B%A4%EC%96%91%ED%95%9C%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95</id><content type="html" xml:base="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/">&lt;h2 id=&quot;의존관계-주입은-크게-4가지-방법이-있다&quot;&gt;의존관계 주입은 크게 4가지 방법이 있다&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-08-24T18:45:29+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[Spirng]빈 생명주기 콜백</title><link href="https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/" rel="alternate" type="text/html" title="[Spirng]빈 생명주기 콜백" /><published>2021-08-21T00:00:00+09:00</published><updated>2021-08-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/">&lt;p&gt;데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고: 애플리케이션 시작 시점에 DB 커넥션 풀과 연결을 미리 해두는 이유는 애플리케이션 서버와 데이터베이스간의 연결 과정에서 시간이 소요되기 때문이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;예제-코드&quot;&gt;예제 코드&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NetworkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;생성자 호출, url = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;초기화 연결 메세지&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;connect: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;call: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;message = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;disconnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;close: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위의 예제코드는 Application server에서 외부DB에 연결을 하는 과정을 가상으로 시뮬레이션하는 과정을 나타낸다. 아래는 코드는 테스트 코드이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BeanLifeCycleTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lifeCycleTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;ConfigurableApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LifeCycleConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LifeCycleConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;networkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;networkClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;networkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://hello-spirng.dev&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;networkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;실행해보면 다음과 같은 이상한 결과가 나온다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;생성자 호출, url &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; null
+connect: null
+call: null message &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 초기화 연결 메세지
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;생성자 부분을 보면 url정보 없이 connect가 호출되는 것을 확인할 수 있다. 이는 당연한 결과로 써 setUrl 메서드로 url를 설정해주어야만 url이 존재하게된다. 그런데 여기서 의문을 가질 수 있다. 왜냐하면 생성자를 호출할 때 url를 같이 넘겨주면 위와 같은 이상한 결과를 얻지는 않을텐데 왜 위와 같은 코드를 사용할까?&lt;/p&gt;
+
+&lt;p&gt;이에 대한 답은 아래의 참고사항으로 적어두었으니 읽어보기를 권한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;스프링 빈은 간단하게 다음과 같은 라이플사이클을 가진다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;객체 생성 → 의존관계 주입&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;스프링 빈은 객체를 생성하고, 의존관계 주입이 다 끝난 다음에 필요한 데이터를 사용할 수 있는 준비가 완료된다. 따라서 &lt;strong&gt;초기화 작업은 의존관계 주입이 모두 완료되고 난 다음에 호출해야 한다.&lt;/strong&gt; (위의 예제를 보아도 그렇다는것을 알 수 있다) 그런데 개발자가 의존관계 주입이 모두 완료된 시점을 어떻게 알 수 있을까？&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를 통해서 초기화 시점을 알려주는 다양한 기능을 제공한다.&lt;/strong&gt; 또한 스프링은 스프링 컨테이너가 종료되기 직전에 소멸 콜백을 준다. 따라서 안전하게 종료 작업을 진행할 수 있다. 다양한 기능이 어떤것이 있는지는 다음번에 알아보도록 하고 스프링 빈의 이벤트 라이프사이클에 대해 알아보자.&lt;/p&gt;
+
+&lt;h3 id=&quot;스프링-빈의-이벤트-라이프사이클&quot;&gt;스프링 빈의 이벤트 라이프사이클&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;스프링 컨테이너 생성 → 스프링 빈 생성 → 의존관계 주입 → 초기화 콜백 → 사용 → 소멸전 콜백 → 스프링 종료&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;초기화 콜백&lt;/strong&gt; : 빈이 생성되고, 빈의 외존관계 주입이 완료된 후 호출&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;소멸전 콜백&lt;/strong&gt; : 빈이 소멸되기 직전에 호출&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;스프링은 다양한 방식으로 생명주기 콜백을 지원한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;참고:객체의 생성과 초기화를 분리하자&lt;/strong&gt;
+생성자는 필수 정보(파라미터를)받고, 메모리를 할당해서 객체를 생성하는 책임을 가진다. 반면에 초기화는 이렇게 생성된 값들을 활용해서 외부 커넥션을 연결하는등 무거운 동작을 수행한다. 따라서 생성자 안에서 무거운 초기화 작업을 함께 하는 것 보다는 객체를 생성하는 부분과 초기화 하는 부분을 명확하게 나누는 것이 유지보수 관점에서 좋다. 물론 초기화 작업이 내부 값들만 약간 변경한느 정도로 단순한 경우에는 생성자에서 한번데 다 처리하는게 더 나을 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고: 싱글톤 빈들은 스프링 컨테이너가 종료될 때 싱글톤 빈들도 함께 종료되기 때문에 스프링 컨테이너가 종료되기 직전에 소멸전 콜백이 일어난다. 싱글톤 처럼 컨테이너의 시작과 종료까지 생존하는 빈도 있지만, 생명주기가 짧은 빈들도 있는데 이 빈들은 컨테이너와 무관하게 해당 빈이 종료되기 직전에 소멸전 콜백이 일어난다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;빈-생명주기-콜백-3가지-방법&quot;&gt;빈 생명주기 콜백 3가지 방법&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터페이스(InitializingBean, DisposableBean)&lt;/li&gt;
+  &lt;li&gt;@Bean 설정 정보에 초기화 메서드, 종료 메서드 지정&lt;/li&gt;
+  &lt;li&gt;@PostConstruct, @PreDestroy 애노테이션 지원&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;인터페이스initializingbean-disposablebean&quot;&gt;인터페이스(InitializingBean, DisposableBean)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 전용 인터페이스. 해당 코드가 스프링 전용 인터페이스에 의존한다.
+    &lt;ul&gt;
+      &lt;li&gt;implements를 통해 구현체 코드를 작성해 주어야한다.&lt;/li&gt;
+      &lt;li&gt;따라서 초기화, 소멸 메서드의 이름을 변경할 수 없다.&lt;/li&gt;
+      &lt;li&gt;내가 코드를 고칠 수 없는 외부 라이브러리에 적용할 수 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;인터페이스를 사용하는 초기화, 종료 방법은 스프링 초창기에 나온 방법들이고, 지금은 더 나은 방법들이 있어서 거의 사용하지 않는다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;bean-설정-정보에-초기화-메서드-종료-메서드-지정&quot;&gt;@Bean 설정 정보에 초기화 메서드, 종료 메서드 지정&lt;/h2&gt;
+
+&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;설정 정보에 @Bean(initMethod = “init”, destroyMethod = “close”)처럼 초기화, 소멸 메서드를 지정할 수 있다.&lt;/li&gt;
+  &lt;li&gt;메서드 이름을 자유롭게 줄 수 있다.&lt;/li&gt;
+  &lt;li&gt;스프링 빈이 스프링 코드에 의존하지 않는다.&lt;/li&gt;
+  &lt;li&gt;코드가 아니라 설정 정보를 사용하기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;즉, 외부 라이브러리 자체에서 내부적으로 초기화, 종료에 대한 메서드를 가지고 있고 이에 해당하는 메서드 명을 설정정보로 넘겨주면 되는것이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;종료-메서드-추론&quot;&gt;종료 메서드 추론&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean destroyMethod&lt;/code&gt; 속성에는 아주 특별한 기능이 존재.&lt;/li&gt;
+  &lt;li&gt;라이브러리 대부분 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;close&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutdown&lt;/code&gt;이라는 이름의 종료 메서드를 사용한다.&lt;/li&gt;
+  &lt;li&gt;@Bean의 destroyMethod는 기본값이 (inferred)으로 등록되어 있다.&lt;/li&gt;
+  &lt;li&gt;이 추론 기능은 close, shutdown이라는 이름의 메서드를 자동적으로 호출해준다.&lt;/li&gt;
+  &lt;li&gt;따라서 직접 스프링 빈으로 등록하면 종료 메서드는 따로 적어주지 않아도 잘 동작한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;postconstruct-predestroy-애노테이션-방법&quot;&gt;@PostConstruct, @PreDestroy 애노테이션 방법&lt;/h2&gt;
+
+&lt;h2 id=&quot;예제-코드-1&quot;&gt;예제 코드&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;javax.annotation.PostConstruct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;javax.annotation.PreDestroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NetworkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;생성자 호출, url = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;초기화 연결 메세지&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;connect: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;call: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;message = &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;disconnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;close: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@PostConstruct&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NetworkClient.init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;초기화 연결 메세지&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@PreDestroy&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NetworkClient.destroy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;disconnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;특징-1&quot;&gt;특징&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;최신 스프링에서 가장 권장하는 방법.&lt;/li&gt;
+  &lt;li&gt;애노테이션 하나만 붙이면 되므로 매우 편리.&lt;/li&gt;
+  &lt;li&gt;패키지를 잘 보면 javax.annotation.PostConstruct이다. 스프링에 종속적인 기술이 아니라 JSR-250이라는 자바 표준이다. 따라서 스프링이 아닌 다른 컨테이너에서도 동작함.&lt;/li&gt;
+  &lt;li&gt;컴포넌트 스캔과 잘 어울린다.&lt;/li&gt;
+  &lt;li&gt;유일한 단점은 외부 라이브러리에는 적용하지 못한다는 것. 외부 라이브러리를 초기화, 종료 해야하면 @Bean의 기능을 사용하자.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Spring" /><category term="Bean" /><category term="Bean Lifecycle" /><category term="Callback" /><summary type="html">데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.</summary></entry><entry><title type="html">[JAVA] Binding</title><link href="https://ubermen5che.github.io/java/JAVA-Binding/" rel="alternate" type="text/html" title="[JAVA] Binding" /><published>2021-08-21T00:00:00+09:00</published><updated>2021-08-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/%5BJAVA%5DBinding</id><content type="html" xml:base="https://ubermen5che.github.io/java/JAVA-Binding/">&lt;h2 id=&quot;binding이란&quot;&gt;Binding이란&lt;/h2&gt;
+
+&lt;p&gt;Method invocation과 method definition을 연관짓는 process.&lt;/p&gt;
+
+&lt;h2 id=&quot;binding-종류&quot;&gt;Binding 종류&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Early binding : 컴파일 타임에 binding이 일어남.&lt;/li&gt;
+  &lt;li&gt;Late binding : Run Time에 binding이  일어남.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-late-binding-works&quot;&gt;How late binding works?&lt;/h2&gt;
+
+&lt;h3 id=&quot;note&quot;&gt;Note&lt;/h3&gt;
+
+&lt;p&gt;설명하기 쉽도록 가정을 해보도록 하자. 우선 Figure라는 부모 클래스가 존재하고 자식클래스로는 Circle, Square, Triangle.. 여러 도형이 있을 수 있다고 가정한다. 그리고 Figure 클래스에는 center라고 하는 메서드 하나를 가지는데 화면상에서 좌표를 바꾸어 도형을 다시 그려주는 기능을 한다. 자식클래스에서는 draw메서드가 존재하는데 현재 가진 도형정보를 토대로 화면상에 그려주는 기능을 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;시나리오&quot;&gt;시나리오&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rectangle&lt;/code&gt; 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Circle&lt;/code&gt;과 같은 클래스에서 상속받은 메서드 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;center()&lt;/code&gt;를 사용한다고 생각해볼 때 다형성에 대해 자세히 모른다면 의아해 할 수 있는 상황이 발생한다.&lt;/p&gt;
+
+&lt;p&gt;부모클래스에서 정의된 메서드 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;center()&lt;/code&gt;는 내부적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt; 를 사용한다. 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt;는 자식 클래스에 따라 코드가 전부 다르다. 만약 JAVA에서 late binding을 사용하지 않고 &lt;strong&gt;early binding&lt;/strong&gt;을 사용한다면 어떻게 될까?&lt;/p&gt;
+
+&lt;p&gt;우선 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;center()&lt;/code&gt;은 부모클래스에 정의 되어있다. 이것이 의미하는 바는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt; code를 작성하기 전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;center()&lt;/code&gt;는 이미 컴파일이 되어있다고 봐도 무방하다. 문제가 되는 부분은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt;일 것이다. 위에서 설명했듯이 자식 클래스 별로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt;는 코드가 모두 다르기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;early binding이 적용되면 현재 이용가능한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt;의 정의로 고정될 수 밖에 없다. 따라서 모든 자식클래스의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;draw()&lt;/code&gt;는 컴파일시에 이용된 method definition으로 고정되어 버리기 때문에 같은 동작을 수행할 수 밖에 없다. 반면 &lt;strong&gt;lateing binding&lt;/strong&gt;을 사용한다면 함수 호출이 발생할 때 binding이 이루어 지기 때문에 각 클래스에 따른 적합한 method definition이 연관되어 올바른 연산이 가능해진다.&lt;/p&gt;
+
+&lt;h2 id=&quot;덧붙이자면&quot;&gt;덧붙이자면…&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Polymorphism&lt;/em&gt;&lt;/strong&gt;과 &lt;em&gt;late binding&lt;/em&gt;은 근본적으로 같은 개념을 나타내는 용어이다. &lt;em&gt;Polymorphism&lt;/em&gt;은 &lt;em&gt;late binding&lt;/em&gt;을 사용하여 하나의 메소드 이름에 다양한 의미를 부여하는 process를 지칭한다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Binding" /><category term="Late binding" /><category term="Early binding" /><category term="Dynamic binding" /><category term="Polymorphism" /><summary type="html">Binding이란</summary></entry><entry><title type="html">[Spring] 다양한 의존관계 주입 방법</title><link href="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" rel="alternate" type="text/html" title="[Spring] 다양한 의존관계 주입 방법" /><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><id>https://ubermen5che.github.io/spring/%5BSpring%5D%EB%8B%A4%EC%96%91%ED%95%9C%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95</id><content type="html" xml:base="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/">&lt;h2 id=&quot;의존관계-주입은-크게-4가지-방법이-있다&quot;&gt;의존관계 주입은 크게 4가지 방법이 있다&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;생성자 주입&lt;/li&gt;
@@ -775,79 +1011,4 @@ git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HEAD~1
   &lt;li&gt;뭔가 더 필요하다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;해당 내용은 김영한님의 [자바 스프링 핵심 원리] 기본편의 강의 내용을 정리한 포스팅임을 밝힙니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="Spring" /><category term="SOLID" /><summary type="html">SRP: 단일 책임 원칙(Single responsibility principle)</summary></entry><entry><title type="html">[Web] 스프링 웹 개발 기초</title><link href="https://ubermen5che.github.io/java/spring/Web-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EC%B4%88/" rel="alternate" type="text/html" title="[Web] 스프링 웹 개발 기초" /><published>2021-07-03T00:00:00+09:00</published><updated>2021-07-03T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/%5BWeb%5D%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9B%B9%20%EA%B0%9C%EB%B0%9C%20%EA%B8%B0%EC%B4%88</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/Web-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EC%B4%88/">&lt;h1 id=&quot;web-스프링-웹-개발-기초&quot;&gt;[Web] 스프링 웹 개발 기초&lt;/h1&gt;
-
-&lt;h2 id=&quot;정적-컨텐츠&quot;&gt;정적 컨텐츠&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;간단히 말해서 요청이 들어올 시 서버에서 웹 브라우저에 파일을 전송해주면 웹브라우저는 파일을 받아서 그대로 보여주는 방식&lt;/li&gt;
-  &lt;li&gt;스프링에서 정적 컨텐츠는 project에 /static 경로를 찾아서 클라이언트에게 뿌려줌.&lt;/li&gt;
-  &lt;li&gt;웹브라우저가 정적 페이지를 요청을 하면, Spring 내장 Tomcat서버를 거쳐 우선 스프링 컨테이너 안에 해당 요청에 관한 컨트롤러가 있는지 우선적으로 확인 후 관련 컨트롤러가 없다면 /static폴더내에 정적 컨텐츠가 존재하는지 확인한다. 있다면 그대로 클라이언트에게 제공해준다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;mvc와-템플릿-엔진&quot;&gt;MVC와 템플릿 엔진&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MVC : Model, View, Controller&lt;/li&gt;
-  &lt;li&gt;예전과 달리 대부분의 웹 개발에서는 MVC패턴을 이용&lt;/li&gt;
-  &lt;li&gt;View에는 화면을 그려주는 기능에 집중하고, Controller에서는 비즈니스 로직 및 데이터 처리부분을 담당하고 Model에는 화면구성에 관련된 것들만 모아서 화면에 넘겨줌.&lt;/li&gt;
-  &lt;li&gt;PHP, JSP는 템플릿 엔진의 한 종류임&lt;/li&gt;
-  &lt;li&gt;템플릿 엔진은 정적 컨텐츠와는 달리 서버에서 HTML을 동적으로 만들어주어 브라우저에 전송함.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;api&quot;&gt;API&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;JSON 포맷으로 클라이언트에 데이터를 전달해주는것&lt;/li&gt;
-  &lt;li&gt;최근에 클라이언트는 JSON형식으로 받은 데이터를 사용자에게 보여줌&lt;/li&gt;
-  &lt;li&gt;API는 View를 따로 생성하지 않고 @ResponseBody를 이용해서 HTTP body에 객체 정보를 HttpMessageConverter가 적절한 형태(JSON, XML등)으로 변환하여 요청한 상대(browser, Android, server등)에게 데이터를 보내줌.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="MVC" /><category term="API" /><category term="템플릿 엔진" /><category term="Template engine" /><summary type="html">[Web] 스프링 웹 개발 기초</summary></entry><entry><title type="html">[대외활동] 삼성 SDS 멘토링</title><link href="https://ubermen5che.github.io/%EB%8C%80%EC%99%B8%ED%99%9C%EB%8F%99/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/" rel="alternate" type="text/html" title="[대외활동] 삼성 SDS 멘토링" /><published>2021-06-29T00:00:00+09:00</published><updated>2021-06-29T00:00:00+09:00</updated><id>https://ubermen5che.github.io/%EB%8C%80%EC%99%B8%ED%99%9C%EB%8F%99/%EC%82%BC%EC%84%B1SDS%20%EB%9E%9C%EC%84%A0%20%EB%A9%98%ED%86%A0%EB%A7%81</id><content type="html" xml:base="https://ubermen5che.github.io/%EB%8C%80%EC%99%B8%ED%99%9C%EB%8F%99/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;2021년 6월 29일 화요일 운이좋게도 삼성 SDS랜선 멘토링에 참여하게되었습니다. 오늘 강의해주셨던 내용들을 단순 기억에 의존하여 작성한 내용이니 참고해주시면 좋을것 같습니다. 주된내용은 좋은개발이 무엇인지, 개발자에 대한 덕목에 대한 내용입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-06-29/mentoring.png&quot; alt=&quot;mentoring.png&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;개발의-시작은-두가지&quot;&gt;개발의 시작은 두가지&lt;/h2&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 다른 사람으로 부터 오는 요구사항을 개발.
-- 나의 생각에 따른 개발.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;개발자에게-가장-중요한-덕목&quot;&gt;개발자에게 가장 중요한 덕목&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;개발자는 어떠한 문제가 존재할 때 최적의 방법을 찾아 해결할 수 있는 문제해결능력이 가장 중요하다!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;삼성SDS 시니어 개발자인 박준수 프로님의 사례를 예를들어 설명해보겠습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;잔여-백신-예약&quot;&gt;잔여 백신 예약&lt;/h3&gt;
-
-&lt;p&gt;현재 수많은 사람들이 잔여 백신 접종 신청을 위해 많은 시간을 모니터를 보며 새로고침을 하고있습니다. 앞으로 개발자가 될 생각이라면? 우리는 이 문제를 프로그래밍을 해서 자동화하는 방법을 찾을 수 있을것입니다. 위에서 개발의 시작은 두가지라고 했습니다. 이 경우 나의 생각에 따른 개발이며, 잔여 백신 접종 신청을 자동화 하는것이 요구사항일 것입니다. 이 사례를 통해 느끼는 바는 우리가 해결해야할 문제는 우리의 일상속 어딘가에 분명히 존재하며, 개발자는 이러한 문제들을 프로그래밍을 통해 어떻게 효율적으로 잘 해결해야할 것인지 항상 고민해야하는 존재라는것으로 받아들였습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;박준수-프로님의-조언&quot;&gt;박준수 프로님의 조언&lt;/h3&gt;
-
-&lt;p&gt;개발자의 길이 나에게 맞는지 잘 모르겠다면, 이러한 사고에 익숙한지 따져보면 알 수 있을것. 익숙하지 않다면 개발자의 길을 다시한번 심사숙고 해보는것이 좋을것이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;좋은-개발이란&quot;&gt;좋은 개발이란?&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;주어진 요구사항을 잘 분석하여 적절한 개발을 하자!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;1부터 10까지 더해보는 문제를 해결해보고자 합니다. 우리는 이 때 단순히 1+2+3+…+10 방식으로 문제를 해결해 볼 수도 있고 \(sum = \frac{10*(10+1)}{2}\) 수식을 사용하여 좀 더 빠르게 문제를 해결하거나 1~N으로 일반화 하여 문제를 해결해 볼 수 있을것입니다. 우리는 이 때 요구사항에 집중해보는것이 필요합니다. 요구사항에서는 단지 1~10까지 더하라는 요구만 있을뿐이기 때문에 주어진 요구사항에 맞게 적절한 방법을 사용하여 문제를 해결해나가면 되는것입니다.&lt;/p&gt;
-
-&lt;p&gt;(최근 하드웨어가 좋아지면서 때로는 \(O(N^2)\)  복잡도를 가진 알고리즘이 \(O(N)\) 보다 좋아보일때도 있다고합니다. 코드를 누구나 쉽게 보고 이해할 수 있다면 말이죠.)&lt;/p&gt;
-
-&lt;p&gt;처음부터 문제를 일반화하여 거창하고 어렵게 해결할 필요가 없습니다. 요구사항에 한하여 문제를 간단히 생각해보고 필요하다면 일반화하여 개선해나가면 되는것이기 때문입니다. 따라서 요구사항 분석을 철저히 하고 그에 맞는 개발을 하라는것입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;워라밸에-대하여&quot;&gt;워라밸에 대하여&lt;/h2&gt;
-
-&lt;p&gt;최근 사람들은 워라밸을 중시합니다. 개발자들이 워라밸을 지키기 위해서는 누구나 이해하기 쉬운 깔끔한 코드를 짜야 라이프 밸런스가 보장됩니다. 왜나하면 실무에서는 수많은 사람들과 협업하며 내가 짠 코드를 누군가가 유지보수를 할 수 있는 상황이 오며 이해하기 어려운 코드를 짯다면 빗발치는 연락 때문에 가뭄에 단비와 같은 휴가를 제대로 보낼 수 없겠죠. &lt;strong&gt;따라서 최대한 간결하고 직관적인 코드를 짜야합니다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;어떤-기술스택-언어를-습득해야할까요&quot;&gt;어떤 기술스택, 언어를 습득해야할까요?&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;현재 가장 익숙한 언어를 사용하는것이 좋을것이다. 해당 언어를 마스터했다면 다른 언어를 공부해봐도 좋다. 다른 언어를 공부할 때는 내가 익숙한 언어와의 차이점이 무엇인지에 대해 생각해보면서 학습해보면 좋을것입니다.&lt;/li&gt;
-  &lt;li&gt;주로쓰던 언어를 마스터하였다면 트렌드에 맞는 언어를 선택해서 학습해봅시다.&lt;/li&gt;
-  &lt;li&gt;어떤 기술스택을 쓰던 내게 주어진 문제를 해결할 수 있는것이면 됩니다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="대외활동" /><category term="삼성SDS" /><category term="멘토링" /><category term="프로그래머" /><category term="개발자" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;해당 내용은 김영한님의 [자바 스프링 핵심 원리] 기본편의 강의 내용을 정리한 포스팅임을 밝힙니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="Spring" /><category term="SOLID" /><summary type="html">SRP: 단일 책임 원칙(Single responsibility principle)</summary></entry></feed>
