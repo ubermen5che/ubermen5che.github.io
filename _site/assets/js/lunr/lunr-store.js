@@ -112,4 +112,28 @@ var store = [{
         "tags": ["Bean","Bean Lifecycle","Callback"],
         "url": "https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/",
         "teaser": null
+      },{
+        "title": "[System Programming]Connection Control Studying-stty",
+        "excerpt":"Ideas and Skills Files과 devices의 유사점 Files과 devices의 차이점 connections에 대한 속성 Race condition과 atomic operations device drivers를 제어하는방법 Streams 5.2 Devices Are Just Like Files Unix시스템에서 모든 devices는 file로써 다루어진다. device도 file과 마찬가지로 filename, inode number, owner, set of permission bits, last modifed time의 정보를 가지고 있다. 우리가 알고있는...","categories": ["Unix/Linux","System Programming","kernel"],
+        "tags": ["C","System Programming","stty"],
+        "url": "https://ubermen5che.github.io/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/",
+        "teaser": null
+      },{
+        "title": "[PS-programmers] 스킬트리",
+        "excerpt":"문제 설명 선행 스킬이란 어떤 스킬을 배우기 전에 먼저 배워야 하는 스킬을 뜻합니다. 예를 들어 선행 스킬 순서가 스파크 → 라이트닝 볼트 → 썬더일때, 썬더를 배우려면 먼저 라이트닝 볼트를 배워야 하고, 라이트닝 볼트를 배우려면 먼저 스파크를 배워야 합니다. 위 순서에 없는 다른 스킬(힐링 등)은 순서에 상관없이 배울 수 있습니다. 따라서 스파크 →...","categories": ["PS"],
+        "tags": ["programmers","level2","구현"],
+        "url": "https://ubermen5che.github.io/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/",
+        "teaser": null
+      },{
+        "title": "[PS-programmers] 괄호 변환",
+        "excerpt":"문제 설명 카카오에 신입 개발자로 입사한 “콘”은 선배 개발자로부터 개발역량 강화를 위해 다른 개발자가 작성한 소스 코드를 분석하여 문제점을 발견하고 수정하라는 업무 과제를 받았습니다. 소스를 컴파일하여 로그를 보니 대부분 소스 코드 내 작성된 괄호가 개수는 맞지만 짝이 맞지 않은 형태로 작성되어 오류가 나는 것을 알게 되었습니다.수정해야 할 소스 파일이 너무 많아서...","categories": ["PS"],
+        "tags": ["programmers","level2","재귀","구현"],
+        "url": "https://ubermen5che.github.io/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/",
+        "teaser": null
+      },{
+        "title": "[CS] Garbage Collection-1",
+        "excerpt":"Garbage Collection이란? GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면 다시 회수하는 동작을 하는 기법이라고 말할 수 있다. 개념적으로는 정말 간단해 보이지만 구현이 정말 까다롭다. GC는 발전을 거듭해서 꽤나...","categories": ["CS"],
+        "tags": ["Java","CS","Reference counting","Mark & sweep","Generative Collection","Copy Collection"],
+        "url": "https://ubermen5che.github.io/cs/CS-Garbage-Collection-1/",
+        "teaser": null
       }]
