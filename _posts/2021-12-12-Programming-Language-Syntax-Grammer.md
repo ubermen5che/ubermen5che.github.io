@@ -88,7 +88,7 @@ tags:
 
 ## BNF(Backus–Naur Form)
 
-BNF는 문법적 구조에 대한 클래스들을 표현하기위해 사용하는 abstractions이다.
+BNF에서 abstractions은 syntactic structures에 대한 classes를 표현하기위해 사용된다. 여기서 abstractions란 syntatic variables인데 이것은 nonterminal이라고 보아도 무방하다.
 
 BNF에서 lexemes 또는 tokens은 terminals이다. 두가지 rule이 존재하는데 left-hand-side(LHS)와 right-hand-side(RHS)가 있다. LHS는 BNF에서 왼쪽에 위치하며 하나의 nonterminal만 올 수 있고, RHS의 경우 nonterminal, terminal 모두 존재할 수 있다.
 
