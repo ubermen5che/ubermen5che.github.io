@@ -136,4 +136,10 @@ var store = [{
         "tags": ["Java","CS","Reference counting","Mark & sweep","Generative Collection","Copy Collection"],
         "url": "https://ubermen5che.github.io/cs/CS-Garbage-Collection-1/",
         "teaser": null
+      },{
+        "title": "[Programming Language] Syntax, Grammer",
+        "excerpt":"사전지식 프로그램은 statements로 구성되어있다. Statement는 다음과 같이 구성됨. Expressions variables, operators and method calls Declarations Control flow Statement는 natural language에서 대략적으로 하나의 sentences와 같다. aValue = 3922.1234(assignment statement) Object myobjct = new Object(); (object creation statement) 하나의 statement forms은 프로그램 실행 단위이다. Introduction Syntax : expressions, statements, and program units의...","categories": ["Programming Language"],
+        "tags": ["CS","Grammer","BNF","EBNF","Syntax","Derivation"],
+        "url": "https://ubermen5che.github.io/programming%20language/Programming-Language-Syntax-Grammer/",
+        "teaser": null
       }]
