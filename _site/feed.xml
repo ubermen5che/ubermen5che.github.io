@@ -1,4 +1,214 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://ubermen5che.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ubermen5che.github.io/" rel="alternate" type="text/html" /><updated>2021-12-12T21:01:58+09:00</updated><id>https://ubermen5che.github.io/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[Programming Language] Syntax, Grammer</title><link href="https://ubermen5che.github.io/programming%20language/Programming-Language-Syntax-Grammer/" rel="alternate" type="text/html" title="[Programming Language] Syntax, Grammer" /><published>2021-12-12T00:00:00+09:00</published><updated>2021-12-12T00:00:00+09:00</updated><id>https://ubermen5che.github.io/programming%20language/Programming-Language-Syntax-Grammer</id><content type="html" xml:base="https://ubermen5che.github.io/programming%20language/Programming-Language-Syntax-Grammer/">&lt;h2 id=&quot;사전지식&quot;&gt;사전지식&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-05T21:33:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ubermen5che’s Blog</title><subtitle>My first private blog</subtitle><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><entry><title type="html">[PS] 뱀(baekjoon 3190)</title><link href="http://localhost:4000/ps/baekjoon-9190/" rel="alternate" type="text/html" title="[PS] 뱀(baekjoon 3190)" /><published>2022-01-03T00:00:00+09:00</published><updated>2022-01-03T00:00:00+09:00</updated><id>http://localhost:4000/ps/baekjoon-9190</id><content type="html" xml:base="http://localhost:4000/ps/baekjoon-9190/">&lt;p&gt;‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.&lt;/p&gt;
+
+&lt;p&gt;게임은 NxN 정사각 보드위에서 진행되고, 몇몇 칸에는 사과가 놓여져 있다. 보드의 상하좌우 끝에 벽이 있다. 게임이 시작할때 뱀은 맨위 맨좌측에 위치하고 뱀의 길이는 1 이다. 뱀은 처음에 오른쪽을 향한다.&lt;/p&gt;
+
+&lt;p&gt;뱀은 매 초마다 이동을 하는데 다음과 같은 규칙을 따른다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;먼저 뱀은 몸길이를 늘려 머리를 다음칸에 위치시킨다.&lt;/li&gt;
+  &lt;li&gt;만약 이동한 칸에 사과가 있다면, 그 칸에 있던 사과가 없어지고 꼬리는 움직이지 않는다.&lt;/li&gt;
+  &lt;li&gt;만약 이동한 칸에 사과가 없다면, 몸길이를 줄여서 꼬리가 위치한 칸을 비워준다. 즉, 몸길이는 변하지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;사과의 위치와 뱀의 이동경로가 주어질 때 이 게임이 몇 초에 끝나는지 계산하라.&lt;/p&gt;
+
+&lt;h2 id=&quot;입력&quot;&gt;입력&lt;/h2&gt;
+
+&lt;p&gt;첫째 줄에 보드의 크기 N이 주어진다. (2 ≤ N ≤ 100) 다음 줄에 사과의 개수 K가 주어진다. (0 ≤ K ≤ 100)&lt;/p&gt;
+
+&lt;p&gt;다음 K개의 줄에는 사과의 위치가 주어지는데, 첫 번째 정수는 행, 두 번째 정수는 열 위치를 의미한다. 사과의 위치는 모두 다르며, 맨 위 맨 좌측 (1행 1열) 에는 사과가 없다.&lt;/p&gt;
+
+&lt;p&gt;다음 줄에는 뱀의 방향 변환 횟수 L 이 주어진다. (1 ≤ L ≤ 100)&lt;/p&gt;
+
+&lt;p&gt;다음 L개의 줄에는 뱀의 방향 변환 정보가 주어지는데,  정수 X와 문자 C로 이루어져 있으며. 게임 시작 시간으로부터 X초가 끝난 뒤에 왼쪽(C가 ‘L’) 또는 오른쪽(C가 ‘D’)로 90도 방향을 회전시킨다는 뜻이다. X는 10,000 이하의 양의 정수이며, 방향 전환 정보는 X가 증가하는 순으로 주어진다.&lt;/p&gt;
+
+&lt;h2 id=&quot;출력&quot;&gt;출력&lt;/h2&gt;
+
+&lt;p&gt;첫째 줄에 게임이 몇 초에 끝나는지 출력한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;해결-방법&quot;&gt;해결 방법&lt;/h2&gt;
+
+&lt;p&gt;문제에서 뱀은 이리저리 기어다니다가 사과를 먹는다면 몸의 길이를 1만큼 늘린다. 게임이 종료되는 조건은 벽에 부딫히거나 자기자신의 몸과 부딫히는 경우이다. 문제 해결을 위해 우리가 고려해야할 사항을 간단히 정리해보면 아래와 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;뱀의 이동방법&lt;/li&gt;
+  &lt;li&gt;이동 방향 처리 방법&lt;/li&gt;
+  &lt;li&gt;게임이 종료되는 조건
+    &lt;ul&gt;
+      &lt;li&gt;벽에 부딫히는 경우 판별 방법&lt;/li&gt;
+      &lt;li&gt;자신의 몸에 부딫히는 경우 판별 방법&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;뱀의-이동방법&quot;&gt;뱀의 이동방법&lt;/h3&gt;
+
+&lt;p&gt;뱀의 이동방법을 이해하는것이 이 문제에서는 중요한 것 같다. 문제의 조건들을 보면 먼저 뱀은 몸길이를 늘려 머리를 다음칸에 위치시킨다. 만약 다음칸에 사과가 존재한다면 사과가 위치한 부분에 머리를 그대로 위치시키고 꼬리부분 또한 그대로 둔다(몸길이가 1만큼 늘어나는 효과). 사과가 없을경우에는 꼬리를 제거해주는 방법으로 처리해야하는것을 알 수 있다(몸길이 변화없음).&lt;/p&gt;
+
+&lt;h3 id=&quot;이동-방향-처리&quot;&gt;이동 방향 처리&lt;/h3&gt;
+
+&lt;p&gt;예제입력 1&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;6
+3
+3 4
+2 5
+5 3
+3
+3 D
+15 L
+17 D
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위에 예제입력1을 보면 7번째줄 부터 이동 방향에 대한 정보가 주어진다. 문제 본문에서 볼 수 있듯이 D는 오른쪽 90도 회전을 뜻하고 L은 왼쪽으로 90도 회전을 의미한다. “3 D” 는 3초 시점에서 뱀은 오른쪽으로 90도 회전해야한다는 뜻이된다. 필자의 경우 방향 처리를 위해 배열을 사용해서 아래와 같이 방향정보를 나타내었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;//동, 남, 서, 북&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그리고 방향 전환에 대한 정보를 다음과 같이 표현하였다.&lt;/p&gt;
+
+&lt;p&gt;동 → 0 남 → 1&lt;/p&gt;
+
+&lt;p&gt;서 → 2 북 → 3&lt;/p&gt;
+
+&lt;p&gt;그렇다면 오른쪽 90도 회전 왼쪽 90도 회전을 아래의 코드로 처리할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//이곳에 방향 정보가 저장되었다 가정.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'L'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//왼쪽방향 90도 회전&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//오른쪽방향 90도 회전&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;게임-종료조건&quot;&gt;게임 종료조건&lt;/h2&gt;
+
+&lt;h3 id=&quot;벽에-부딫히는-경우-판별-방법&quot;&gt;벽에 부딫히는 경우 판별 방법&lt;/h3&gt;
+
+&lt;p&gt;벽에 닿는 조건의 경우 단순히 게임의 map의 크기를 벗어나는지 체크만 해주면된다. 이 때 필자의 경우 문제에서 맨 좌측 가장 위쪽이 (1,1)이라는것에 착안하여 map[N+1][N+1]과 같이 정의해주었다. 이에 따라 경계검사를 해주면 될 것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;자신의-몸에-부딫히는-경우-판별-방법&quot;&gt;자신의 몸에 부딫히는 경우 판별 방법&lt;/h3&gt;
+
+&lt;p&gt;본인은 뱀의 몸이 map에서 어디에 위치하는지를 저장하고 있는 queue를 정의했다. queue에 각 element가 마치 뱀의 몸 마디하나라고 생각해서 LinkedList&lt;SnakeBody&gt; snake라고 정의했다. 즉 뱀의 마디마디가 모여 뱀 한마리가 된것을 추상화했다고 생각하면 될 것이다ㅋㅋㅋ😄&lt;/SnakeBody&gt;&lt;/p&gt;
+
+&lt;p&gt;아무튼 queue에 뱀의 위치정보를 이동이 발생할 때마다 갱신을 해준다. 최초에는 뱀의 머리 하나가 존재할 것 인데. (1, 1)에서 동쪽방향으로 처음 움직인다고 했으니 1초시점까지 queue에는 다음과 같은 연산이 발생한다. ( (1, 2)에 사과가 없다고 가정)&lt;/p&gt;
+
+&lt;p&gt;[1,1]→[1,2] (add [1,2])&lt;/p&gt;
+
+&lt;p&gt;[1,2] (remove [1,1])&lt;/p&gt;
+
+&lt;p&gt;왜냐하면 뱀은 우선 뱀의 머리를 다음칸에 위치시키고 사과가 없는 경우 꼬리를 제거한다고 했다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 (1, 2) 위치에 사과가 존재하는 경우라면  [1,1] → [1,2]가 되겠다. 이와 같은 연산을 보았을 때 FIFO형태를 띄고있으므로 queue를 이용한것이다. 이런식으로 뱀의 위치를 이동시마다 갱신시켜주면서 map에다가 뱀의 몸 정보 또한 갱신해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;map에 저장되는 정보로는 초기값 0, 사과 1, 자신의 몸 2로 두었다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;뱀이 몸의 길이를 늘려 머리를 다음위치로 이동할 때 다음위치를 토대로 map에다가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map[nextY][nextX] = 2&lt;/code&gt;와 같이 갱신해준다. 다음 위치에 사과가 존재한다면 별다른 처리를 해주지 않아도 되고 사과가 없다면 queue에서 꼬리를 제거해서 제거된 꼬리의 위치를 토대로 map에 다음과 같이 초기값으로 값을 설정해주어 맵에서 꼬리가 제거됨을 표시하는것이다.  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map[tailY][tailX] = 0&lt;/code&gt;  이런식으로 처리하다보면 자기 자신의 몸에 대한 정보가 map에 저장될 것이고 이 정보를 토대로 자기 자신의 몸에 부딫혔는지 검사를 할 수 있게된다(다음 이동 위치에 자기 자신의 몸이 존재하면 종료하는것이다).&lt;/p&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.BufferedReader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.IOException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.InputStreamReader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.StringTokenizer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][];&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Character&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dirInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snake&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;//우, 하, 좌, 상&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IOException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;BufferedReader&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BufferedReader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InputStreamReader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+        &lt;span class=&quot;no&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numOfApple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+        &lt;span class=&quot;nc&quot;&gt;StringTokenizer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;st&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numOfApple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;st&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StringTokenizer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;st&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;st&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1 == 사과&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numOfDirInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;Character&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numOfDirInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;st&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StringTokenizer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;st&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;st&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;dirInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;snake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;playGame&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playGame&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//자기 자신몸에 닿은경우&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//꼬리제거&lt;/span&gt;
+                &lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;poll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//x,y에 대한 통일이 안됨.&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;snake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dirInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;containsKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nc&quot;&gt;Character&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dirInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'L'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'D'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;snakeHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SnakeBody&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SnakeBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="PS" /><category term="시뮬레이션" /><category term="큐" /><category term="덱" /><summary type="html">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.</summary></entry><entry><title type="html">[Programming Language] Syntax, Grammer</title><link href="http://localhost:4000/programming%20language/Programming-Language-Syntax-Grammer/" rel="alternate" type="text/html" title="[Programming Language] Syntax, Grammer" /><published>2021-12-12T00:00:00+09:00</published><updated>2021-12-12T00:00:00+09:00</updated><id>http://localhost:4000/programming%20language/Programming-Language-Syntax-Grammer</id><content type="html" xml:base="http://localhost:4000/programming%20language/Programming-Language-Syntax-Grammer/">&lt;h2 id=&quot;사전지식&quot;&gt;사전지식&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;프로그램은 statements로 구성되어있다.&lt;/li&gt;
@@ -178,7 +388,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-12-12/derivation.png&quot; alt=&quot;derivation&quot; class=&quot;align-center&quot; width=&quot;70%&amp;quot;, height=&amp;quot;70%&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위의 Derivation은 parse tree로도 나타낼 수 있다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Programming Language" /><category term="CS" /><category term="Grammer" /><category term="BNF" /><category term="EBNF" /><category term="Syntax" /><category term="Derivation" /><summary type="html">사전지식</summary></entry><entry><title type="html">[CS] Garbage Collection-1</title><link href="https://ubermen5che.github.io/cs/CS-Garbage-Collection-1/" rel="alternate" type="text/html" title="[CS] Garbage Collection-1" /><published>2021-12-11T00:00:00+09:00</published><updated>2021-12-11T00:00:00+09:00</updated><id>https://ubermen5che.github.io/cs/%5BCS%5D%20Garbage%20Collection-1</id><content type="html" xml:base="https://ubermen5che.github.io/cs/CS-Garbage-Collection-1/">&lt;h2 id=&quot;garbage-collection이란&quot;&gt;Garbage Collection이란?&lt;/h2&gt;
+&lt;p&gt;위의 Derivation은 parse tree로도 나타낼 수 있다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Programming Language" /><category term="CS" /><category term="Grammer" /><category term="BNF" /><category term="EBNF" /><category term="Syntax" /><category term="Derivation" /><summary type="html">사전지식</summary></entry><entry><title type="html">[CS] Garbage Collection-1</title><link href="http://localhost:4000/cs/CS-Garbage-Collection-1/" rel="alternate" type="text/html" title="[CS] Garbage Collection-1" /><published>2021-12-11T00:00:00+09:00</published><updated>2021-12-11T00:00:00+09:00</updated><id>http://localhost:4000/cs/%5BCS%5D%20Garbage%20Collection-1</id><content type="html" xml:base="http://localhost:4000/cs/CS-Garbage-Collection-1/">&lt;h2 id=&quot;garbage-collection이란&quot;&gt;Garbage Collection이란?&lt;/h2&gt;
 &lt;p&gt;GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면 다시 회수하는 동작을 하는 기법이라고 말할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;개념적으로는 정말 간단해 보이지만 구현이 정말 까다롭다. GC는 발전을 거듭해서 꽤나 괜찮은 성능을 보여주고 있는데 현재 Java JVM에서 사용되고있는 Generational Collection 방법까지 오면서 여러번 성능개선 작업이 이루어져왔다. 이번 포스팅에서는 발전순서대로 차근차근 알아볼 예정이다.&lt;/p&gt;
@@ -233,12 +443,12 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;내용이 길어질 것 같아 여러 포스팅으로 나누어 mark &amp;amp; sweep, Copy collection, Generative Collection 개념을 차례대로 설명할 예정입니다!&lt;/p&gt;
+&lt;p&gt;내용이 길어질 것 같아 여러 포스팅으로 나누어 mark &amp;amp; sweep, Copy collection, Generative Collection 개념을 차례대로 설명할 예정입니다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;해당 내용은 경북대학교 권영우교수님의 강의 내용을 정리한 내용임을 밝힙니다.&lt;/p&gt;
 
-&lt;/blockquote&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="CS" /><category term="Java" /><category term="CS" /><category term="Reference counting" /><category term="Mark &amp; sweep" /><category term="Generative Collection" /><category term="Copy Collection" /><summary type="html">Garbage Collection이란? GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면 다시 회수하는 동작을 하는 기법이라고 말할 수 있다.</summary></entry><entry><title type="html">[PS-programmers] 괄호 변환</title><link href="https://ubermen5che.github.io/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="alternate" type="text/html" title="[PS-programmers] 괄호 변환" /><published>2021-11-16T00:00:00+09:00</published><updated>2021-11-16T00:00:00+09:00</updated><id>https://ubermen5che.github.io/ps/%5BPS-programmers%5D%20%EA%B4%84%ED%98%B8%20%EB%B3%80%ED%99%98</id><content type="html" xml:base="https://ubermen5che.github.io/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/">&lt;h3 id=&quot;문제-설명&quot;&gt;&lt;strong&gt;문제 설명&lt;/strong&gt;&lt;/h3&gt;
+&lt;/blockquote&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="CS" /><category term="Java" /><category term="CS" /><category term="Reference counting" /><category term="Mark &amp; sweep" /><category term="Generative Collection" /><category term="Copy Collection" /><summary type="html">Garbage Collection이란? GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면 다시 회수하는 동작을 하는 기법이라고 말할 수 있다.</summary></entry><entry><title type="html">[PS-programmers] 괄호 변환</title><link href="http://localhost:4000/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="alternate" type="text/html" title="[PS-programmers] 괄호 변환" /><published>2021-11-16T00:00:00+09:00</published><updated>2021-11-16T00:00:00+09:00</updated><id>http://localhost:4000/ps/%5BPS-programmers%5D%20%EA%B4%84%ED%98%B8%20%EB%B3%80%ED%99%98</id><content type="html" xml:base="http://localhost:4000/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/">&lt;h3 id=&quot;문제-설명&quot;&gt;&lt;strong&gt;문제 설명&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;p&gt;카카오에 신입 개발자로 입사한 &lt;strong&gt;“콘”&lt;/strong&gt;은 선배 개발자로부터 개발역량 강화를 위해 다른 개발자가 작성한 소스 코드를 분석하여 문제점을 발견하고 수정하라는 업무 과제를 받았습니다. 소스를 컴파일하여 로그를 보니 대부분 소스 코드 내 작성된 괄호가 개수는 맞지만 짝이 맞지 않은 형태로 작성되어 오류가 나는 것을 알게 되었습니다.수정해야 할 소스 파일이 너무 많아서 고민하던 “콘”은 소스 코드에 작성된 모든 괄호를 뽑아서 올바른 순서대로 배치된 괄호 문자열을 알려주는 프로그램을 다음과 같이 개발하려고 합니다.&lt;/p&gt;
 
@@ -387,7 +597,7 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="PS" /><category term="programmers" /><category term="level2" /><category term="재귀" /><category term="구현" /><summary type="html">문제 설명</summary></entry><entry><title type="html">[PS-programmers] 스킬트리</title><link href="https://ubermen5che.github.io/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/" rel="alternate" type="text/html" title="[PS-programmers] 스킬트리" /><published>2021-11-10T00:00:00+09:00</published><updated>2021-11-10T00:00:00+09:00</updated><id>https://ubermen5che.github.io/ps/%5BPS-programmers%5D%20%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC</id><content type="html" xml:base="https://ubermen5che.github.io/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/">&lt;h3 id=&quot;문제-설명&quot;&gt;&lt;strong&gt;문제 설명&lt;/strong&gt;&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="PS" /><category term="programmers" /><category term="level2" /><category term="재귀" /><category term="구현" /><summary type="html">문제 설명</summary></entry><entry><title type="html">[PS-programmers] 스킬트리</title><link href="http://localhost:4000/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/" rel="alternate" type="text/html" title="[PS-programmers] 스킬트리" /><published>2021-11-10T00:00:00+09:00</published><updated>2021-11-10T00:00:00+09:00</updated><id>http://localhost:4000/ps/%5BPS-programmers%5D%20%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC</id><content type="html" xml:base="http://localhost:4000/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/">&lt;h3 id=&quot;문제-설명&quot;&gt;&lt;strong&gt;문제 설명&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;p&gt;선행 스킬이란 어떤 스킬을 배우기 전에 먼저 배워야 하는 스킬을 뜻합니다.&lt;/p&gt;
 
@@ -462,7 +672,7 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="PS" /><category term="programmers" /><category term="level2" /><category term="구현" /><summary type="html">문제 설명</summary></entry><entry><title type="html">[System Programming]Connection Control Studying-stty</title><link href="https://ubermen5che.github.io/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/" rel="alternate" type="text/html" title="[System Programming]Connection Control Studying-stty" /><published>2021-10-15T00:00:00+09:00</published><updated>2021-10-15T00:00:00+09:00</updated><id>https://ubermen5che.github.io/unix/linux/system%20programming/kernel/%5BSystemProgramming%5DConnection%20Control%20Studying-stty</id><content type="html" xml:base="https://ubermen5che.github.io/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/">&lt;h2 id=&quot;ideas-and-skills&quot;&gt;Ideas and Skills&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="PS" /><category term="programmers" /><category term="level2" /><category term="구현" /><summary type="html">문제 설명</summary></entry><entry><title type="html">[System Programming]Connection Control Studying-stty</title><link href="http://localhost:4000/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/" rel="alternate" type="text/html" title="[System Programming]Connection Control Studying-stty" /><published>2021-10-15T00:00:00+09:00</published><updated>2021-10-15T00:00:00+09:00</updated><id>http://localhost:4000/unix/linux/system%20programming/kernel/%5BSystemProgramming%5DConnection%20Control%20Studying-stty</id><content type="html" xml:base="http://localhost:4000/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/">&lt;h2 id=&quot;ideas-and-skills&quot;&gt;Ideas and Skills&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Files과 devices의 유사점&lt;/li&gt;
@@ -584,7 +794,7 @@
       &lt;li&gt;open, write, lseek, close&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Unix/Linux" /><category term="System Programming" /><category term="kernel" /><category term="C" /><category term="System Programming" /><category term="stty" /><summary type="html">Ideas and Skills</summary></entry><entry><title type="html">[JAVA] Binding</title><link href="https://ubermen5che.github.io/java/JAVA-Binding/" rel="alternate" type="text/html" title="[JAVA] Binding" /><published>2021-08-21T00:00:00+09:00</published><updated>2021-08-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/%5BJAVA%5DBinding</id><content type="html" xml:base="https://ubermen5che.github.io/java/JAVA-Binding/">&lt;h2 id=&quot;binding이란&quot;&gt;Binding이란&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Unix/Linux" /><category term="System Programming" /><category term="kernel" /><category term="C" /><category term="System Programming" /><category term="stty" /><summary type="html">Ideas and Skills</summary></entry><entry><title type="html">[JAVA] Binding</title><link href="http://localhost:4000/java/JAVA-Binding/" rel="alternate" type="text/html" title="[JAVA] Binding" /><published>2021-08-21T00:00:00+09:00</published><updated>2021-08-21T00:00:00+09:00</updated><id>http://localhost:4000/java/%5BJAVA%5DBinding</id><content type="html" xml:base="http://localhost:4000/java/JAVA-Binding/">&lt;h2 id=&quot;binding이란&quot;&gt;Binding이란&lt;/h2&gt;
 
 &lt;p&gt;Method invocation과 method definition을 연관짓는 process.&lt;/p&gt;
 
@@ -613,7 +823,7 @@
 
 &lt;h2 id=&quot;덧붙이자면&quot;&gt;덧붙이자면…&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Polymorphism&lt;/em&gt;&lt;/strong&gt;과 &lt;em&gt;late binding&lt;/em&gt;은 근본적으로 같은 개념을 나타내는 용어이다. &lt;em&gt;Polymorphism&lt;/em&gt;은 &lt;em&gt;late binding&lt;/em&gt;을 사용하여 하나의 메소드 이름에 다양한 의미를 부여하는 process를 지칭한다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Binding" /><category term="Late binding" /><category term="Early binding" /><category term="Dynamic binding" /><category term="Polymorphism" /><summary type="html">Binding이란</summary></entry><entry><title type="html">[Spirng]빈 생명주기 콜백</title><link href="https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/" rel="alternate" type="text/html" title="[Spirng]빈 생명주기 콜백" /><published>2021-08-21T00:00:00+09:00</published><updated>2021-08-21T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/">&lt;p&gt;데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Polymorphism&lt;/em&gt;&lt;/strong&gt;과 &lt;em&gt;late binding&lt;/em&gt;은 근본적으로 같은 개념을 나타내는 용어이다. &lt;em&gt;Polymorphism&lt;/em&gt;은 &lt;em&gt;late binding&lt;/em&gt;을 사용하여 하나의 메소드 이름에 다양한 의미를 부여하는 process를 지칭한다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Binding" /><category term="Late binding" /><category term="Early binding" /><category term="Dynamic binding" /><category term="Polymorphism" /><summary type="html">Binding이란</summary></entry><entry><title type="html">[Spirng]빈 생명주기 콜백</title><link href="http://localhost:4000/java/spring/spring-bean-lifecycle-callback/" rel="alternate" type="text/html" title="[Spirng]빈 생명주기 콜백" /><published>2021-08-21T00:00:00+09:00</published><updated>2021-08-21T00:00:00+09:00</updated><id>http://localhost:4000/java/spring/spring-bean-lifecycle-callback</id><content type="html" xml:base="http://localhost:4000/java/spring/spring-bean-lifecycle-callback/">&lt;p&gt;데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;참고: 애플리케이션 시작 시점에 DB 커넥션 풀과 연결을 미리 해두는 이유는 애플리케이션 서버와 데이터베이스간의 연결 과정에서 시간이 소요되기 때문이다.&lt;/p&gt;
@@ -820,7 +1030,7 @@ call: null message &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 초기화 연�
   &lt;li&gt;패키지를 잘 보면 javax.annotation.PostConstruct이다. 스프링에 종속적인 기술이 아니라 JSR-250이라는 자바 표준이다. 따라서 스프링이 아닌 다른 컨테이너에서도 동작함.&lt;/li&gt;
   &lt;li&gt;컴포넌트 스캔과 잘 어울린다.&lt;/li&gt;
   &lt;li&gt;유일한 단점은 외부 라이브러리에는 적용하지 못한다는 것. 외부 라이브러리를 초기화, 종료 해야하면 @Bean의 기능을 사용하자.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Spring" /><category term="Bean" /><category term="Bean Lifecycle" /><category term="Callback" /><summary type="html">데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.</summary></entry><entry><title type="html">[Spring] 다양한 의존관계 주입 방법</title><link href="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" rel="alternate" type="text/html" title="[Spring] 다양한 의존관계 주입 방법" /><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><id>https://ubermen5che.github.io/spring/%5BSpring%5D%EB%8B%A4%EC%96%91%ED%95%9C%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95</id><content type="html" xml:base="https://ubermen5che.github.io/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/">&lt;h2 id=&quot;의존관계-주입은-크게-4가지-방법이-있다&quot;&gt;의존관계 주입은 크게 4가지 방법이 있다&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Spring" /><category term="Bean" /><category term="Bean Lifecycle" /><category term="Callback" /><summary type="html">데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.</summary></entry><entry><title type="html">[Spring] 다양한 의존관계 주입 방법</title><link href="http://localhost:4000/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" rel="alternate" type="text/html" title="[Spring] 다양한 의존관계 주입 방법" /><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><id>http://localhost:4000/spring/%5BSpring%5D%EB%8B%A4%EC%96%91%ED%95%9C%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95</id><content type="html" xml:base="http://localhost:4000/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/">&lt;h2 id=&quot;의존관계-주입은-크게-4가지-방법이-있다&quot;&gt;의존관계 주입은 크게 4가지 방법이 있다&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;생성자 주입&lt;/li&gt;
@@ -967,7 +1177,7 @@ call: null message &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 초기화 연�
         &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rateDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="DI" /><summary type="html">의존관계 주입은 크게 4가지 방법이 있다</summary></entry><entry><title type="html">[JAVA] Privacy Leaks</title><link href="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/" rel="alternate" type="text/html" title="[JAVA] Privacy Leaks" /><published>2021-08-07T00:00:00+09:00</published><updated>2021-08-07T00:00:00+09:00</updated><id>https://ubermen5che.github.io/java/spring/%5BJAVA%5DPrivacy%20Leaks</id><content type="html" xml:base="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/">&lt;p&gt;클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="DI" /><summary type="html">의존관계 주입은 크게 4가지 방법이 있다</summary></entry><entry><title type="html">[JAVA] Privacy Leaks</title><link href="http://localhost:4000/java/spring/JAVA-Privacy-Leaks/" rel="alternate" type="text/html" title="[JAVA] Privacy Leaks" /><published>2021-08-07T00:00:00+09:00</published><updated>2021-08-07T00:00:00+09:00</updated><id>http://localhost:4000/java/spring/%5BJAVA%5DPrivacy%20Leaks</id><content type="html" xml:base="http://localhost:4000/java/spring/JAVA-Privacy-Leaks/">&lt;p&gt;클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.&lt;/p&gt;
 
 &lt;h1 id=&quot;잘못-설계된-클래스-예&quot;&gt;잘못 설계된 클래스 예&lt;/h1&gt;
 
@@ -1056,138 +1266,4 @@ call: null message &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 초기화 연�
 
 &lt;p&gt;그러나 분명 위와 같이 코드를 짜면 privacy leaks이 발생하는것이 아닌가 하는 의문이 생겼다.&lt;/p&gt;
 
-&lt;p&gt;스프링 빈은 싱글톤으로 관리된다고 하였는데 이를 상기해보면 당연한 이치라고 생각된다. 왜냐하면 하나의 객체만 생성해서 공유하기 때문에 privacy leak이 발생할 수 밖에 없는 구조인것이다. 그러나 실제로는 무상태로 싱글톤을 설계한다면 privacy leak이 발생하지 않는 방향으로 갈 수 있지 않을까 생각한다…&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Spring" /><category term="private" /><category term="JAVA" /><category term="Spring" /><summary type="html">클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.</summary></entry><entry><title type="html">[컨트리뷰톤] Git/GitHub 기본실습-2</title><link href="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/" rel="alternate" type="text/html" title="[컨트리뷰톤] Git/GitHub 기본실습-2" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%5B%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4%5DGit%20%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2</id><content type="html" xml:base="https://ubermen5che.github.io/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/">&lt;h1 id=&quot;오픈소스-개발참여를-위한-commit-작업branch--commit&quot;&gt;오픈소스 개발참여를 위한 commit 작업(branch &amp;amp; commit)&lt;/h1&gt;
-
-&lt;h2 id=&quot;branch란&quot;&gt;Branch란?&lt;/h2&gt;
-
-&lt;p&gt;브랜치는 다음과 같은 표현으로 간결하게 설명할 수 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;“같은 폴더 다른세상”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;아래의 터미널을 보면  check-fosslight branch에서 hi.txt를 생성하고 commit을 한것을 볼 수 있다. 해당 브랜치에서 생성하고 commit한 파일을 main branch에서 찾아볼 수 있을까? 지난 포스팅에서 배운 git log 명령어를 이용하여 commit내역을 보면 확실하게 알 수 있을것이다!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/branch.png&quot; alt=&quot;branch.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;그림1(main외에 브랜치에서 hi.txt생성)&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;파이프라인을 명령어를 사용하여 HEAD -1을 하면 가장 상위 1개의 commit내역을 가져올 수 있다.&lt;/p&gt;
-
-&lt;p&gt;아래의 사진을 통해 결과를 확인해보자. check-fosslight branch에는 hi.txt파일을 추가한 commit내역을 확인할 수 있다. &lt;strong&gt;그러나 main branch에서는 확인할 수 없었다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;즉, &lt;strong&gt;같은 폴더 다른세상&lt;/strong&gt;이라는 표현이 아주 적절한 표현임을 알 수 있었다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git log &lt;span class=&quot;nt&quot;&gt;--oneline&lt;/span&gt; | HEAD &lt;span class=&quot;nt&quot;&gt;-1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/checkout.png&quot; alt=&quot;checkout.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;브랜치-관련-명령어-모음&quot;&gt;브랜치 관련 명령어 모음&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;브랜치 생성&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;브랜치 이름&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;브랜치 삭제&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#삭제하고자 하는 브랜치로 이동&lt;/span&gt;
-git checkout &amp;lt;브랜치 이름&amp;gt;
-git branch &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &amp;lt;브랜치 이름&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;현재 프랜치 확인 및 소스파일 상태확인&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git status
-On branch main
-Your branch is up to &lt;span class=&quot;nb&quot;&gt;date &lt;/span&gt;with &lt;span class=&quot;s1&quot;&gt;'origin/main'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-
-nothing to commit, working tree clean
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;현재는 nothing to commit(수정내역이 없음)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;소스파일-수정-후-최신역사와의-차이점-확인&quot;&gt;소스파일 수정 후 최신역사와의 차이점 확인&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#소스파일 수정 확인 명령어&lt;/span&gt;
-git diff
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;아래의 사진을 보면 빨간색으로 표시된 부분은 이전 역사와 달리 코드가 삭제된 부분을 나타내고, 초록색으로 나타는 부분은 새롭게 추가된 코드를 보여준다. 코드를 수정하고 commit하기 전에 이전과 달리 어느부분을 수정했는지 한눈에 파악하기 쉽게 만들어주는점에서 아주 유용한 명령어인것 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/git_diff.png&quot; alt=&quot;git_diff.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;stash와-checkout&quot;&gt;stash와 checkout&lt;/h2&gt;
-
-&lt;h3 id=&quot;stash&quot;&gt;Stash&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;임시저장소에 현재까지의 변경사항을 넣어두자!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git stash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;stash를 설명하기에 앞서 stash를 적용해볼 수 있는 적절한 시나리오를 생각해보자.&lt;/p&gt;
-
-&lt;p&gt;현재 내가 프로젝트내에 어떤 부분에 버그를 수정하기 위해 소스코드를 수정하였지만  commit으로 만들기는 아직 많은 테스트가 필요하기때문에 애매하고 버그 수정전과 후를 비교해보고싶은 경우라고 가정해보자. 이 때 적절하게 사용할 수 있는 명령어가 stash이다. stash를 이용하면 수정한 코드들을 임시 저장함으로써 수정전의 상태로 돌아갈 수 있다. 다시 버그 수정후의 역사로 돌아가고싶다면 임시저장한 코드를 stash pop을 이용해서 원래상태로 돌아갈 수 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git stash pop
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/stash.png&quot; alt=&quot;stash.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;checkout&quot;&gt;Checkout&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;.git에 저장되어 있는 최신역사를 꺼낸다!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &amp;lt;특정 파일&amp;gt;
-&lt;span class=&quot;c&quot;&gt;#ex) git checkout -- README.md&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;checkout은 clone받은 프로젝트 폴더내에 숨김파일로 존재하는 .git폴더에 저장되어 있는(가장 최근 프로젝트 정보를 지니고있다) 프로젝트 log를 꺼내오는 명령어이다. 코드를 수정하다가 도저히 해결하기 어려운 버그를 오류를 만났을 때 깔끔하게 예전상태로 돌아가고싶다면 checkout만한 명령어가 없을것이다. 가장 최근의 기준 프로젝트 로그를 가지고있기 때문에 그냥 .git에서 꺼내오고 복구시키면 그만이기 때문이다.(undo 역할을 함) 브랜치를 변경할 때도 checkout을 사용한다. 같은 맥락으로 .git에 브랜치 정보가 저장되어있어 이것을 꺼내오는것이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;add-명령-취소-및-commit-삭제-명령어&quot;&gt;Add 명령 취소 및 commit 삭제 명령어&lt;/h2&gt;
-
-&lt;h3 id=&quot;add-취소&quot;&gt;Add 취소&lt;/h3&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;commit-취소-명령어&quot;&gt;Commit 취소 명령어&lt;/h3&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#HEAD~1은 가장 위에서 첫번째 내용을 삭제한다는 의미&lt;/span&gt;
-git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HEAD~1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;hard, soft 옵션의 차이점&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;hard의 경우 commit 내역 및 정보를 모두 삭제함&lt;/li&gt;
-  &lt;li&gt;soft는 커밋 내역만 삭제하고 코드 변화분은 그대로 남음
-    &lt;ul&gt;
-      &lt;li&gt;여러개의 commit을 합칠때 유용하게 사용됨&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;commit-수정-명령어&quot;&gt;Commit 수정 명령어&lt;/h3&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit &lt;span class=&quot;nt&quot;&gt;--amend&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;ammend를 사용하여 commit message를 수정할 수 있다. 아래 사진을 자세히 보면 commit ID가 변경된것을 볼 수 있다. 이전 파일 정보가 하나라도 변경됐을경우 commit ID는 변경이 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/before_ammend.png&quot; alt=&quot;before_ammend.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;ammend 전&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/2021-08-06/after_ammend.png&quot; alt=&quot;after_ammend.png&quot; class=&quot;align-center&quot; width=&quot;100%&amp;quot;, height=&amp;quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p class=&quot;image-caption&quot;&gt;&lt;em&gt;ammend 후&lt;/em&gt;&lt;/p&gt;
-
-&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; 해당 포스트는 리얼리눅스 송태웅님의 강의를 보고 정리한 내용임을 알립니다.&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="Git" /><category term="대외 활동" /><category term="Git/Github" /><category term="git 명령어" /><category term="rebase" /><category term="오픈소스" /><category term="branch" /><summary type="html">오픈소스 개발참여를 위한 commit 작업(branch &amp;amp; commit)</summary></entry></feed>
+&lt;p&gt;스프링 빈은 싱글톤으로 관리된다고 하였는데 이를 상기해보면 당연한 이치라고 생각된다. 왜냐하면 하나의 객체만 생성해서 공유하기 때문에 privacy leak이 발생할 수 밖에 없는 구조인것이다. 그러나 실제로는 무상태로 싱글톤을 설계한다면 privacy leak이 발생하지 않는 방향으로 갈 수 있지 않을까 생각한다…&lt;/p&gt;</content><author><name>YongJun Kwon</name><email>ubermen5ch1308@gmail.com</email></author><category term="JAVA" /><category term="Spring" /><category term="private" /><category term="JAVA" /><category term="Spring" /><summary type="html">클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.</summary></entry></feed>
