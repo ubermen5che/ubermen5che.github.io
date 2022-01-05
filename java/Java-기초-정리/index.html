@@ -1,0 +1,692 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>자바 기초 정리 - Ubermen5che’s Blog</title>
+<meta name="description" content="Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="자바 기초 정리">
+<meta property="og:url" content="https://ubermen5che.github.io/java/Java-%EA%B8%B0%EC%B4%88-%EC%A0%95%EB%A6%AC/">
+
+
+  <meta property="og:description" content="Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-06-28T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/java/Java-%EA%B8%B0%EC%B4%88-%EC%A0%95%EB%A6%AC/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="자바 기초 정리">
+    <meta itemprop="description" content="  Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)">
+    <meta itemprop="datePublished" content="2021-06-28T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">자바 기초 정리
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <ul>
+  <li>
+    <p>Local variable: method내에 정의된 변수. local이라고 이름이 붙혀진 이유는 함수 정의 안에서 한정되기 때문이다. 두 메소드가 존재한다고 가정했을 때, 서로 다른 메소드 내에 같은 변수이름이 존재해도 상관없다. 그리고 둘중 하나의 변수명을 변경했다고 해서 다른 변수에 전혀 영향을 주지 않는다.(지역적)</p>
+  </li>
+  <li>
+    <p>Object(instance of the class): 클래스의 오브젝트 또는 클래스의 인스턴스라고도 불려진다. 오브젝트는 어떠한 정보를 저장하는 변수와, action을 담당하는 method로 이루어져있다. 흔히 클래스는 붕어빵틀에 비유되고 오브젝트는 붕어빵에 대응된다.</p>
+  </li>
+  <li>
+    <p>Instance Variables: 클래스내에 정의된 변수들에 해당된다. 예는 다음과 같다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">date</span><span class="o">.</span><span class="na">month</span> <span class="o">=</span> <span class="s">"June"</span><span class="o">;</span>
+  <span class="n">date</span><span class="o">.</span><span class="na">day</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
+  <span class="n">date</span><span class="o">.</span><span class="na">year</span> <span class="o">=</span> <span class="mi">2021</span><span class="o">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Call-by-value: Java에서 method의 parameter로 primitive type을 전달할 때는 Call-by-value형식으로 값이 전달된다. 간단하게 생각하면 값이 그대로 복사되어 호출된 method에 전달된다. 즉 parameter로 전달된 값은 그저 변수에 복사된 값이고 변수의 주소가 전달된다는 뜻이 아니라는것이다. Class Type을 parameter로 전달할 때는 Call-by-value와는 다른 방식으로 전달된다. 그러나 String의 경우는 primitive type과 동일하게 파라미터가 전달된다.</p>
+  </li>
+  <li>
+    <p>this parameter: method definition안에서 calling object의 이름을 this parameter로 대체할 수 있다. ex) date.month == this.month</p>
+  </li>
+  <li>
+    <p>this parameter는 instance variables와 parameter을 구분하는데 유용하게 사용된다</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDate</span><span class="o">(</span><span class="kt">int</span> <span class="n">month</span><span class="o">,</span> <span class="kt">int</span> <span class="n">day</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">)</span>
+  <span class="o">{</span>
+  	<span class="k">this</span><span class="o">.</span><span class="na">month</span> <span class="o">=</span> <span class="n">monthString</span><span class="o">(</span><span class="n">month</span><span class="o">);</span>
+  	<span class="k">this</span><span class="o">.</span><span class="na">day</span> <span class="o">=</span> <span class="n">day</span><span class="o">;</span>
+  	<span class="k">this</span><span class="o">.</span><span class="na">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>만약 this를 사용하지 않았다면 day = day에서 identifier와 parameter를 구분할 수 없다. 컴파일은 정상적으로 이루어질지 몰라도 우리가 원하는 결과를 얻지못한다</p>
+  </li>
+  <li>
+    <p>Java에서 오브젝트를 담는 배열의 경우 각 배열에는 오브젝트를 가리키는 주소값만 저장된다. 따라서 객체 배열에 객체를 담을때는 생성자를 사용해서 담아주어야한다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hashing</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="nc">Slot</span><span class="o">[]</span> <span class="n">hashtable</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Hashing</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">size</span><span class="o">){</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">hashtable</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Slot</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Slot</span> <span class="o">{</span>
+      <span class="nc">String</span> <span class="n">value</span><span class="o">;</span>
+      <span class="nc">Slot</span><span class="o">(</span><span class="nc">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="nc">Slot</span><span class="o">[]</span> <span class="n">hashTable</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Slot</span><span class="o">[</span><span class="mi">20</span><span class="o">];</span>
+  <span class="n">hashTable</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Slot</span><span class="o">(</span><span class="s">"test"</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-06-28T00:00:00+00:00">June 28, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%9E%90%EB%B0%94+%EA%B8%B0%EC%B4%88+%EC%A0%95%EB%A6%AC%20https%3A%2F%2Fubermen5che.github.io%2Fjava%2FJava-%25EA%25B8%25B0%25EC%25B4%2588-%25EC%25A0%2595%25EB%25A6%25AC%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Fjava%2FJava-%25EA%25B8%25B0%25EC%25B4%2588-%25EC%25A0%2595%25EB%25A6%25AC%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Fjava%2FJava-%25EA%25B8%25B0%25EC%25B4%2588-%25EC%25A0%2595%25EB%25A6%25AC%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/Linear-algebra-Vector/" class="pagination--pager" title="Linear algebra Vector
+">Previous</a>
+    
+    
+      <a href="/%EB%8C%80%EC%99%B8%ED%99%9C%EB%8F%99/%EC%82%BC%EC%84%B1SDS-%EB%9E%9C%EC%84%A0-%EB%A9%98%ED%86%A0%EB%A7%81/" class="pagination--pager" title="[대외활동] 삼성 SDS 멘토링
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="permalink">[PS-programmers] 괄호 변환
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>

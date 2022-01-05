@@ -1,0 +1,660 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Linear algebra Vector - Ubermen5che’s Blog</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="Linear algebra Vector">
+<meta property="og:url" content="https://ubermen5che.github.io/Linear-algebra-Vector/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-06-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/Linear-algebra-Vector/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Linear algebra Vector">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-06-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Linear algebra Vector
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<h1 id="선형대수-기본-벡터">선형대수 기본 벡터</h1>
+
+<h1 id="linear-algebra---essence-of-linear-algebravector">Linear Algebra - Essence of linear algebra(Vector)</h1>
+
+<h2 id="벡터-개념의-필요성">벡터 개념의 필요성</h2>
+
+<p>최근 정보검색, 데이터과학기초(Fundementals of data science)과목을 수강하면서 벡터의 중요성을 깨닫게 되었습니다. 정보검색에서 document와 query의 similarity를 측정하기 위해 벡터가 필요하였고, 데이터과학기초에서는 Supervised learning 범주에 속하는 SVM(Support Vector Machine)에서 벡터 개념이 필요하였습니다. 지난학기 벡터 개념이 제대로 정립이 되어있지 않아 공부하는데 어려움이 있었던 경험을 계기로 이번 포스팅을 작성하게되었습니다.</p>
+
+<p>출저를 먼저 밝히자면 유튜브 Blue1Brown 채널의 선형대수 시리즈 영상을 보며 정리했음을 알립니다.</p>
+
+<h2 id="벡터-개요">벡터 개요</h2>
+
+<p>기본적으로 선형 대수의 구성요소는 벡터입니다. 따라서 선형대수의 기본 구성요소인 벡터에 대해 명확히 알고가는것은 중요한 일 일것입니다.</p>
+
+<p>벡터는 물리학, 수학, CS분야에서 뜻하는바가 조금씩 다릅니다. 이번 포스팅에서는 CS분야에 사용되는 벡터에 대해 중점적으로 기술하겠습니다.</p>
+
+<p>CS관점에서 Vector가 의미하는 바는 순차 숫자 리스트입니다. 예를들어 한화를 기준으로 비트코인에 대한 정보를 2차원(길이가 2인) 벡터로 모델링 해본다면 다음과 같습니다.</p>
+
+<p>1은 비트코인의 수량을 뜻합니다. 즉 비트코인 1개당 4500만원이라는 정보를 모델링 하고 있는것 입니다.</p>
+
+<p><img src="/assets/images/posts/2021-06-21/bitcoin.png" alt="bitcoin.png" class="align-center" /></p>
+
+\[\begin{bmatrix}1 \\45,000,000\end{bmatrix}\]
+
+<p>우리는 기하학 관점에서 벡터를 원점에 뿌리를 둔 화살표라고 생각하면 벡터를 이해하기 수월할 것 입니다. 이는 벡터는 원점이 아닌 다른 좌표에 벡터를 표시할 수 있는 물리학 관점과 달리 선형대수학에서는 기본적으로 벡터는 원점에 뿌리를 둔 벡터라고 생각하면 이해하기 편합니다. CS관점에서 우리는 숫자-리스트라는 관점으로 벡터를 이해 해보려고 합니다. 숫자리스트는 곧 벡터의 좌표를 의미합니다.</p>
+
+<p>벡터의 좌표는 숫자쌍입니다. 이 숫자쌍은 꼬리(원점)에서 시작한 벡터가 끝에 어떻게 다다를지 알려줍니다. 첫 번째 숫자는 원점을 기준으로 x축을 따라 얼마나 떨어졌는지가에 대한 정보를 포함하고 양수면 오른쪽, 음수면 왼쪽을 의미합니다. 마찬가지로 두번 째 숫자의 경우 y축에 대한 좌표 정보를 가집니다. 마찬가지로 양수이면 위쪽 음수이면 아래쪽을 의미하게됩니다.</p>
+
+<p><img src="/assets/images/posts/2021-06-21/vector1.png" alt="vector1.png" class="align-center" width="50%&quot;, height=&quot;50%" /></p>
+
+<p>위 그림에서 첫번째 원소(-2)는 x축에 평행하면서 -2만큼 이동하라는 의미이고, 두번째 원소(4)는 y축과 평행하여 4만큼 이동하라는 뜻입니다. 이는 3차원,4차원…n차원으로 확장가능한 개념이며, 3차원까지는 우리가 간단하게 시각화를 할 수 있지만 그 이상의 차원은 상상해보기가 힘듭니다.</p>
+
+\[\begin{bmatrix}2\\3\\5\end{bmatrix},\begin{bmatrix}2\\3\\5\\7\end{bmatrix} ...\]
+
+<h2 id="벡터의-연산">벡터의 연산</h2>
+
+<h3 id="벡터의-합">벡터의 합</h3>
+
+<p>결국 선형대수의 모든 주제는 덧셈과, 곱셈 두가지 연산을 중심으로 일어납니다. 덧셈에 대해 먼저 논해보자면 아래와 그림과 같이 두 벡터가 있다고 가정해봅시다. 벡터v는 오른쪽 위쪽을 향한 벡터이고 벡터w는 오른쪽 아랫방향을 가리키고 있습니다. 이 두 벡터를 더하는 행위는 한 벡터의 꼬리를 다른 벡터의 끝으로 옮기는것을 말합니다.</p>
+
+<p>그리고나서 벡터v의 꼬리부분에서 옮겨진 벡터w의 끝을 가리키는 새 벡터를 그리면 바로 이 새 벡터가 두 벡터의 합을 나타냅니다. 흥미로운 부분은 선형대수에서 유일하게 벡터를 원점으로부터 멀리 이탈시키는 순간이라는 점입니다.</p>
+
+\[\]
+
+<p><img src="/assets/images/posts/2021-06-21/vector_sum.png" alt="vector_sum.png" class="align-center" width="50%&quot;, height=&quot;50%" /></p>
+
+<p>벡터의 덧셈을 좀 더 간단히 생각해보면 아래 그림과 같이 생각해볼 수 있습니다.</p>
+
+<p><img src="/assets/images/posts/2021-06-21/vector_sum_2.png" alt="vector_sum_2.png" class="align-center" width="50%&quot;, height=&quot;50%" /></p>
+
+<p>단순히 벡터의 합을 각 벡터의 원소에 대응하는 숫자의 합이라고 생각하면 이해하기 쉽습니다. 즉 두 벡터의 합으로 생성된 새 벡터는 두 벡터의 x좌표 정보를 나타내는 원소의 합(2+3=5) y좌표 정보를 나타내는 원소들의 합(3+(-2))로 새 벡터를 나타낼 수 있습니다. 원점을 기준으로 x축의 방향 5칸 이동, y축의 방향으로 1칸이동한 위치에 점을 찍고 화살표를 그림으로 써 동일한 결과를 얻을 수 있습니다.</p>
+
+<h3 id="벡터의-곱스칼라-곱">벡터의 곱(스칼라 곱)</h3>
+
+<p>벡터의 곱은 합보다 더욱 간단합니다.</p>
+
+\[2*\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}4\\6\end{bmatrix}\]
+
+<p>어떤 벡터의 각 원소에 Scalar(Number)를 곱하면 그것이 곧 벡터의 곱이됩니다. 기하학적으로 생각하면 벡터를 Scalar만큼 늘리거나 줄이는 것에 해당합니다. 벡터를 늘리는 연산은 위와같이 분수가 아닌 정수 형태의 곱으로 나타나고 줄이는 연산은 분수형태의 Scalar가 곱해지게됩니다. 음수의 경우도 생각해 보아야하는데요, 음수의 경우는 벡터의 방향을 현재 벡터의 정 반대의 방향을 가지는 벡터로 변환하는 기능을 합니다. 아래의 벡터의 스칼라 곱 연산을 시각화 해본 그림입니다.</p>
+
+<p><img src="/assets/images/posts/2021-06-21/vector_scalar.png" alt="vector_scalar.png" class="align-center" width="70%&quot;, height=&quot;70%" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-06-21T00:00:00+00:00">June 21, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Linear+algebra+Vector%20https%3A%2F%2Fubermen5che.github.io%2FLinear-algebra-Vector%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2FLinear-algebra-Vector%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2FLinear-algebra-Vector%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/logic/computer%20science/Logic-and-Computer-Science-Logic-Statements/" class="pagination--pager" title="Logic and Computer Science - 논리학 기초 - Statements
+">Previous</a>
+    
+    
+      <a href="/java/Java-%EA%B8%B0%EC%B4%88-%EC%A0%95%EB%A6%AC/" class="pagination--pager" title="자바 기초 정리
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="permalink">[PS-programmers] 괄호 변환
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>

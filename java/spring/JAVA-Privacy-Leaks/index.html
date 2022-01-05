@@ -1,0 +1,737 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[JAVA] Privacy Leaks - Ubermen5che’s Blog</title>
+<meta name="description" content="클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="[JAVA] Privacy Leaks">
+<meta property="og:url" content="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/">
+
+
+  <meta property="og:description" content="클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-08-07T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/java/spring/JAVA-Privacy-Leaks/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[JAVA] Privacy Leaks">
+    <meta itemprop="description" content="클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.">
+    <meta itemprop="datePublished" content="2021-08-07T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[JAVA] Privacy Leaks
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>클래스를 정의할 때 외부에서 접근하지 못하도록 instance variables를 private로 둔다. 그러나 private로 설정한다고 해서 privacy leaks을 막을 수 없다. 클래스를 잘못 설계하면 private으로 설정한 instance variable도 값이 변경될 수 있기 때문이다.</p>
+
+<h1 id="잘못-설계된-클래스-예">잘못 설계된 클래스 예</h1>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nf">Person</span><span class="o">(){</span>
+
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Date</span> <span class="n">born</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Date</span> <span class="n">died</span><span class="o">;</span>
+
+	<span class="c1">//생성자</span>
+	<span class="c1">//setter</span>
+
+	<span class="c1">//getter</span>
+	<span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getBirthDate</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="k">return</span> <span class="n">born</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="c1">//...</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">consistent</span><span class="o">(</span><span class="nc">Date</span> <span class="n">birthDate</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">deathDate</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">birthDate</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+			<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+		<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">deathDate</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+			<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+		<span class="k">else</span>
+			<span class="nf">return</span> <span class="o">(</span><span class="n">birthDate</span><span class="o">.</span><span class="na">precedes</span><span class="o">(</span><span class="n">deathDate</span><span class="o">)</span> <span class="o">||</span>
+				<span class="n">birthDate</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">deathDate</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>위의 예에서 getBirthDate method를 살펴보자.</strong></p>
+
+<p>해당 메소드는 단지 <strong>born</strong>이라는 인스턴스 변수를 return하고 있다. 이론적으로 born의 레퍼런스를 return하기 때문에 어딘가 다른 class에서 아래와 같이 코드를 작성하게되면 Person클래스 내부에서 분명 private으로 <strong>born</strong>을 설정하였지만 <strong>getBirthDate</strong> 메소드를 통해 리턴받은 Date type 레퍼런스에 의해 <strong>setYear</strong>메소드를 사용할 수 있게 되었고 그에 따라 결국 private로 선언된 <strong>born</strong>의 인스턴스 변수의 값이 변경될 수 있음을 보여준다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Date class에는 instance variable로 String month, int day, int year 존재.</span>
+<span class="c1">//모두 private으로 설정하였고, getter, setter 존재.</span>
+<span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(...);</span>
+<span class="nc">Date</span> <span class="n">bornDate</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">getBirthDate</span><span class="o">();</span>
+<span class="n">bornDate</span><span class="o">.</span><span class="na">setYear</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>그러나 이러한 걱정은 자바에 의해 덜 수 있다. 자바는 private로 선언된 instance varialbes에 대해 내부적으로 clone하여 return해주기 때문에 위의 예시같은 일은 발생하지 않는다. 하지만 레퍼런스를 리턴하는 경우 뿐만 아니고 다른 privacy leaks을 발생시킬 수 있는 상황들이 존재하는데, 이상하게 정의된 생성자와 setter가 존재할 때 발생한다. 아래의 예시를 살펴보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Person class내부에 정의된 메소드</span>
+<span class="c1">//consistent 메소드는 Person class내부에 정의된 static method로 올바른 입력인지 검사한다.</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBirthDate</span><span class="o">(</span><span class="nc">Date</span> <span class="n">newDate</span><span class="o">){</span>
+
+	<span class="k">if</span> <span class="o">(</span><span class="n">consistent</span><span class="o">(</span><span class="n">newDate</span><span class="o">,</span> <span class="n">died</span><span class="o">))</span>
+		<span class="n">born</span> <span class="o">=</span> <span class="n">newDate</span><span class="o">;</span>
+	<span class="k">else</span>
+	<span class="o">{</span>
+		<span class="c1">//에러메세지 출력</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위와 같은 메소드가 있다고 했을 때 아래의 코드를 실행한다면?</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Person</span> <span class="n">personObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Josephine"</span><span class="o">,</span>
+				<span class="k">new</span> <span class="nf">Date</span><span class="o">(</span><span class="s">"January"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2000</span><span class="o">),</span> <span class="kc">null</span><span class="o">);</span>
+<span class="nc">Date</span> <span class="n">dateName</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="s">"Feburuary"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2002</span><span class="o">);</span>
+<span class="n">personObject</span><span class="o">.</span><span class="na">setBirthDate</span><span class="o">(</span><span class="n">dateName</span><span class="o">);</span>
+
+<span class="n">dateName</span><span class="o">.</span><span class="na">setYear</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span> <span class="c1">//문제 발생</span>
+</code></pre></div></div>
+
+<p><strong>personObject</strong>의 instance variable인 <strong>born</strong>에 클래스 타입이 <strong>Date</strong>인 <strong>object(dateName)</strong>의 레퍼런스가 들어가게된다. 따라서 <strong>dateName.setYear(1000)</strong>과 같이 메소드를 실행할 수 있게되고 이렇게되면 <strong>Person</strong>의 <strong>setBirthDate</strong>의 <strong>consistent</strong>메소드를 거치지 않으므로 유효하지 않은 입력이 들어갈 수 있게될 뿐만 아니라 instance variable가 예기치 못하게 변경될 수 있는 문제점이 발생한다. 이를 해결하기 위해서는 아래와 같이 아주 조금만 코드 변경을 해주면 된다~</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBirthDate</span><span class="o">(</span><span class="nc">Date</span> <span class="n">newDate</span><span class="o">){</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">consistent</span><span class="o">(</span><span class="n">newDate</span><span class="o">,</span> <span class="n">died</span><span class="o">))</span>
+		<span class="n">born</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">newDate</span><span class="o">);</span>	<span class="c1">//코드 수정</span>
+	<span class="o">...</span>
+</code></pre></div></div>
+
+<h1 id="스프링에서는">스프링에서는</h1>
+
+<p>Privacy Leaks을 공부하면서 의문이 들었다. 스프링에서는 아래와 같은 코드를 자주 접할 수 있었다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+    <span class="kd">public</span> <span class="nf">MemberServiceImpl</span><span class="o">(</span><span class="nc">MemberRepository</span> <span class="n">memberRepository</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">memberRepository</span> <span class="o">=</span> <span class="n">memberRepository</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>그러나 분명 위와 같이 코드를 짜면 privacy leaks이 발생하는것이 아닌가 하는 의문이 생겼다.</p>
+
+<p>스프링 빈은 싱글톤으로 관리된다고 하였는데 이를 상기해보면 당연한 이치라고 생각된다. 왜냐하면 하나의 객체만 생성해서 공유하기 때문에 privacy leak이 발생할 수 밖에 없는 구조인것이다. 그러나 실제로는 무상태로 싱글톤을 설계한다면 privacy leak이 발생하지 않는 방향으로 갈 수 있지 않을까 생각한다…</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">JAVA</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#private" class="page__taxonomy-item" rel="tag">private</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">JAVA</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-08-07T00:00:00+00:00">August 7, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Privacy+Leaks%20https%3A%2F%2Fubermen5che.github.io%2Fjava%2Fspring%2FJAVA-Privacy-Leaks%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Fjava%2Fspring%2FJAVA-Privacy-Leaks%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Fjava%2Fspring%2FJAVA-Privacy-Leaks%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/git/%EB%8C%80%EC%99%B8%20%ED%99%9C%EB%8F%99/%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%86%A4-Git-%EA%B8%B0%EB%B3%B8%EC%8B%A4%EC%8A%B5-2/" class="pagination--pager" title="[컨트리뷰톤] Git/GitHub 기본실습-2
+">Previous</a>
+    
+    
+      <a href="/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" class="pagination--pager" title="[Spring] 다양한 의존관계 주입 방법
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="permalink">[PS-programmers] 괄호 변환
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>

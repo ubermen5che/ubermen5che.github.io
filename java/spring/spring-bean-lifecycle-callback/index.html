@@ -1,0 +1,855 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Spirng]빈 생명주기 콜백 - Ubermen5che’s Blog</title>
+<meta name="description" content="데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="[Spirng]빈 생명주기 콜백">
+<meta property="og:url" content="https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/">
+
+
+  <meta property="og:description" content="데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-08-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/java/spring/spring-bean-lifecycle-callback/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Spirng]빈 생명주기 콜백">
+    <meta itemprop="description" content="데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.">
+    <meta itemprop="datePublished" content="2021-08-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spirng]빈 생명주기 콜백
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요하다. 이번 글에서는 스프링을 통해 이러한 초기화 작업과 종료 작업을 어떻게 진행하는지 예제로 알아보고자 한다.</p>
+
+<blockquote>
+  <p>참고: 애플리케이션 시작 시점에 DB 커넥션 풀과 연결을 미리 해두는 이유는 애플리케이션 서버와 데이터베이스간의 연결 과정에서 시간이 소요되기 때문이다.</p>
+</blockquote>
+
+<h2 id="예제-코드">예제 코드</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkClient</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">url</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">NetworkClient</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"생성자 호출, url = "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+        <span class="n">connect</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">(</span><span class="s">"초기화 연결 메세지"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUrl</span><span class="o">(</span><span class="nc">String</span> <span class="n">url</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">connect</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"connect: "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"call: "</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="s">"message = "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnect</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"close: "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위의 예제코드는 Application server에서 외부DB에 연결을 하는 과정을 가상으로 시뮬레이션하는 과정을 나타낸다. 아래는 코드는 테스트 코드이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BeanLifeCycleTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lifeCycleTest</span><span class="o">(){</span>
+        <span class="nc">ConfigurableApplicationContext</span> <span class="n">ac</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AnnotationConfigApplicationContext</span><span class="o">(</span><span class="nc">LifeCycleConfig</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">NetworkClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">ac</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="nc">NetworkClient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">ac</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Configuration</span>
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">LifeCycleConfig</span> <span class="o">{</span>
+        <span class="nd">@Bean</span>
+        <span class="kd">public</span> <span class="nc">NetworkClient</span> <span class="nf">networkClient</span><span class="o">(){</span>
+            <span class="nc">NetworkClient</span> <span class="n">networkClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NetworkClient</span><span class="o">();</span>
+            <span class="n">networkClient</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="s">"http://hello-spirng.dev"</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">networkClient</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실행해보면 다음과 같은 이상한 결과가 나온다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>생성자 호출, url <span class="o">=</span> null
+connect: null
+call: null message <span class="o">=</span> 초기화 연결 메세지
+</code></pre></div></div>
+
+<p>생성자 부분을 보면 url정보 없이 connect가 호출되는 것을 확인할 수 있다. 이는 당연한 결과로 써 setUrl 메서드로 url를 설정해주어야만 url이 존재하게된다. 그런데 여기서 의문을 가질 수 있다. 왜냐하면 생성자를 호출할 때 url를 같이 넘겨주면 위와 같은 이상한 결과를 얻지는 않을텐데 왜 위와 같은 코드를 사용할까?</p>
+
+<p>이에 대한 답은 아래의 참고사항으로 적어두었으니 읽어보기를 권한다.</p>
+
+<blockquote>
+  <p>스프링 빈은 간단하게 다음과 같은 라이플사이클을 가진다.</p>
+</blockquote>
+
+<ul>
+  <li><strong>객체 생성 → 의존관계 주입</strong></li>
+</ul>
+
+<p>스프링 빈은 객체를 생성하고, 의존관계 주입이 다 끝난 다음에 필요한 데이터를 사용할 수 있는 준비가 완료된다. 따라서 <strong>초기화 작업은 의존관계 주입이 모두 완료되고 난 다음에 호출해야 한다.</strong> (위의 예제를 보아도 그렇다는것을 알 수 있다) 그런데 개발자가 의존관계 주입이 모두 완료된 시점을 어떻게 알 수 있을까？</p>
+
+<p><strong>스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를 통해서 초기화 시점을 알려주는 다양한 기능을 제공한다.</strong> 또한 스프링은 스프링 컨테이너가 종료되기 직전에 소멸 콜백을 준다. 따라서 안전하게 종료 작업을 진행할 수 있다. 다양한 기능이 어떤것이 있는지는 다음번에 알아보도록 하고 스프링 빈의 이벤트 라이프사이클에 대해 알아보자.</p>
+
+<h3 id="스프링-빈의-이벤트-라이프사이클">스프링 빈의 이벤트 라이프사이클</h3>
+
+<p><strong>스프링 컨테이너 생성 → 스프링 빈 생성 → 의존관계 주입 → 초기화 콜백 → 사용 → 소멸전 콜백 → 스프링 종료</strong></p>
+
+<ul>
+  <li><strong>초기화 콜백</strong> : 빈이 생성되고, 빈의 외존관계 주입이 완료된 후 호출</li>
+  <li><strong>소멸전 콜백</strong> : 빈이 소멸되기 직전에 호출</li>
+</ul>
+
+<p>스프링은 다양한 방식으로 생명주기 콜백을 지원한다.</p>
+
+<blockquote>
+  <p><strong>참고:객체의 생성과 초기화를 분리하자</strong>
+생성자는 필수 정보(파라미터를)받고, 메모리를 할당해서 객체를 생성하는 책임을 가진다. 반면에 초기화는 이렇게 생성된 값들을 활용해서 외부 커넥션을 연결하는등 무거운 동작을 수행한다. 따라서 생성자 안에서 무거운 초기화 작업을 함께 하는 것 보다는 객체를 생성하는 부분과 초기화 하는 부분을 명확하게 나누는 것이 유지보수 관점에서 좋다. 물론 초기화 작업이 내부 값들만 약간 변경한느 정도로 단순한 경우에는 생성자에서 한번데 다 처리하는게 더 나을 수 있다.</p>
+</blockquote>
+
+<blockquote>
+  <p>참고: 싱글톤 빈들은 스프링 컨테이너가 종료될 때 싱글톤 빈들도 함께 종료되기 때문에 스프링 컨테이너가 종료되기 직전에 소멸전 콜백이 일어난다. 싱글톤 처럼 컨테이너의 시작과 종료까지 생존하는 빈도 있지만, 생명주기가 짧은 빈들도 있는데 이 빈들은 컨테이너와 무관하게 해당 빈이 종료되기 직전에 소멸전 콜백이 일어난다.</p>
+</blockquote>
+
+<h2 id="빈-생명주기-콜백-3가지-방법">빈 생명주기 콜백 3가지 방법</h2>
+
+<ul>
+  <li>인터페이스(InitializingBean, DisposableBean)</li>
+  <li>@Bean 설정 정보에 초기화 메서드, 종료 메서드 지정</li>
+  <li>@PostConstruct, @PreDestroy 애노테이션 지원</li>
+</ul>
+
+<h3 id="인터페이스initializingbean-disposablebean">인터페이스(InitializingBean, DisposableBean)</h3>
+
+<ul>
+  <li>스프링 전용 인터페이스. 해당 코드가 스프링 전용 인터페이스에 의존한다.
+    <ul>
+      <li>implements를 통해 구현체 코드를 작성해 주어야한다.</li>
+      <li>따라서 초기화, 소멸 메서드의 이름을 변경할 수 없다.</li>
+      <li>내가 코드를 고칠 수 없는 외부 라이브러리에 적용할 수 없다.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>인터페이스를 사용하는 초기화, 종료 방법은 스프링 초창기에 나온 방법들이고, 지금은 더 나은 방법들이 있어서 거의 사용하지 않는다.</p>
+</blockquote>
+
+<h2 id="bean-설정-정보에-초기화-메서드-종료-메서드-지정">@Bean 설정 정보에 초기화 메서드, 종료 메서드 지정</h2>
+
+<h3 id="특징">특징</h3>
+
+<ul>
+  <li>설정 정보에 @Bean(initMethod = “init”, destroyMethod = “close”)처럼 초기화, 소멸 메서드를 지정할 수 있다.</li>
+  <li>메서드 이름을 자유롭게 줄 수 있다.</li>
+  <li>스프링 빈이 스프링 코드에 의존하지 않는다.</li>
+  <li>코드가 아니라 설정 정보를 사용하기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.
+    <ul>
+      <li>즉, 외부 라이브러리 자체에서 내부적으로 초기화, 종료에 대한 메서드를 가지고 있고 이에 해당하는 메서드 명을 설정정보로 넘겨주면 되는것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="종료-메서드-추론">종료 메서드 추론</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Bean destroyMethod</code> 속성에는 아주 특별한 기능이 존재.</li>
+  <li>라이브러리 대부분 <code class="language-plaintext highlighter-rouge">close</code>, <code class="language-plaintext highlighter-rouge">shutdown</code>이라는 이름의 종료 메서드를 사용한다.</li>
+  <li>@Bean의 destroyMethod는 기본값이 (inferred)으로 등록되어 있다.</li>
+  <li>이 추론 기능은 close, shutdown이라는 이름의 메서드를 자동적으로 호출해준다.</li>
+  <li>따라서 직접 스프링 빈으로 등록하면 종료 메서드는 따로 적어주지 않아도 잘 동작한다.</li>
+</ul>
+
+<h2 id="postconstruct-predestroy-애노테이션-방법">@PostConstruct, @PreDestroy 애노테이션 방법</h2>
+
+<h2 id="예제-코드-1">예제 코드</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.annotation.PostConstruct</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.annotation.PreDestroy</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkClient</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">url</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">NetworkClient</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"생성자 호출, url = "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+        <span class="n">connect</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">(</span><span class="s">"초기화 연결 메세지"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUrl</span><span class="o">(</span><span class="nc">String</span> <span class="n">url</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">connect</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"connect: "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"call: "</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="s">"message = "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnect</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"close: "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostConstruct</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkClient.init"</span><span class="o">);</span>
+        <span class="n">connect</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">(</span><span class="s">"초기화 연결 메세지"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PreDestroy</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkClient.destroy"</span><span class="o">);</span>
+        <span class="n">disconnect</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="특징-1">특징</h2>
+
+<ul>
+  <li>최신 스프링에서 가장 권장하는 방법.</li>
+  <li>애노테이션 하나만 붙이면 되므로 매우 편리.</li>
+  <li>패키지를 잘 보면 javax.annotation.PostConstruct이다. 스프링에 종속적인 기술이 아니라 JSR-250이라는 자바 표준이다. 따라서 스프링이 아닌 다른 컨테이너에서도 동작함.</li>
+  <li>컴포넌트 스캔과 잘 어울린다.</li>
+  <li>유일한 단점은 외부 라이브러리에는 적용하지 못한다는 것. 외부 라이브러리를 초기화, 종료 해야하면 @Bean의 기능을 사용하자.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#bean-lifecycle" class="page__taxonomy-item" rel="tag">Bean Lifecycle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#bean" class="page__taxonomy-item" rel="tag">Bean</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#callback" class="page__taxonomy-item" rel="tag">Callback</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">JAVA</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-08-21T00:00:00+00:00">August 21, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSpirng%5D%EB%B9%88+%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0+%EC%BD%9C%EB%B0%B1%20https%3A%2F%2Fubermen5che.github.io%2Fjava%2Fspring%2Fspring-bean-lifecycle-callback%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Fjava%2Fspring%2Fspring-bean-lifecycle-callback%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Fjava%2Fspring%2Fspring-bean-lifecycle-callback%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/JAVA-Binding/" class="pagination--pager" title="[JAVA] Binding
+">Previous</a>
+    
+    
+      <a href="/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/" class="pagination--pager" title="[System Programming]Connection Control Studying-stty
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="permalink">[PS-programmers] 괄호 변환
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>

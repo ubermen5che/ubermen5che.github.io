@@ -1,0 +1,681 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[JAVA] Binding - Ubermen5che’s Blog</title>
+<meta name="description" content="Binding이란">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="[JAVA] Binding">
+<meta property="og:url" content="https://ubermen5che.github.io/java/JAVA-Binding/">
+
+
+  <meta property="og:description" content="Binding이란">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-08-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/java/JAVA-Binding/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[JAVA] Binding">
+    <meta itemprop="description" content="Binding이란">
+    <meta itemprop="datePublished" content="2021-08-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[JAVA] Binding
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="binding이란">Binding이란</h2>
+
+<p>Method invocation과 method definition을 연관짓는 process.</p>
+
+<h2 id="binding-종류">Binding 종류</h2>
+
+<ul>
+  <li>Early binding : 컴파일 타임에 binding이 일어남.</li>
+  <li>Late binding : Run Time에 binding이  일어남.</li>
+</ul>
+
+<h2 id="how-late-binding-works">How late binding works?</h2>
+
+<h3 id="note">Note</h3>
+
+<p>설명하기 쉽도록 가정을 해보도록 하자. 우선 Figure라는 부모 클래스가 존재하고 자식클래스로는 Circle, Square, Triangle.. 여러 도형이 있을 수 있다고 가정한다. 그리고 Figure 클래스에는 center라고 하는 메서드 하나를 가지는데 화면상에서 좌표를 바꾸어 도형을 다시 그려주는 기능을 한다. 자식클래스에서는 draw메서드가 존재하는데 현재 가진 도형정보를 토대로 화면상에 그려주는 기능을 한다.</p>
+
+<h3 id="시나리오">시나리오</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Rectangle</code> 그리고 <code class="language-plaintext highlighter-rouge">Circle</code>과 같은 클래스에서 상속받은 메서드 <code class="language-plaintext highlighter-rouge">center()</code>를 사용한다고 생각해볼 때 다형성에 대해 자세히 모른다면 의아해 할 수 있는 상황이 발생한다.</p>
+
+<p>부모클래스에서 정의된 메서드 <code class="language-plaintext highlighter-rouge">center()</code>는 내부적으로 <code class="language-plaintext highlighter-rouge">draw()</code> 를 사용한다. 그리고 <code class="language-plaintext highlighter-rouge">draw()</code>는 자식 클래스에 따라 코드가 전부 다르다. 만약 JAVA에서 late binding을 사용하지 않고 <strong>early binding</strong>을 사용한다면 어떻게 될까?</p>
+
+<p>우선 <code class="language-plaintext highlighter-rouge">center()</code>은 부모클래스에 정의 되어있다. 이것이 의미하는 바는 <code class="language-plaintext highlighter-rouge">draw()</code> code를 작성하기 전에 <code class="language-plaintext highlighter-rouge">center()</code>는 이미 컴파일이 되어있다고 봐도 무방하다. 문제가 되는 부분은 <code class="language-plaintext highlighter-rouge">draw()</code>일 것이다. 위에서 설명했듯이 자식 클래스 별로 <code class="language-plaintext highlighter-rouge">draw()</code>는 코드가 모두 다르기 때문이다.</p>
+
+<p>early binding이 적용되면 현재 이용가능한 <code class="language-plaintext highlighter-rouge">draw()</code>의 정의로 고정될 수 밖에 없다. 따라서 모든 자식클래스의 <code class="language-plaintext highlighter-rouge">draw()</code>는 컴파일시에 이용된 method definition으로 고정되어 버리기 때문에 같은 동작을 수행할 수 밖에 없다. 반면 <strong>lateing binding</strong>을 사용한다면 함수 호출이 발생할 때 binding이 이루어 지기 때문에 각 클래스에 따른 적합한 method definition이 연관되어 올바른 연산이 가능해진다.</p>
+
+<h2 id="덧붙이자면">덧붙이자면…</h2>
+
+<p><strong><em>Polymorphism</em></strong>과 <em>late binding</em>은 근본적으로 같은 개념을 나타내는 용어이다. <em>Polymorphism</em>은 <em>late binding</em>을 사용하여 하나의 메소드 이름에 다양한 의미를 부여하는 process를 지칭한다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#binding" class="page__taxonomy-item" rel="tag">Binding</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#dynamic-binding" class="page__taxonomy-item" rel="tag">Dynamic binding</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#early-binding" class="page__taxonomy-item" rel="tag">Early binding</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#late-binding" class="page__taxonomy-item" rel="tag">Late binding</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#polymorphism" class="page__taxonomy-item" rel="tag">Polymorphism</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">JAVA</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-08-21T00:00:00+00:00">August 21, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Binding%20https%3A%2F%2Fubermen5che.github.io%2Fjava%2FJAVA-Binding%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Fjava%2FJAVA-Binding%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Fjava%2FJAVA-Binding%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/spring/Spring-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95/" class="pagination--pager" title="[Spring] 다양한 의존관계 주입 방법
+">Previous</a>
+    
+    
+      <a href="/java/spring/spring-bean-lifecycle-callback/" class="pagination--pager" title="[Spirng]빈 생명주기 콜백
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="permalink">[PS-programmers] 괄호 변환
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,774 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[System Programming]Connection Control Studying-stty - Ubermen5che’s Blog</title>
+<meta name="description" content="Ideas and Skills">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="[System Programming]Connection Control Studying-stty">
+<meta property="og:url" content="https://ubermen5che.github.io/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/">
+
+
+  <meta property="og:description" content="Ideas and Skills">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-15T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/unix/linux/system%20programming/kernel/SystemProgramming-Connection-Control-Studying-stty/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[System Programming]Connection Control Studying-stty">
+    <meta itemprop="description" content="Ideas and Skills">
+    <meta itemprop="datePublished" content="2021-10-15T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[System Programming]Connection Control Studying-stty
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="ideas-and-skills">Ideas and Skills</h2>
+
+<ul>
+  <li>Files과 devices의 유사점</li>
+  <li>Files과 devices의 차이점</li>
+  <li>connections에 대한 속성</li>
+  <li>Race condition과 atomic operations</li>
+  <li>device drivers를 제어하는방법</li>
+  <li>Streams</li>
+</ul>
+
+<h1 id="52-devices-are-just-like-files">5.2 Devices Are Just Like Files</h1>
+
+<ul>
+  <li>Unix시스템에서 모든 devices는 file로써 다루어진다.
+    <ul>
+      <li>device도 file과 마찬가지로 filename, inode number, owner, set of permission bits, last modifed time의 정보를 가지고 있다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>우리가 알고있는 파일에 적용되는 작업들(ex : cat, more…)은 terminals과 모든 devices들에 적용된다.</p>
+
+    <p><strong>5.2.1 Devices Have Filenames</strong></p>
+
+    <ul>
+      <li>devices파일들은 /dev directory에 존재한다.
+        <ul>
+          <li>lp* files : printers</li>
+          <li>fd* files : floppy-disk drives</li>
+          <li>sd* files : SCSI drives 파티션</li>
+          <li>tape file : tape driver 백업파일</li>
+          <li>tty* files : terminals</li>
+          <li>dsp file : 사운드 카드 연결 파일</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>5.2.2 Devices and System Calls</strong></p>
+
+    <ul>
+      <li>Devices는 file과 연관된 system calls을 제공한다.
+        <ul>
+          <li>open, read, write, leeek, close, stat</li>
+        </ul>
+      </li>
+      <li>
+        <p>magnetic tape로부터 데이터를 읽어들이는 코드
+  -</p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+  <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">"/dev/tape"</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+  <span class="n">lseek</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="mi">4096</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">buflen</span><span class="p">);</span>
+  <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+      <li>몇몇의 devices는 모든 file operations을 제공하지않는다
+        <ul>
+          <li>/dev/mouse file은 write() operation을 제공하지 않음.</li>
+          <li>Terminals은 read(), write()를 지원하지만, lseek()은 지원하지 않는다.</li>
+        </ul>
+
+        <p><strong>5.2.2-1 Terminals Are Just Like Files</strong></p>
+
+        <ul>
+          <li>Terminal은 키보드와 display unit처럼 행동하는 어떠한 파일이다.
+            <ul>
+              <li>telnet, ssh…</li>
+            </ul>
+          </li>
+          <li>tty 커맨드는 현재 사용하고있는 terminal을 표시해준다.</li>
+          <li>Terminal에서도 파일에 대한 연산을 그대로 사용할 수 있다.
+            <ul>
+              <li>cp, &gt;, mv, ln, rm, cat, ls</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="523-properties-of-devices-file">5.2.3 Properties of Devices file</h2>
+
+<ul>
+  <li>Device files도 disk files이 가지고 있는 대부분의 properties들을 가지고있다.
+    <ul>
+      <li>inode : kerne에 있는 device driver의 포인터를 가짐.</li>
+      <li>Device driver : 데이터를 읽어들이는 kernel안에 있는 subroutine</li>
+      <li>Major # : 어떤 subroutine이 실제 디바이스를 다루는지 명시함</li>
+      <li>Minor # : subroutin에 넘겨지는 값</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="524-device-files-and-inodes">5.2.4 Device Files and Inodes</h2>
+
+<ul>
+  <li>How read works?
+    <ul>
+      <li>Kernel은 file descriptor에 대한 inode를 찾는다.
+        <ul>
+          <li>file descriptor에 대한 inode를 어디서 찾지?
+            <ul>
+              <li>file descriptor는 kernel’s global file table의 entry 포인터를 가지고있다(아래 그림 참고)</li>
+              <li>global file table에는 inode정보, offset, access restriction등에 대한 정보를 담고있음.</li>
+            </ul>
+
+            <p><img src="/assets/images/posts/2021-10-15/fd.png" alt="fd.png" class="align-center" width="100%&quot;, height=&quot;100%" /></p>
+          </li>
+          <li>Inode는 kernel에게 파일의 type을 알려준다.</li>
+          <li>어떻게 그러면 파일을 read할까?</li>
+        </ul>
+      </li>
+      <li>만약에 해당하는 file이 device file이라면 kernel은 해당 device의 read()에 해당하는 drivce code중 일부를 호출함으로 써 파일을 읽어들인다. (driver마다 read코드는 다르겠지?)</li>
+    </ul>
+  </li>
+  <li>위의 로직과 유사한 opration들
+    <ul>
+      <li>open, write, lseek, close</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#c" class="page__taxonomy-item" rel="tag">C</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#stty" class="page__taxonomy-item" rel="tag">stty</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#system-programming" class="page__taxonomy-item" rel="tag">System Programming</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#kernel" class="page__taxonomy-item" rel="tag">kernel</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#system-programming" class="page__taxonomy-item" rel="tag">System Programming</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#unix-linux" class="page__taxonomy-item" rel="tag">Unix/Linux</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-15T00:00:00+00:00">October 15, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSystem+Programming%5DConnection+Control+Studying-stty%20https%3A%2F%2Fubermen5che.github.io%2Funix%2Flinux%2Fsystem%2520programming%2Fkernel%2FSystemProgramming-Connection-Control-Studying-stty%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Funix%2Flinux%2Fsystem%2520programming%2Fkernel%2FSystemProgramming-Connection-Control-Studying-stty%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Funix%2Flinux%2Fsystem%2520programming%2Fkernel%2FSystemProgramming-Connection-Control-Studying-stty%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/spring/spring-bean-lifecycle-callback/" class="pagination--pager" title="[Spirng]빈 생명주기 콜백
+">Previous</a>
+    
+    
+      <a href="/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/" class="pagination--pager" title="[PS-programmers] 스킬트리
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/" rel="permalink">[PS-programmers] 괄호 변환
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>

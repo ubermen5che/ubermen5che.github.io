@@ -1,0 +1,797 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[PS-programmers] 괄호 변환 - Ubermen5che’s Blog</title>
+<meta name="description" content="문제 설명">
+
+
+  <meta name="author" content="YongJun Kwon">
+  
+  <meta property="article:author" content="YongJun Kwon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubermen5che's Blog">
+<meta property="og:title" content="[PS-programmers] 괄호 변환">
+<meta property="og:url" content="https://ubermen5che.github.io/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/">
+
+
+  <meta property="og:description" content="문제 설명">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-11-16T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ubermen5che.github.io/ps/PS-programmers-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "YongJun Kwon",
+      "url": "https://ubermen5che.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ubermen5che's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ubermen5che's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="YongJun Kwon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">YongJun Kwon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>⭐️백엔드 개발자가 되고싶어요⭐️</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Daegu, korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:ubermen5ch1308@gmail.com">
+            <meta itemprop="email" content="ubermen5ch1308@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[PS-programmers] 괄호 변환">
+    <meta itemprop="description" content="문제 설명">
+    <meta itemprop="datePublished" content="2021-11-16T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[PS-programmers] 괄호 변환
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h3 id="문제-설명"><strong>문제 설명</strong></h3>
+
+<p>카카오에 신입 개발자로 입사한 <strong>“콘”</strong>은 선배 개발자로부터 개발역량 강화를 위해 다른 개발자가 작성한 소스 코드를 분석하여 문제점을 발견하고 수정하라는 업무 과제를 받았습니다. 소스를 컴파일하여 로그를 보니 대부분 소스 코드 내 작성된 괄호가 개수는 맞지만 짝이 맞지 않은 형태로 작성되어 오류가 나는 것을 알게 되었습니다.수정해야 할 소스 파일이 너무 많아서 고민하던 “콘”은 소스 코드에 작성된 모든 괄호를 뽑아서 올바른 순서대로 배치된 괄호 문자열을 알려주는 프로그램을 다음과 같이 개발하려고 합니다.</p>
+
+<h3 id="용어의-정의"><strong>용어의 정의</strong></h3>
+
+<p><strong>’(‘</strong> 와 <strong>’)’</strong> 로만 이루어진 문자열이 있을 경우, ‘(‘ 의 개수와 ‘)’ 의 개수가 같다면 이를 <strong><code class="language-plaintext highlighter-rouge">균형잡힌 괄호 문자열</code></strong>이라고 부릅니다.그리고 여기에 ‘(‘와 ‘)’의 괄호의 짝도 모두 맞을 경우에는 이를 <strong><code class="language-plaintext highlighter-rouge">올바른 괄호 문자열</code></strong>이라고 부릅니다.예를 들어, <code class="language-plaintext highlighter-rouge">"(()))("</code>와 같은 문자열은 “균형잡힌 괄호 문자열” 이지만 “올바른 괄호 문자열”은 아닙니다.반면에 <code class="language-plaintext highlighter-rouge">"(())()"</code>와 같은 문자열은 “균형잡힌 괄호 문자열” 이면서 동시에 “올바른 괄호 문자열” 입니다.</p>
+
+<p>’(‘ 와 ‘)’ 로만 이루어진 문자열 w가 “균형잡힌 괄호 문자열” 이라면 다음과 같은 과정을 통해 “올바른 괄호 문자열”로 변환할 수 있습니다.</p>
+
+<p>`1. 입력이 빈 문자열인 경우, 빈 문자열을 반환합니다.</p>
+<ol>
+  <li>문자열 w를 두 “균형잡힌 괄호 문자열” u, v로 분리합니다. 단, u는 “균형잡힌 괄호 문자열”로 더 이상 분리할 수 없어야 하며, v는 빈 문자열이 될 수 있습니다.</li>
+  <li>문자열 u가 “올바른 괄호 문자열” 이라면 문자열 v에 대해 1단계부터 다시 수행합니다.
+  3-1. 수행한 결과 문자열을 u에 이어 붙인 후 반환합니다.</li>
+  <li>문자열 u가 “올바른 괄호 문자열”이 아니라면 아래 과정을 수행합니다.
+  4-1. 빈 문자열에 첫 번째 문자로 ‘(‘를 붙입니다.
+  4-2. 문자열 v에 대해 1단계부터 재귀적으로 수행한 결과 문자열을 이어 붙입니다.
+  4-3. ‘)’를 다시 붙입니다.
+  4-4. u의 첫 번째와 마지막 문자를 제거하고, 나머지 문자열의 괄호 방향을 뒤집어서 뒤에 붙입니다.
+  4-5. 생성된 문자열을 반환합니다.`</li>
+</ol>
+
+<p><strong>“균형잡힌 괄호 문자열”</strong> p가 매개변수로 주어질 때, 주어진 알고리즘을 수행해 <strong>“올바른 괄호 문자열”</strong>로 변환한 결과를 return 하도록 solution 함수를 완성해 주세요.</p>
+
+<h3 id="해결-방법-및-회고">해결 방법 및 회고</h3>
+
+<p>문제 설명을 자세히 읽어보면 “1단계 부터 다시 수행합니다”, “재귀적으로 수행한 결과를 이어 붙입니다” 등의 문장을 보고 재귀를 사용해서 접근해야하는것을 알 수 있었다. 이러한 재귀 관련 문제들을 몇문제 풀어보면서 느낀것이지만 문제를 풀때 첫번째 난관이 재귀적인 문제인지 파악하는것이고 재귀문제라면 반복되는 구조를 발견하는것이 어려운 것 같다. 그러나 다행히도? 위의 문제에서는 문제 해결을 위한 조건들을 명시해주어서 접근하기가 수월했던 것 같다.</p>
+
+<p>문제에서 요구하는 조건들을 잘 파악해서 재귀함수를 잘 정의하면 쉽게 풀리는 문제이다. 그 외에 여러 문자열 처리나 올바른 괄호 문자열 확인을 위한 스택 구현등이 필요한데 평소 자료구조에 익숙하고 문자열 처리 관련 문제를 몇번 풀어보았다면 수월하게 해결할 수 있었다.</p>
+
+<h3 id="코드">코드</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">prenCnt</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">solution</span><span class="o">(</span><span class="nc">String</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">isRight</span><span class="o">(</span><span class="n">p</span><span class="o">))</span>
+            <span class="k">return</span> <span class="n">p</span><span class="o">;</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">//균형잡힌 문자열에 대한 처리 로직</span>
+            <span class="k">return</span> <span class="nf">findAnswer</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">findAnswer</span><span class="o">(</span><span class="nc">String</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"w : "</span> <span class="o">+</span> <span class="n">w</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">w</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span>
+            <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">//2단계 균형잡힌 괄호 문자열 u,v분리</span>
+            <span class="n">prenCnt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="n">prenCnt</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">w</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="k">if</span> <span class="o">((</span><span class="n">prenCnt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">prenCnt</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">prenCnt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">prenCnt</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span>
+                    <span class="k">break</span><span class="o">;</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">w</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'('</span><span class="o">)</span>
+                    <span class="n">prenCnt</span><span class="o">[</span><span class="mi">0</span><span class="o">]++;</span>
+                <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">w</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">')'</span><span class="o">)</span>
+                    <span class="n">prenCnt</span><span class="o">[</span><span class="mi">1</span><span class="o">]++;</span>
+            <span class="o">}</span>
+
+            <span class="nc">String</span> <span class="n">u</span><span class="o">;</span>
+            <span class="nc">String</span> <span class="n">v</span><span class="o">;</span>
+
+            <span class="kt">int</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">prenCnt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">prenCnt</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">sub</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">sub</span><span class="o">);</span>
+            <span class="o">}</span>
+
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">w</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">u</span><span class="o">.</span><span class="na">length</span><span class="o">())</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+            <span class="k">else</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">prenCnt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">prenCnt</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">isRight</span><span class="o">(</span><span class="n">u</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">u</span> <span class="o">+</span> <span class="n">findAnswer</span><span class="o">(</span><span class="n">v</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nc">String</span> <span class="n">emptyStr</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+
+                <span class="n">emptyStr</span> <span class="o">+=</span> <span class="s">"("</span><span class="o">;</span>
+                <span class="n">emptyStr</span> <span class="o">+=</span> <span class="n">findAnswer</span><span class="o">(</span><span class="n">v</span><span class="o">);</span>
+                <span class="n">emptyStr</span> <span class="o">+=</span> <span class="s">")"</span><span class="o">;</span>
+
+                <span class="c1">//4-4 수행</span>
+
+                <span class="nc">String</span> <span class="n">uSubStr</span><span class="o">;</span>
+                <span class="nc">String</span> <span class="n">reverseStr</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+
+                <span class="n">uSubStr</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">u</span><span class="o">.</span><span class="na">length</span><span class="o">()-</span><span class="mi">1</span><span class="o">);</span>
+
+                <span class="c1">//뒤집기 수행</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">uSubStr</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">j</span><span class="o">++){</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">uSubStr</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'('</span><span class="o">)</span>
+                        <span class="n">reverseStr</span> <span class="o">+=</span> <span class="s">")"</span><span class="o">;</span>
+                    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">uSubStr</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="sc">')'</span><span class="o">)</span>
+                        <span class="n">reverseStr</span> <span class="o">+=</span> <span class="s">"("</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="n">emptyStr</span> <span class="o">+=</span> <span class="n">reverseStr</span><span class="o">;</span>
+
+                <span class="k">return</span> <span class="n">emptyStr</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">//올바른 괄호 문자열인지 판단 함수 (스택이용)</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isRight</span><span class="o">(</span><span class="nc">String</span> <span class="n">p</span><span class="o">){</span>
+        <span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="nc">Character</span> <span class="n">ch</span><span class="o">;</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
+            <span class="c1">// 왼쪽괄호의 경우 무조건 삽입.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">'('</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">stack</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ch</span><span class="o">);</span>
+            <span class="c1">//오른쪼 괄호 입력시 stack의 맨위 확인 후 ( 존재하면 최상위 element pop</span>
+            <span class="c1">//같은 ) 라면 여전히 삽입.</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">')'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'('</span><span class="o">){</span>
+                        <span class="n">stack</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="mi">1</span><span class="o">);</span>
+                        <span class="k">continue</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="n">stack</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ch</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="n">flag</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#level2" class="page__taxonomy-item" rel="tag">level2</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#programmers" class="page__taxonomy-item" rel="tag">programmers</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#%EA%B5%AC%ED%98%84" class="page__taxonomy-item" rel="tag">구현</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#%EC%9E%AC%EA%B7%80" class="page__taxonomy-item" rel="tag">재귀</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ps" class="page__taxonomy-item" rel="tag">PS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-11-16T00:00:00+00:00">November 16, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPS-programmers%5D+%EA%B4%84%ED%98%B8+%EB%B3%80%ED%99%98%20https%3A%2F%2Fubermen5che.github.io%2Fps%2FPS-programmers-%25EA%25B4%2584%25ED%2598%25B8-%25EB%25B3%2580%25ED%2599%2598%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fubermen5che.github.io%2Fps%2FPS-programmers-%25EA%25B4%2584%25ED%2598%25B8-%25EB%25B3%2580%25ED%2599%2598%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fubermen5che.github.io%2Fps%2FPS-programmers-%25EA%25B4%2584%25ED%2598%25B8-%25EB%25B3%2580%25ED%2599%2598%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/" class="pagination--pager" title="[PS-programmers] 스킬트리
+">Previous</a>
+    
+    
+      <a href="/cs/CS-Garbage-Collection-1/" class="pagination--pager" title="[CS] Garbage Collection-1
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/baekjoon-9190/" rel="permalink">[PS] 뱀(baekjoon 3190)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">‘Dummy’ 라는 도스게임이 있다. 이 게임에는 뱀이 나와서 기어다니는데, 사과를 먹으면 뱀 길이가 늘어난다. 뱀이 이리저리 기어다니다가 벽 또는 자기자신의 몸과 부딪히면 게임이 끝난다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming%20language/Programming-Language-Syntax-Grammer/" rel="permalink">[Programming Language] Syntax, Grammer
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">사전지식
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/CS-Garbage-Collection-1/" rel="permalink">[CS] Garbage Collection-1
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Garbage Collection이란?
+GC는 1959년에 개발된 자동적 메모리 관리 기법이다. GC란 이름을 보면 유추할 수 있듯이 여기서 말하는 Garbage는 사용되지 않는 Object를 말한다. GC는 결국 이러한 Garbage가 메모리에 있는지 scan하고 만약 존재한다면...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ps/PS-programmers-%EC%8A%A4%ED%82%AC%ED%8A%B8%EB%A6%AC/" rel="permalink">[PS-programmers] 스킬트리
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 설명
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 YongJun Kwon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+  </body>
+</html>
