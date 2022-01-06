@@ -1,5 +1,6 @@
 ---
-
+layout : posts
+comments : true
 title: "[Web] 스프링 웹 개발 기초"
 categories:
   - Java

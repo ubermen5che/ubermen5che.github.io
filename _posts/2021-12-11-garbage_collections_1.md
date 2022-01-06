@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[CS] Garbage Collection-1"
 
 categories:

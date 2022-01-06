@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[PS-programmers] 스킬트리"
 
 categories:

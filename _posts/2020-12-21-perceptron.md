@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "딥러닝 - 퍼셉트론(perceptron)"
 categories:
   - AI

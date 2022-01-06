@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[Spring] 싱글톤 컨테이너"
 
 categories:

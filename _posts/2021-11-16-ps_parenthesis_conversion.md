@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[PS-programmers] 괄호 변환"
 
 categories:

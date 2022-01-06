@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "대구시 어린이 교통사고와 어린이 보호구역의 연관성"
 
 categories:

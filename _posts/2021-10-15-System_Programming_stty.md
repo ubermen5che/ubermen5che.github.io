@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[System Programming]Connection Control Studying-stty"
 
 categories:

@@ -1,6 +1,7 @@
 ---
+layout : posts
+comments : true
 title: "[Programming Language] Syntax, Grammer"
-
 categories:
   - Programming Language
 tags:

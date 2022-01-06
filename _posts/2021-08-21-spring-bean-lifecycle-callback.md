@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[Spirng]빈 생명주기 콜백"
 
 categories:

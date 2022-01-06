@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[JAVA] Binding"
 
 categories:

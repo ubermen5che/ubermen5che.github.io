@@ -1,5 +1,6 @@
 ---
-
+layout : posts
+comments : true
 title: "Logic and Computer Science - 논리학 기초 - 논쟁(argument)"
 categories:
   - Logic

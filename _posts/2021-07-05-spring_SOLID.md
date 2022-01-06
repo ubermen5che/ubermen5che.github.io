@@ -1,5 +1,6 @@
 ---
-
+layout : posts
+comments : true
 title: "[스프링 핵심 원리] SOLID "
 categories:
   - Java

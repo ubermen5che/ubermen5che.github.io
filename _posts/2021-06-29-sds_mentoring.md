@@ -1,5 +1,6 @@
 ---
-
+layout : posts
+comments : true
 title: "[대외활동] 삼성 SDS 멘토링"
 categories:
   - 대외활동

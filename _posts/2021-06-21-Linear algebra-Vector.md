@@ -1,6 +1,15 @@
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+---
+layout : posts
+comments : true
+title: "선형대수 기본 - 벡터"
+categories:
+  - Linear Algebra
+tags:
+  - vector
 
-# 선형대수 기본 벡터
+---
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 # Linear Algebra - Essence of linear algebra(Vector)
 
