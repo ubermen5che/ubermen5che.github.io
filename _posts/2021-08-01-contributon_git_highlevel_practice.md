@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[컨트리뷰톤] 오픈소스 협업을 위한 Git/Github 고급과정-1"
 
 categories:

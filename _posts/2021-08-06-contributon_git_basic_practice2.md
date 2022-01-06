@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[컨트리뷰톤] Git/GitHub 기본실습-2"
 
 categories:

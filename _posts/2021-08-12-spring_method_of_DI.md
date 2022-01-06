@@ -1,4 +1,6 @@
 ---
+layout : posts
+comments : true
 title: "[Spring] 다양한 의존관계 주입 방법"
 
 categories:
