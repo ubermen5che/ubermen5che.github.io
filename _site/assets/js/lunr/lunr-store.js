@@ -148,4 +148,16 @@ var store = [{
         "tags": ["시뮬레이션","큐","덱"],
         "url": "http://localhost:4000/ps/baekjoon-9190/",
         "teaser": null
+      },{
+        "title": "[Spring] Proxy객체를 Response하려고 할 때 발생하는 오류",
+        "excerpt":"오류가 발생한 코드 @Transactional @GetMapping(\"/group/delete/{id}\") public ResponseEntity&lt;?&gt; groupDelete(@PathVariable Long id, Authentication authentication) { Member member = memberService.findByOauthId(authentication.getName()).get(); List&lt;MemberGroup&gt; memberGroupList = member.getMemberGroupList(); for (MemberGroup mg : memberGroupList) { Group group = mg.getGroup(); if (group.getId() == id) { groupRepository.deleteById(group.getId()); memberGroupRepository.delete(mg); memberGroupList.remove(mg); return ResponseEntity.ok().body(group); // 이곳에서 오류 발생 } } return ResponseEntity.notFound().build(); }...","categories": ["Spring","JPA"],
+        "tags": ["JPA","Proxy Entity"],
+        "url": "http://localhost:4000/spring/jpa/DAO_response_error/",
+        "teaser": null
+      },{
+        "title": "Concepts of SW testing",
+        "excerpt":"Testing &amp; Debugging Testing : 실행하고 관찰함으로써 소프트웨어를 평가하는 것. Test failure : software failure를 초래하는 test에 대한 실행 Debugging : failure가 주어질 때 fault를 찾는 과정 Fault &amp; Failure Model(RIPR) Four conditions necessary for a failure to be observed Reachability : fault가 포함된 프로그램 위치에 반드시 도달해야한다. Infection :...","categories": ["SW testing"],
+        "tags": ["Debugging","Testing","Coverage criteria"],
+        "url": "http://localhost:4000/sw%20testing/concept_of_sw_testing/",
+        "teaser": null
       }]
