@@ -2,12 +2,14 @@ baseURL = 'https://ubermen5che.github.io/tech-blog/'
 languageCode = 'ko-kr'
 title = "ubermen5che's tech blog"
 theme = "../.."
-[pagination]
-  pagerSize = 10
 pluralizelisttitles = false
+
 
 [Author]
 name = "KYJ"
+
+[pagination]
+  pagerSize = 10
 
 [params]
     title = "ubermen5ch's tech blog"
