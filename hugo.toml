@@ -1,5 +1,4 @@
 baseURL = 'https://ubermen5che.github.io/'
-
 languageCode = 'ko-kr'
 title = "Ubermen5che's tech blog"
 theme = "kong-htop"
@@ -26,7 +25,7 @@ name = "KYJ"
 
     # Giscus Comments Config
     [params.giscus]
-    repo = "ubermen5che/tech-blog"
+    repo = "ubermen5che/ubermen5che.github.io"
     repo_id = "R_kgDOQz5gCQ" 
     category = "Announcements"
     category_id = "DIC_kwDOQz5gCc4C0mHj"
