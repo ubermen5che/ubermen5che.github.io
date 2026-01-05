@@ -1,0 +1,10 @@
+# .gitignore
+
+# Hugo 기본 빌드 결과물 (서버에서 빌드하므로 로컬 결과물은 무시)
+public/
+resources/_gen/
+.hugo_build.lock
+
+# OS 시스템 파일
+.DS_Store
+Thumbs.db
