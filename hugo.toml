@@ -68,10 +68,10 @@ name = "KYJ"
     table_stripe_color = "#F9F9F9"
 
     # Dark mode
-    text_color_dark = "#eee"
+    text_color_dark = "#FFFFFF"
     content_bg_color_dark = "#121212"
     post_title_color_dark = "#DBE2E9"
-    list_color_dark = "#9d9d9d"
+    list_color_dark = "#e0e0e0"
     link_color_dark = "#268bd2"
     date_color_dark = "#9a9a9a"
     table_border_color_dark = "#515151"
