@@ -1,0 +1,55 @@
+{{ define "main" -}}
+<div class="taxonomy-cloud">
+    <h1 class="taxonomy-title">{{ .Title }}</h1>
+
+    <p class="taxonomy-description">
+        <span class="taxonomy-count">{{ len .Data.Terms }}</span> tags,
+        <span class="taxonomy-count">{{ len .Site.RegularPages }}</span> articles
+    </p>
+
+    <div class="tag-cloud-container">
+        {{ $maxCount := 0 }}
+        {{ $minCount := 999999 }}
+
+        <!-- Calculate max and min article counts -->
+        {{ range $name, $taxonomy := .Data.Terms }}
+            {{ $count := len $taxonomy.Pages }}
+            {{ if gt $count $maxCount }}
+                {{ $maxCount = $count }}
+            {{ end }}
+            {{ if lt $count $minCount }}
+                {{ $minCount = $count }}
+            {{ end }}
+        {{ end }}
+
+        <!-- Show all tags -->
+        {{ range .Data.Terms.Alphabetical }}
+            {{ $count := .Count }}
+            {{ $name := .Page.Title }}
+
+            <!-- Calculate weight: font size based on article count -->
+            {{ $weight := 1.0 }}
+            {{ if gt $maxCount $minCount }}
+                {{ $weight = div (sub $count $minCount | float) (sub $maxCount $minCount | float) }}
+            {{ end }}
+
+            <!-- Font size range: 0.85em - 2em -->
+            {{ $fontSize := add 0.85 (mul $weight 1.15) }}
+
+            <!-- Calculate color depth -->
+            {{ $colorWeight := mul $weight 100 | int }}
+
+            <a href="{{ .Page.Permalink }}"
+               class="tag-cloud-item"
+               style="font-size: {{ $fontSize }}em"
+               data-count="{{ $count }}"
+               data-weight="{{ $colorWeight }}"
+               title="{{ $name }} ({{ $count }} articles)">
+                <span class="tag-name">{{ $name }}</span>
+                <span class="tag-count">{{ $count }}</span>
+            </a>
+        {{ end }}
+    </div>
+</div>
+{{- end }}
+
