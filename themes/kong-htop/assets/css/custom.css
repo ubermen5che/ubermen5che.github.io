@@ -3115,3 +3115,33 @@ body.dark-theme .sidebar-random-box:hover {
     }
 }
 
+
+/* ==========================================================================
+   MacBook Resolution Optimization (1280px - 1920px)
+   - Reduce TOC width from 420px to 280px
+   - Adjust spacing for better readability
+   ========================================================================== */
+
+@media (min-width: 64em) and (max-width: 120em) {
+    /* Reduce TOC width */
+    .article-toc {
+        width: 16em;  /* Down from 18em */
+        max-width: 280px;
+    }
+
+    .article-toc .toc-wrapper {
+        right: 2em;  /* Reduce right margin */
+    }
+
+    .toc-wrapper {
+        padding: 1.2rem;  /* Slightly reduce padding */
+    }
+
+    .toc-wrapper h4 {
+        font-size: 1em;
+    }
+
+    .toc-wrapper nav a {
+        font-size: 0.85em;
+    }
+}

@@ -225,6 +225,15 @@ a.sidebar-nav-item:focus {
   }
 }
 
+/* MacBook resolution optimization (1280px - 1920px) */
+@media (min-width: 64em) and (max-width: 120em) {
+  .content {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    max-width: 75rem;
+  }
+}
+
 /*
  * Themes
  *
