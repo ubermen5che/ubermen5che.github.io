@@ -67,7 +67,7 @@ body.dark-theme {
    - 减少侧边栏占用的垂直空间
    ========================================================================== */
 
-@media (max-width: 48em) {
+@media (max-width: 30em) {
     /* 移动端侧边栏优化 */
     .sidebar {
         padding: 1.5rem 1rem;

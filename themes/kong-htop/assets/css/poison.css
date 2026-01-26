@@ -34,8 +34,8 @@ body.layout-reverse .wrapper {
     }
 }
 
-@media (max-width: 48em) {
-    /* Critical mobile fixes - allow scrolling */
+@media (max-width: 30em) {
+    /* Critical mobile fixes - allow scrolling (up to 480px) */
     body {
        overflow: auto !important;
        height: auto !important;

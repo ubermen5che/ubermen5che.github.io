@@ -166,21 +166,22 @@ a.sidebar-nav-item:focus {
   padding-right:  1rem;
 }
 
-/* Mobile optimization */
-@media (max-width: 48em) {
+/* Mobile optimization - force stacked layout */
+@media (max-width: 30em) {
   .content {
     padding: 1rem !important;
     margin: 0 !important;
+    margin-left: 0 !important;
     max-width: 100% !important;
   }
 }
 
-/* Tablet optimization */
-@media (min-width: 48em) and (max-width: 64em) {
+/* Tablet optimization - side-by-side layout */
+@media (min-width: 30em) and (max-width: 64em) {
   .content {
     max-width: 100%;
     margin-left: 20rem;  /* sidebar(19rem) + 1rem gap */
-    margin-right: 1rem;
+    margin-right: 2rem;  /* 2rem right margin */
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -240,11 +241,20 @@ a.sidebar-nav-item:focus {
   }
 }
 
-@media (min-width: 64em) {
+@media (min-width: 64em) and (max-width: 80em) {
   .content {
     max-width: 95rem;
     margin-left: 2rem;
-    margin-right: 25rem;
+    margin-right: 2rem;  /* No TOC space reservation until 80em */
+  }
+}
+
+/* Large screens with TOC (1280px+) */
+@media (min-width: 80em) {
+  .content {
+    max-width: 95rem;
+    margin-left: 2rem;
+    margin-right: 25rem;  /* Reserve space for TOC */
   }
 }
 
