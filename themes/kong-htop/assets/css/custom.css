@@ -74,6 +74,13 @@ body.dark-theme {
         position: relative;
     }
 
+    /* 移动端本文区域优化 - 确保内容可见 */
+    .content, .container.content {
+        padding: 1rem !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
     /* 侧边栏内容紧凑化 */
     .sidebar-about img {
         height: 120px;
@@ -3131,10 +3138,12 @@ body.dark-theme .sidebar-random-box:hover {
 
     .article-toc .toc-wrapper {
         right: 2em;  /* Reduce right margin */
+        max-width: 280px !important;  /* Apply directly to fixed element */
     }
 
     .toc-wrapper {
         padding: 1.2rem;  /* Slightly reduce padding */
+        max-width: 280px !important;  /* Ensure constraint is applied */
     }
 
     .toc-wrapper h4 {

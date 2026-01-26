@@ -35,11 +35,13 @@ body.layout-reverse .wrapper {
 }
 
 @media (max-width: 48em) {
-    body > .wrapper, body.layout-reverse .wrapper {
-       flex-direction: column;
-    }
+    /* Critical mobile fixes - allow scrolling */
     body {
        overflow: auto !important;
+       height: auto !important;
+    }
+    body > .wrapper, body.layout-reverse .wrapper {
+       flex-direction: column;
        height: auto !important;
     }
     .heading {

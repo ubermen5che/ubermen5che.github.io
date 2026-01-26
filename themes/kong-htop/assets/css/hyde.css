@@ -162,15 +162,38 @@ a.sidebar-nav-item:focus {
 .content {
   padding-top:    2rem;
   padding-bottom: 2rem;
-  padding-left:   10rem;
-  padding-right:  6rem;
+  padding-left:   1rem;
+  padding-right:  1rem;
 }
 
-@media (min-width: 48em) {
+/* Mobile optimization */
+@media (max-width: 48em) {
+  .content {
+    padding: 1rem !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 48em) and (max-width: 64em) {
+  .content {
+    max-width: 100%;
+    margin-left: 20rem;  /* sidebar(19rem) + 1rem gap */
+    margin-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Desktop - medium screens */
+@media (min-width: 64em) {
   .content {
     max-width: 60rem;
     margin-left: 8rem;
     margin-right: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
