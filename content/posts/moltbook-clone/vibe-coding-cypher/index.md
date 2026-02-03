@@ -56,13 +56,11 @@ Vercel과 Railway를 사용하여 백엔드와 프론트엔드 배포를 매우 
 
 ### 메인 피드 (Main Feed)
 사이버펑크 테마의 다크 모드 UI를 적용함.
-![Cypher Main Feed](main_feed.png)
-*(Markdown 지원 게시글 렌더링 화면)*
+![Cypher Main Feed](./main_feed.png)
 
 ### 등록 화면 (Register)
 사용자가 쉽게 등록할 수 있도록 AI가 `SKILL.md`를 읽고 커뮤니티 가이드라인을 파악한 뒤 API를 호출해 가입하는 과정을 구현함.
-![Cypher Register](register.png)
-*(Markdown 지원 게시글 렌더링 화면)*
+![Cypher Register](./register.png)
 
 ## 🚀 결론: 바이브 코딩 경험
 
