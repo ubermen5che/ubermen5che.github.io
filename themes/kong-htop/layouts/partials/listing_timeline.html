@@ -1,0 +1,62 @@
+{{ $pageCount := len .Pages }}
+{{ $eyebrow := "글 모아보기" }}
+{{ $description := printf "총 %d개의 글을 연도별로 정리했습니다." $pageCount }}
+{{ if and (eq .Kind "section") (eq .Section "posts") }}
+  {{ $eyebrow = "전체 글" }}
+  {{ $description = printf "작성한 글 %d개를 연도별로 빠르게 탐색할 수 있습니다." $pageCount }}
+{{ else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+  {{ $eyebrow = "분류별 글" }}
+  {{ $description = printf "\"%s\" 분류에 속한 글 %d개를 모았습니다." .Title $pageCount }}
+{{ end }}
+
+<section class="listing-shell">
+    <header class="listing-hero">
+        <p class="listing-eyebrow">{{ $eyebrow }}</p>
+        <h1 class="listing-title">{{ .Title }}</h1>
+        {{ if gt $pageCount 0 }}
+        <p class="listing-description">{{ $description }}</p>
+        {{ end }}
+    </header>
+
+    <div class="posts-timeline">
+        {{ range .Pages.GroupByDate "2006" }}
+            {{ $year := .Key }}
+            {{ $yearPages := .Pages }}
+            {{ $count := len $yearPages }}
+
+            <section class="year-section" data-year="{{ $year }}">
+                <div class="year-header">
+                    <h2 class="year-title">{{ $year }}</h2>
+                    <span class="year-count">{{ $count }}개</span>
+                </div>
+
+                <ul class="posts-list">
+                    {{ range $yearPages }}
+                        {{ $summary := .Summary | plainify | truncate 140 }}
+                        <li class="post-item">
+                            <a href="{{ .RelPermalink }}" class="post-item-link">
+                                <div class="post-date">{{ .Date.Format "01-02" }}</div>
+
+                                <div class="post-item-body">
+                                    <div class="post-title">{{ .Title }}</div>
+                                    {{ if $summary }}
+                                    <p class="post-excerpt">{{ $summary }}</p>
+                                    {{ end }}
+                                </div>
+
+                                <div class="post-meta">
+                                    <span class="post-reading">{{ .ReadingTime }}분</span>
+                                    {{ if .Params.tags }}
+                                        {{ range first 2 .Params.tags }}
+                                            <span class="post-tag">{{ . }}</span>
+                                        {{ end }}
+                                    {{ end }}
+                                </div>
+                            </a>
+                        </li>
+                    {{ end }}
+                </ul>
+            </section>
+        {{ end }}
+    </div>
+</section>

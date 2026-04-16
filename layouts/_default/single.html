@@ -1,6 +1,14 @@
 {{ define "main" -}}
 <div class="post">
   {{ partial "post/info.html" . }}
+  {{ if and (not .Params.hideToc) (not .Site.Params.hideToc) }}
+    <div class="post-toc-top">
+      <details>
+        <summary>이 글의 목차</summary>
+        {{ .TableOfContents }}
+      </details>
+    </div>
+  {{ end }}
   {{ .Content }}
   {{ partial "post/navigation.html" . }}
   {{ if or (.Site.Params.remark42) (.Site.DisqusShortname) (.Site.Params.giscus.repo) }}

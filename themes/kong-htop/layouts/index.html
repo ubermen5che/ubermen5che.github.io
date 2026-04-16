@@ -1,17 +1,53 @@
 {{ define "main" -}}
-<div class="posts">
-    {{ $frontPageTypes := default (slice "posts") .Site.Params.front_page_content }}
-    {{ range (.Paginate (where .Site.RegularPages "Type" "in" $frontPageTypes)).Pages }}
-    <article class="post">
-        {{ partial "post/info.html" . }}
-        {{ .Summary }}
-        {{ if .Truncated }}
-        <div class="read-more-link">
-            <a href="{{ .RelPermalink }}">Read More…</a>
+{{ $frontPageTypes := default (slice "posts") .Site.Params.front_page_content }}
+{{ $allPosts := where .Site.RegularPages "Type" "in" $frontPageTypes }}
+{{ $paginator := .Paginate $allPosts }}
+<section class="home-shell">
+    <header class="home-hero">
+        <p class="home-eyebrow">실습형 보안 노트</p>
+        <h1 class="home-title">{{ .Site.Title }}</h1>
+        <p class="home-description">
+            OSCP 준비 과정, 실습형 해킹 공부 기록, 운영체제와 네트워크 보안 메모를
+            다시 찾아보기 쉬운 흐름으로 정리하는 공간입니다.
+        </p>
+        <div class="home-stats">
+            <span class="home-stat"><strong>{{ len $allPosts }}</strong>개의 글</span>
+            <span class="home-stat"><strong>{{ len .Site.Taxonomies.tags }}</strong>개 태그</span>
+            {{ with first 1 ($allPosts.ByDate.Reverse) }}
+            <span class="home-stat"><strong>{{ (index . 0).Date.Format "2006.01.02" }}</strong> 최근 업데이트</span>
+            {{ end }}
         </div>
-        {{ end }}
-    </article>
-    {{- end }}
-</div>
-{{ partial "pagination.html" . }}
+    </header>
+
+    <div class="home-feed">
+        {{ range $paginator.Pages }}
+        {{ $summary := .Summary | plainify | truncate 180 }}
+        <article class="home-card">
+            <a href="{{ .RelPermalink }}" class="home-card-link">
+                <div class="home-card-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "2006.01.02" }}</time>
+                    <span>{{ .ReadingTime }}분 읽기</span>
+                    <span>{{ .WordCount }}단어</span>
+                </div>
+                <h2 class="home-card-title">{{ .Title }}</h2>
+                {{ if $summary }}
+                <p class="home-card-summary">{{ $summary }}</p>
+                {{ end }}
+                <div class="home-card-footer">
+                    {{ if .Params.tags }}
+                    <div class="home-card-tags">
+                        {{ range first 3 .Params.tags }}
+                        <span class="home-card-tag">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                    <span class="home-card-cta">글 읽기</span>
+                </div>
+            </a>
+        </article>
+        {{- end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+</section>
 {{- end }}

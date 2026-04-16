@@ -1,6 +1,6 @@
 baseURL = 'https://ubermen5che.github.io/'
 languageCode = 'ko-kr'
-title = "Ubermen5che's tech blog"
+title = "Ubermen5che"
 theme = "kong-htop"
 paginate = 10
 pluralizelisttitles = false
@@ -10,12 +10,12 @@ name = "KYJ"
 
 [params]
     title = "title"
-    brand = "ghost"
-    brand_image = "/images/logo.png"
+    brand = "Ubermen5che"
+    profile_emoji = "👻"
     og_image = "/images/og-image.png"
     publisher_icon = "/images/favicon.png"
     favicon = "/images/favicon.png"
-    description = "my blog"
+    description = "Red Teaming, OSCP 준비, 실습형 침투테스트 학습 노트"
     dark_mode = true
     mainSections = ["posts"]
     
@@ -62,7 +62,8 @@ name = "KYJ"
     content_bg_color = "#FAF9F6"
     post_title_color = "#303030"
     list_color = "#5a5a5a"
-    link_color = "#268bd2"
+    link_color = "#9d4a55"
+    accent_rgb = "157, 74, 85"
     date_color = "#515151"
     table_border_color = "#E5E5E5"
     table_stripe_color = "#F9F9F9"
@@ -72,7 +73,8 @@ name = "KYJ"
     content_bg_color_dark = "#121212"
     post_title_color_dark = "#DBE2E9"
     list_color_dark = "#e0e0e0"
-    link_color_dark = "#268bd2"
+    link_color_dark = "#cc767e"
+    accent_rgb_dark = "204, 118, 126"
     date_color_dark = "#9a9a9a"
     table_border_color_dark = "#515151"
     table_stripe_color_dark = "#202020"

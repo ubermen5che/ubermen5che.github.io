@@ -11,12 +11,6 @@
 let activeElement = null;
 window.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(entries => {
-        if (entries) {
-            const contents = document.getElementById("contents");
-            if (contents) {
-                contents.innerHTML = "Contents";
-            }
-        }
         entries.forEach(entry => {
             if (activeElement) {
                 document.querySelectorAll("nav[id='TableOfContents'] li").forEach((node) => {

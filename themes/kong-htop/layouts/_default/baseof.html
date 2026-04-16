@@ -1,5 +1,5 @@
 {{ partial "head/head.html" . }}
-    <body class="{{if .Site.Params.layoutReverse}}layout-reverse {{end}}{{if .Site.Params.dark_mode}}dark-theme{{end}}">
+    <body class="{{if .Site.Params.layoutReverse}}layout-reverse {{end}}{{if .Site.Params.dark_mode}}dark-theme {{end}}{{if eq .Kind "home"}}page-home {{end}}{{if or (and (eq .Kind "section") (eq .Section "posts")) (eq .Kind "taxonomy") (eq .Kind "term")}}page-listing {{end}}{{if eq .Kind "page"}}page-single {{end}}{{if and (eq .Kind "page") (not .Params.hideToc) (not .Site.Params.hideToc)}}has-page-toc{{end}}">
         <div class="wrapper">
             {{ partial "sidebar/sidebar.html" . }}
             <main class="content container">
