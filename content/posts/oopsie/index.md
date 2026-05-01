@@ -3,8 +3,8 @@ title = '[HTB] - Oopsie'
 date = 2026-05-01T02:00:00+09:00
 draft = false
 
-categories = ["HTB", "pentesting", "Web Hacking"]
-tags = ["HTB", "CVE-2019-11231", "CMS", "Web Hacking", "OSCP", "Burp Suite"]
+categories = ["HTB", "pentesting"]
+tags = ["HTB", "write-up", "IDOR", "OWSAP ZAP", "SUID", "Command Injection"]
 +++
 
 # HTB - Oopsie (Retired Machine)
