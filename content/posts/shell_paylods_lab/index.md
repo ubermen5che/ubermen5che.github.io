@@ -1,11 +1,10 @@
----
-title: "[HTB Academy] — Shells & Payloads Lab 풀이"
-date: 2026-05-09
-draft: false
-tags: ["htb", "pentest", "shells", "payloads", "tomcat", "eternalblue", "metasploit"]
-categories: ["writeup"]
-summary: "Apache Tomcat WAR 업로드, Lightweight Blog RCE, EternalBlue(MS17-010) 세 가지 공격 벡터를 통해 내부망 세 개 호스트를 순차적으로 공략한 과정."
----
++++
+title = '[HTB Academy] — Shells & Payloads Lab 풀이'
+date = 2026-05-08T17:00:00+09:00
+draft = false
+tags = ["HTB", "pentest", "shells", "payloads", "tomcat", "eternalblue", "metasploit"]
+categories = ["HTB", "write-up"]
++++
 
 ## 개요
 
