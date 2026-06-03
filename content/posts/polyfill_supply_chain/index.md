@@ -21,6 +21,8 @@ HTTP Basic Auth 팝업. 이를 **신뢰된 서드파티 의존성이 변질되�
 - 하지만 **사용자가 입력한 ID/PW는 `Authorization: Basic base64(id:pw)` 헤더로 polyfill.io까지 그대로 전송된다.** base64는 암호화가 아니라 단순 인코딩이다.
 - 서버 도달 시점에 자격증명은 **평문**이며, 탈취 이력이 있는 도메인이므로 **절대 실제 자격증명을 입력해서는 안 된다.**
 - 이는 사이트 운영자가 직접 심은 코드가 아니라 **신뢰하던 외부 CDN이 변질되며 방문자에게 전가된 위험**으로, 전형적인 웹 공급망 공격의 양상을 띤다.
+- 추적 결과 이 라인의 뿌리는 **MathJax의 옛 설치 안내**였고, 인기 Jekyll 테마와 **Tistory 공식 #1 스킨의 구버전**에 박제되어 퍼졌다. 원천은 이미 패치됐지만, **과거 버전을 적용한 채 방치된 블로그**에 위험이 남아있다.
+- "왜 지금 갑자기"의 답은 — 블로그 코드는 그대로인데 **polyfill.io 서버 응답이 `200`→`401`로 바뀐 것**이 트리거였다.
 
 ---
 
@@ -33,6 +35,11 @@ HTTP Basic Auth 팝업. 이를 **신뢰된 서드파티 의존성이 변질되�
 팝업의 출처는 페이지 본문이 아니라 `https://polyfill.io` 였다.
 브라우저가 띄운 네이티브 HTTP Basic Auth 인증창이었다.
 
+<!-- 📷 스크린샷 배치: 블로그 위에 뜬 polyfill.io 출처의 HTTP Basic Auth 로그인 팝업
+     (사용자 이름/비밀번호 입력창 + "https://polyfill.io" 출처가 보이는 화면) -->
+
+![polyfill.io HTTP Basic Auth 팝업](./images/polyfill_basic_auth.png)
+
 "왜 블로그 글을 보려는데 polyfill.io가 로그인을 요구하지?"
 
 일반 사용자라면 무심코 자신의 계정 정보를 입력했을 법한 화면이다. 그러나 이 팝업의
@@ -41,7 +48,6 @@ HTTP Basic Auth 팝업. 이를 **신뢰된 서드파티 의존성이 변질되�
 수집을 노린 공급망 공격으로 가정하고 실제 자격증명이 외부로 유출되는지를 검증하기로
 했다.**
 
-![](./images/polyfill_basic_auth.png)
 ---
 
 ## 2. 배경 — polyfill.io 공급망 사건
@@ -82,7 +88,7 @@ Fastly)로의 이전이 권고되었다.
 있으면, 글을 한 편도 새로 쓰지 않아도 모든 페이지가 자동으로 이 스크립트를 계속
 로드한다. 내가 마주친 블로그들도 그랬다.
 
-![](./images/source_code.png)
+![](./images/blog_source_code.png)
 
 ```html
 <!-- 테마에 남아있던 문제의 한 줄 -->
@@ -128,7 +134,7 @@ Fastly)로의 이전이 권고되었다.
 - 더미 자격증명을 넣어도 동일하게 거부됨
 
 즉 "올바른 비밀번호를 맞히면 통과시키는 피싱 함정형"이 아니라,
-**도메인 전체가 잠긴 전면 차단형**이다. 정상 polyfill JS도, 악성 JS도 내려오지 않는다.
+**도메인 전체가 잠긴 전면 차단형**라고 판단할 수 있다. 정상 polyfill JS도, 악성 JS도 내려오지 않는다.
 
 > 이 글에서는 접속자가 실수로 따라 들어가지 않도록 구체적인 IP와 일부 식별 정보는 가렸다.
 
@@ -218,10 +224,11 @@ Cloudflare 엣지 (TLS 종료 지점) ──► 여기서 평문 id:pw 노출
    방문자가 신뢰한 것은 블로그이고, 블로그가 신뢰한 것이 polyfill.io다. 공급망
    공격은 이 신뢰 사슬의 가장 약한 고리(탈취된 CDN)를 끊어, 방문자가 자신도 모르게
    공격자를 신뢰하도록 만든다.
-2. **로깅은 서버 측 재량이며 매우 쉽다.** nginx는 로그 포맷에 `$http_authorization`
+2. **TLS는 전송 구간만 보호한다.** 터널이 끝나는 지점에서 자격증명은 평문이다.
+3. **로깅은 서버 측 재량이며 매우 쉽다.** nginx는 로그 포맷에 `$http_authorization`
    한 줄만 추가하면 모든 입력 자격증명을 남길 수 있다. 외부에서 "로깅 여부"는
    검증 불가능하지만, **하려면 한 줄**이고 탈취 이력 도메인이므로 충분히 의심스럽다.
-3. **무한 401이 오히려 위험을 키운다.** "어? 안 되네, 다른 비번도?" 하며 사용자가
+4. **무한 401이 오히려 위험을 키운다.** "어? 안 되네, 다른 비번도?" 하며 사용자가
    여러 개의 진짜 자격증명을 연달아 입력하도록 유도하는 효과가 있다.
 
 > 진짜 위험은 "서버가 비번을 검증한다"가 아니라,
@@ -265,30 +272,202 @@ Cloudflare 엣지 (TLS 종료 지점) ──► 여기서 평문 id:pw 노출
 
 ---
 
-## 8. 결론 및 권고
+## 8. 공급망 체인 추적 — 어디서, 어떻게, 왜 지금
+
+"자격증명이 전송된다"는 검증을 마친 뒤, 진짜 궁금증은 따로 있었다.
+**이 polyfill.io 라인은 도대체 어디서 흘러들어왔고, 왜 하필 비교적 최근에야
+로그인 팝업이 뜨기 시작했으며, 그 규모는 얼마인가?** 추적해보니 하나의 공통
+뿌리에서 여러 플랫폼으로 번진 구조가 드러났다.
+
+### 8-1. 공통 뿌리 — MathJax의 옛 설치 안내
+
+문제의 라인은 거의 항상 바로 아래에 `MathJax`를 동반하고 있었다.
+
+```html
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+```
+
+이 조합은 **MathJax v3가 한때 공식 문서에서 권장하던 설치 스니펫**이다. 즉 누군가
+악의로 심은 게 아니라, **수식(LaTeX) 렌더링을 붙이려고 당시 표준 안내를 그대로 복사**한
+결과다. 그래서 이 문제는 특정 블로그나 테마 하나의 문제가 아니라, **그 안내를 따른
+모든 정적사이트·블로그·문서 생태계에 광범위하게 퍼져 있다.**
+
+추적 근거를 수치로 남겨둔다. GitHub 코드 검색 기준(2026-06-03 조사 시점):
+
+| 검색 쿼리 | 결과 |
+|---|---|
+| `"polyfill.io" "MathJax-script" in:file` | 약 **5,100건** |
+| `"https://polyfill.io/v3/polyfill.min.js?features=es6" filename:mathjax.html` | 약 **196개 저장소** |
+
+대형 문서화 프로젝트인 mkdocs-material도 동일 원인으로 공식 제거 공지를 냈다:
+[squidfunk/mkdocs-material#7295](https://github.com/squidfunk/mkdocs-material/issues/7295)
+(*"⚠️ Action required: remove polyfill.io in `extra_javascript`"*, 2024-06-25).
+
+### 8-2. 경로 ① — GitHub Pages / Jekyll 테마
+
+GitHub에 공개된 블로그들은 출처 추적이 가능했다. 영향받은 블로그들은 인기 Jekyll
+테마 하나를 공유하고 있었다 — `vszhub/not-pure-poole`
+([github.com/vszhub/not-pure-poole](https://github.com/vszhub/not-pure-poole),
+⭐146 / 🍴485 fork). 그 테마의 `_includes/mathjax.html` **단 한 파일**에 polyfill
+라인이 박혀 있었다.
+
+**추적 근거 (커밋 단위):**
+
+- 문제의 라인을 도입한 커밋:
+  [`bfc3b6a16360cd8c75fe60f271b7971179923d48`](https://github.com/vszhub/not-pure-poole/commit/bfc3b6a16360cd8c75fe60f271b7971179923d48)
+  — *"Import MathJax"* (vszhub, **2020-10-02**)
+- 해당 파일의 커밋 시점 스냅샷(permalink, 19행에서 polyfill 확인 가능):
+  [`/blob/bfc3b6a.../_includes/mathjax.html`](https://github.com/vszhub/not-pure-poole/blob/bfc3b6a16360cd8c75fe60f271b7971179923d48/_includes/mathjax.html)
+- 이 `mathjax.html`은 **위 커밋 한 번으로 생성된 뒤 한 번도 수정되지 않았다**
+  (`git log -- _includes/mathjax.html` 결과 커밋이 단 하나).
+- 같은 커밋이 함께 추가한 파일 목록:
+  `_includes/mathjax.html`, `_layouts/default.html`, `_posts/2020-10-02-testing-mathjax.md`, `README.md`.
+  → **"Testing MathJax" 샘플 글까지 함께 배포**됐기 때문에, 테마를 fork한 블로그에는
+  그 글이 자동으로 딸려오고, 그 글이 항상 polyfill을 로드한다.
+- 저장소는 **2020-10-09에 아카이브(읽기 전용)** 되어 중앙 패치가 불가능하고, 485개의
+  fork가 각자 알아서 고쳐야 하는 상태였다.
+
+> 정리: GitHub 쪽은 커밋 해시까지 짚어가며 **언제·무엇이 들어왔는지 정확히 추적**할 수
+> 있었다. "한번 복사된 뒤 동결된 의존성"이 위험의 온상이라는 점이 그대로 드러난다.
+
+### 8-3. 경로 ② — Tistory 공식 스킨 (그리고 더 흥미로운 사실)
+
+추적 중 동일한 팝업이 **Tistory 블로그에서도 발생**한다는 제보를 접했다. 스킨 편집
+화면을 확인하자 결정적인 사실이 나왔다 — 문제의 스킨은 개인 제작물이 아니라
+**Tistory가 공식 제공하는 기본 스킨**이었고, 그 HTML의 head에 동일한 polyfill 라인이
+있었다.
+
+![Tistory 공식 #1 스킨 정보 — 제작자 Tistory](./images/skin_edit.png)
+
+![구버전 #1 스킨 HTML — 19행 polyfill.io 라인 존재](./images/tistory_skin_1_legacy_html.png)
+
+여기서 **결정적인 실험**을 했다. 같은 "#1" 스킨을 내 테스트 블로그에 **새로 적용**한
+뒤 HTML을 열어본 것이다. 결과는 명확했다.
+
+![최신 #1 스킨 HTML — polyfill.io 제거 + jQuery SRI 적용](./images/tistory_skin_1_html.png)
+
+| 항목 | 구버전 스킨 (취약) | 최신 스킨 (패치됨) |
+|---|---|---|
+| `polyfill.io` `<script>` | ✅ 존재 → 취약 | ❌ **제거됨** |
+| `MathJax-script` | ✅ 존재 | ❌ 함께 제거됨 |
+| jQuery 3.x | `integrity` 없음 | ✅ **SRI 추가** (`integrity="sha256-..."` + `crossorigin`) |
+
+→ **Tistory는 이미 스킨을 패치했다.** 최신 버전에는 polyfill.io가 없고, 오히려 jQuery에
+**SRI(Subresource Integrity)** 까지 추가되어 보안이 강화돼 있었다. 그렇다면 왜 아직도
+팝업이 뜨는 블로그가 있는가?
+
+**핵심은 Tistory 스킨의 동작 방식이다.** 스킨을 적용하는 순간 그 시점의 HTML이
+블로그에 **복사·고정(박제)** 되며, 이후 Tistory가 원본 스킨을 패치해도 **이미 적용한
+블로그에는 적용되지 않는다.** 즉 취약한 블로그 = **과거 polyfill 포함 버전의 스킨을
+적용한 뒤, 재적용·업데이트하지 않고 방치한 블로그**다.
+
+**추적 근거와 그 한계:**
+
+- 스킨 정보 패널에 표기된 출처: 제작자 `Tistory <tistoryblog@daum.net>`, 저작권
+  `MIT License` (위 스킨 편집 화면 캡처) → 개인이 아닌 **플랫폼 공식 제공 스킨**임이 명시됨.
+- Tistory 공식 GitHub 조직에 공개된 구 테마(`tistory/tistory-theme-ray`,
+  [ray](https://github.com/tistory/tistory-theme-ray) /
+  [ray2](https://github.com/tistory/tistory-theme-ray2), 2018-02)에는 polyfill+MathJax
+  라인이 **없다.** 즉 이 라인은 **그 이후 MathJax 지원을 추가하면서 유입**된 것으로 보인다.
+- 다만 현행 #1 스킨은 **플랫폼 내부 스킨**이라 공개 git 저장소가 없다. Jekyll처럼
+  **커밋 해시로 도입 시점을 못 박는 것은 불가능**하며, 도입 시점은 "ray(2018) 이후 ~
+  현재 패치 이전" 구간으로만 좁힐 수 있다(정황 추정).
+- 같은 이유로 GitHub 코드 검색도 **0건**이라(모든 Tistory 치환자 시그니처 조합으로
+  시도) **정확한 영향 규모는 외부에서 셀 수 없다.** 다만 오염원이 **플랫폼 공식 기본
+  스킨**이라는 점에서, 잠재 규모는 GitHub 사례를 상회할 수 있다.
+
+> Jekyll(공개 git → 커밋 단위 추적 가능)과 Tistory(내부 스킨 → 정황 추정만 가능)의
+> 이 비대칭이, 같은 위협이라도 플랫폼에 따라 추적 가능성이 얼마나 달라지는지를 보여준다.
+
+### 8-4. "왜 지금 갑자기" — 트리거의 정체
+
+가장 흥미로운 질문의 답은 이것이다. **블로그 코드는 수년 전 그대로인데, 왜 하필
+최근에 팝업이 뜨기 시작했는가?** 바뀐 것은 블로그가 아니라 **polyfill.io 서버의
+응답**이었다.
+
+```
+[~2024-02 이전]  polyfill.io → 200 OK (아마도 정상 JS)      → 팝업 없음 (조용히 동작)
+[2024-02 ~ ]     도메인 탈취 → 악성 리다이렉트/주입    → 일부 악성 동작
+[현재]           polyfill.io → 전 경로 401 Basic Auth  → ★ 브라우저가 로그인 팝업 ★
+```
+
+클라이언트(블로그)는 손 하나 대지 않았는데, **의존하던 외부 서버의 응답이
+`200(정상)` → `401(인증 요구)`로 바뀐 순간, 전 세계의 방치된 polyfill 태그가 일제히
+로그인 팝업을 띄우기 시작**한 것이다. 이것이 공급망 공격의 가장 무서운 속성이다 —
+**공격자는 내 코드를 단 한 줄도 건드리지 않고, 원격에서 모든 피해 사이트의 동작을
+한꺼번에 바꿀 수 있다.**
+
+### 8-5. 완성된 공급망 체인
+
+```
+① MathJax v3 옛 공식 설치 안내 = polyfill.io + tex-mml-chtml.js   (공통 뿌리)
+        │
+        ├─► [경로 A] Jekyll 테마의 mathjax.html 에 포함 → fork로 확산 → 테마 동결
+        │
+        └─► [경로 B] Tistory 공식 #1 스킨에 포함 → 사용자 적용 시 HTML "박제"
+        │
+        ▼
+② 원천(테마/스킨)은 이후 패치·동결됨 — 그러나 이미 복사된 사본은 자동 갱신 안 됨
+        │
+        ▼
+③ 2024-02  polyfill.io 도메인 탈취 (정상 CDN → 공격자 통제)
+        │
+        ▼
+④ 현재  polyfill.io 전 경로 401 → 방치된 사본을 가진 블로그에서 일제히 팝업 발생
+        │
+        ▼
+⑤ 방문자가 입력한 자격증명이 Authorization 헤더로 탈취 도메인까지 전송 (5장에서 실증)
+```
+
+한 줄로 요약하면: **"수년 전 정상이던 한 줄의 의존성이, 원천에서 패치된 뒤에도
+박제된 사본으로 남아있다가, 2024년 도메인 탈취로 서버 응답이 바뀌자 일제히
+자격증명 수집 창구로 깨어난 것."**
+
+---
+
+
+## 9. 결론 및 권고
 
 분석 결과를 정리하면 다음과 같다.
 
 | 질문 | 결론 |
 |---|---|
-| 입력 자격증명이 외부로 전송되는가? | ✅  `Authorization: Basic base64(id:pw)`로 polyfill.io까지 전송 |
-| 서버가 자격증명을 검증/통과시키는가? | ❌  어떤 값이든 401 (전면 차단형) |
+| 입력 자격증명이 외부로 전송되는가? | ✅ **확정**. `Authorization: Basic base64(id:pw)`로 polyfill.io까지 전송 |
+| base64는 안전한가? | ❌ 인코딩일 뿐. Decoder로 즉시 평문 복원 |
+| 서버가 자격증명을 검증/통과시키는가? | ❌ 아니오. 어떤 값이든 401 (전면 차단형) |
 | 서버가 로깅하는가? | ⚠️ 외부 검증 불가. 단, 한 줄로 가능하며 탈취 이력상 의심됨 |
 | 공급망 공격으로 볼 수 있는가? | ✅ 변질된 외부 의존성이 다수 사이트 방문자의 자격증명을 노린 전형적 양상 |
+| 어디서 비롯됐는가? | MathJax 옛 설치 안내 → Jekyll 테마 / Tistory 공식 #1 스킨의 **구버전**에 박제 |
+| 왜 지금 발생했는가? | 블로그 코드 불변, **polyfill.io 서버 응답이 200→401로 바뀐 것**이 트리거 |
+
+### 내가 영향받는지 1분 만에 확인하기
+
+브라우저에서 내 블로그를 연 뒤 개발자도구 콘솔(F12)에 붙여넣는다.
+
+```js
+// true 가 나오면 내 사이트가 polyfill.io 를 로드 중 = 취약
+[...document.scripts].some(s => s.src.includes('polyfill.io'))
+```
+
+> ⚠️ 주의: Tistory가 플랫폼 차원에서 제공하는 `...daumcdn.net/.../polyfills-legacy.js`
+> 는 **정상 스크립트**다. 위험한 것은 호스트가 **`polyfill.io`** 인 `<script>` 뿐이니
+> 혼동하지 말 것.
 
 ### 블로그/사이트 운영자라면
 
-테마 소스(`layouts/`, `partials/head.html`, 또는 사용 중인 테마의 head 템플릿)에서
-`polyfill.io` / `cdn.polyfill.io` script 태그를 **즉시 제거**한다.
-polyfill이 정말 필요하면 안전한 미러로 교체한다.
+**Jekyll / Hugo 등 정적사이트** — 테마 소스(`_includes/`, `layouts/partials/head.html`,
+사용 중인 테마의 head/mathjax 템플릿)에서 `polyfill.io` script 태그를 **즉시 제거**한다.
 
 ```diff
 - <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 + <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 ```
+최신 MathJax v3는 polyfill 없이도 동작하므로, 대부분 위 한 줄을 **삭제만** 하면 된다.
 
-> Hugo 사용자는 테마의 `layouts/partials/`(예: `head.html`, `head-additions.html`)나
-> `config.toml`의 커스텀 스크립트 설정을 확인하면 대부분 여기에 박혀 있다.
+**Tistory 사용자** — 공식 #1 스킨을 쓰는 경우, **스킨을 한 번 재적용(또는 최신 스킨으로
+변경)** 하면 polyfill.io가 제거된 패치 버전으로 갱신된다. 직접 고치려면
+`꾸미기 → 스킨 편집 → HTML`에서 `polyfill.io` 라인을 찾아 삭제하고 "적용"을 누른다.
 
 ### 방문자라면
 
@@ -303,6 +482,37 @@ polyfill이 정말 필요하면 안전한 미러로 교체한다.
 > 바꾸고, 그 위험은 내가 아니라 나를 믿고 들어온 방문자에게 전가된다.
 > 그리고 HTTP Basic Auth의 base64는 보안이 아니므로, 신뢰할 수 없는 출처가 띄운
 > 인증 팝업은 그 자체가 평문 자격증명 수집 창구가 될 수 있다.
+
+---
+
+## 참고 자료 (References)
+
+**추적 근거 — Jekyll 테마 (`not-pure-poole`)**
+
+- 저장소: <https://github.com/vszhub/not-pure-poole> (⭐146 / 🍴485, 2020-10-09 archived)
+- polyfill 도입 커밋: [`bfc3b6a16360cd8c75fe60f271b7971179923d48`](https://github.com/vszhub/not-pure-poole/commit/bfc3b6a16360cd8c75fe60f271b7971179923d48) — *"Import MathJax"* (2020-10-02)
+- 파일 스냅샷(permalink): [`_includes/mathjax.html` @ bfc3b6a](https://github.com/vszhub/not-pure-poole/blob/bfc3b6a16360cd8c75fe60f271b7971179923d48/_includes/mathjax.html)
+
+**추적 근거 — Tistory 공식 스킨**
+
+- 공식 구 테마(polyfill 없음, 2018-02): [tistory/tistory-theme-ray](https://github.com/tistory/tistory-theme-ray), [ray2](https://github.com/tistory/tistory-theme-ray2)
+- 스킨 출처 표기: 제작자 `Tistory <tistoryblog@daum.net>`, MIT License (스킨 편집 화면 캡처)
+- 현행 #1 스킨은 플랫폼 내부 스킨 → 공개 git 부재, 도입 커밋 추적 불가(정황 추정)
+
+**규모 산정 — GitHub 코드 검색 (2026-06-03 조사 시점)**
+
+- `"polyfill.io" "MathJax-script" in:file` → 약 5,100건
+- `"https://polyfill.io/v3/polyfill.min.js?features=es6" filename:mathjax.html` → 약 196개 저장소
+- Tistory 스킨: 코드 검색 0건 (플랫폼 내부 존재 → 정량화 불가)
+
+**관련 사건·공지**
+
+- polyfill.io 공급망 공격 분석 (Sansec): <https://sansec.io/research/polyfill-supply-chain-attack>
+- mkdocs-material 제거 공지: [squidfunk/mkdocs-material#7295](https://github.com/squidfunk/mkdocs-material/issues/7295) (2024-06-25)
+- 안전 미러: `https://cdnjs.cloudflare.com/polyfill/`, `https://polyfill-fastly.io/`
+
+> 위 커밋 해시·검색 수치는 조사 시점(2026-06) 기준이며, 저장소 상태나 검색 결과는
+> 이후 변동될 수 있다. 커밋 해시는 불변이므로 permalink로 항상 동일 스냅샷을 확인할 수 있다.
 
 ---
 
