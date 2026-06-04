@@ -1,6 +1,6 @@
 baseURL = 'https://ubermen5che.github.io/'
 languageCode = 'ko-kr'
-title = "Ubermen5che"
+title = "spooky38"
 theme = "kong-htop"
 paginate = 10
 pluralizelisttitles = false
@@ -10,7 +10,7 @@ name = "KYJ"
 
 [params]
     title = "title"
-    brand = "Ubermen5che"
+    brand = "spooky38"
     profile_emoji = "👻"
     og_image = "/images/og-image.png"
     publisher_icon = "/images/favicon.png"
