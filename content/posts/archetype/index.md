@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting"]
 tags = ["HTB", "Window", "WinPEAS", "MSSQL", "SMB", "PowerShell"]
+description = "HackTheBox Archetype 풀이 — SMB null session으로 노출된 설정 파일에서 MSSQL 자격증명을 얻고 xp_cmdshell로 RCE를 확보한 뒤, WinPEAS로 평문 패스워드를 찾아 Administrator까지 상승하는 Windows 침투 과정을 정리한다."
 +++
 
 # [HTB] — Archetype 풀이
@@ -176,7 +177,7 @@ xp_cmdshell "type C:/Users/Public/output.txt"
 ### PowerShell 히스토리에서 자격증명 발견
 
 WinPEAS 결과에서 PowerShell 히스토리 파일의 존재를 확인했다. 직접 읽어본다.
-![](./images/WinPEAS.png)
+![WinPEAS 실행으로 평문 패스워드 탐색 결과](./images/WinPEAS.png)
 
 ```sql
 xp_cmdshell "powershell -nop -c \"cat C:/Users/sql_svc/AppData/Roaming/Microsoft/Windows/PowerShell/PSReadLine/ConsoleHost_history.txt\""
@@ -257,3 +258,10 @@ SMB Null Session
 **PSReadLine 히스토리는 반드시 확인한다.** 경로가 고정되어 있고(`C:\Users\<user>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`), 관리자가 인터랙티브 셸에서 직접 자격증명을 입력한 흔적이 남아있는 경우가 많다.
 
 **WinRM(5985)이 열려있으면 evil-winrm을 바로 시도한다.** 유효한 자격증명만 있으면 완전한 PowerShell 세션을 얻을 수 있다.
+
+---
+
+## 관련 글
+
+- [HTB - Responder](/posts/responder/) — NTLM 해시 탈취 후 evil-winrm으로 Windows에 접속하는 동일한 마무리 패턴.
+- [HTB - Sau](/posts/sau/) — 노출된 서비스 버전을 단서로 공개 익스플로잇을 연결하는 흐름.

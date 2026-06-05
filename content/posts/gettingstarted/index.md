@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting", "Web Hacking"]
 tags = ["HTB", "CVE-2019-11231", "CMS", "Web Hacking", "OSCP", "Burp Suite"]
+description = "HackTheBox GettingStarted 풀이 — GetSimple CMS 3.3.15의 directory listing으로 노출된 /data/ 경로에서 인증 정보를 수집하고, 관리자 페이지를 통해 웹쉘을 업로드해 리버스 쉘을 획득하는 웹 해킹 입문 워크스루다."
 +++
 
 ## Summary

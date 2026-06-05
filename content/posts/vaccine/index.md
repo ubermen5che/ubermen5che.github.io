@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting", "write-up"]
 tags = ["HTB", "write-up", "SQL Injection", "sqlmap", "OSCP", "OWSAP ZAP", "sudo"]
+description = "HackTheBox Vaccine 풀이 — FTP 익명 로그인으로 얻은 backup.zip을 크랙해 admin MD5 해시를 복원하고, PostgreSQL SQL Injection을 sqlmap --os-shell로 RCE까지 끌어올린 뒤 sudo vi의 GTFOBins 기법으로 root를 획득한다."
 +++
 
 # HTB - Vaccine (Retired Machine)
@@ -209,7 +210,7 @@ admin : qwerty789
 
 admin 자격증명으로 로그인하면 `dashboard.php`로 리다이렉트된다. Car catalogue를 검색하는 기능이 있는데, 검색창에 `'` 하나를 입력하자 에러가 발생했다.
 
-![](./images/dashboard_page.png)
+![admin 로그인 후 진입한 Car catalogue 검색 대시보드](./images/dashboard_page.png)
 
 ```
 ERROR: unterminated quoted string at or near "'"
@@ -317,9 +318,9 @@ AS NUMERIC)-- bbHJ
 
 `pg_shadow` 테이블의 `passwd` 컬럼(MD5 해시값)을 읽어 `CAST(... AS NUMERIC)` 에러 메시지 안에 실어서 HTTP 응답으로 돌려받는 방식이다. OWASP ZAP으로 실제 요청/응답을 확인하면 에러 본문에 MD5 해시가 그대로 포함되어 있는 것을 볼 수 있다.
 
-![](./images/md5_req_res.png)
+![Error-Based SQLi 응답에 포함된 postgres MD5 해시](./images/md5_req_res.png)
 
-![](./images/sql_injection_query.png)
+![pg_shadow를 조회하는 sqlmap의 CAST 기반 SQL Injection 쿼리](./images/sql_injection_query.png)
 
 ```
 [INFO] retrieved: 'postgres'
@@ -376,7 +377,7 @@ vi가 열리면 파일 내용은 중요하지 않다. 다음을 입력한다:
 
 vi가 root 권한으로 실행되고 있기 때문에 fork된 bash 역시 root 권한을 그대로 받는다.
 
-![](./images/vi_bash.png)
+![sudo vi 내부에서 :!/bin/bash로 root shell 획득](./images/vi_bash.png)
 
 ```bash
 root@vaccine:/var/lib/postgresql# id
@@ -442,3 +443,11 @@ FTP 익명 접속 (Source)
 | PostgreSQL superuser 남용 | Privileges 과다 | 최소 권한 원칙, 웹 앱 전용 DB 계정 사용 |
 | sudo vi 허용 | Privileges 과다 | GTFOBins 위험 바이너리 sudo 허용 금지 |
 | 자격증명 재사용 | Process 결함 | 서비스별 고유 패스워드 정책 |
+
+---
+
+## 관련 글
+
+- [HTB - Sau](/posts/sau/) — `sudo -l`에서 찾은 바이너리를 GTFOBins로 권한 상승하는 동일 계열(systemctl + less).
+- [HTB - Oopsie](/posts/oopsie/) — 평문 자격증명을 OS 계정에 재사용해 전환하는 같은 패턴.
+- [HTB - Sense](/posts/sense/) — 노출된 버전을 단서로 공개 익스플로잇을 매핑하는 흐름.

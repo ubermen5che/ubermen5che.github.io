@@ -4,6 +4,7 @@ date = 2026-06-03T17:00:00+09:00
 draft = false
 tags = ["polyfill", "supply-chain", "http-basic-auth", "burp-suite", "credential-leak"]
 categories = ["security"]
+description = "방치된 polyfill.io 스크립트가 띄우는 HTTP Basic Auth 팝업을 공급망 공격(supply-chain attack) 관점에서 분석하고, 입력한 자격증명이 실제로 외부 서버로 전송되는지를 Burp Suite로 직접 검증한 보안 연구 기록이다."
 +++
 
 여러 기술 블로그에서 동일하게 관측된 `polyfill.io` 스크립트가 띄우는
@@ -88,7 +89,7 @@ Fastly)로의 이전이 권고되었다.
 있으면, 글을 한 편도 새로 쓰지 않아도 모든 페이지가 자동으로 이 스크립트를 계속
 로드한다. 내가 마주친 블로그들도 그랬다.
 
-![](./images/blog_source_code.png)
+![블로그 소스코드에 삽입된 polyfill.io 스크립트 태그](./images/blog_source_code.png)
 
 ```html
 <!-- 테마에 남아있던 문제의 한 줄 -->

@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting", "Web Hacking"]
 tags = ["HTB", "CVE-2019-11231", "CMS", "Web Hacking", "OSCP", "Burp Suite"]
+description = "HackTheBox Responder 풀이 — Windows 대상 LFI에서 RFI와 UNC Path 주입으로 NTLM 인증을 강제 유발하고, Responder로 NTLMv2 해시를 캡처해 hashcat으로 크랙한 뒤 evil-winrm으로 접속하는 공격 체인을 정리한다."
 +++
 
 # HTB - Responder (Retired Machine)
@@ -114,7 +115,7 @@ PORT     STATE SERVICE
 
 브라우저로 IP에 접속하면 `unika.htb`로 리다이렉트된다. DNS가 없으므로 `/etc/hosts`에 직접 등록한다.
 
-![](./images/responder_redirect.png)
+![IP 접속 시 unika.htb 도메인으로 리다이렉트되는 화면](./images/responder_redirect.png)
 
 ```
 10.129.38.20 unika.htb
@@ -122,12 +123,12 @@ PORT     STATE SERVICE
 
 등록 후 접속하면 정상적으로 랜딩 페이지가 뜨는 것을 확인했다. 페이지를 둘러보니 URL에 `page` 파라미터가 있고, 언어 전환 시 `?page=french.html` 형태로 각 HTML 파일을 불러오는 구조였다.
 
-![](./images/responder_landing_page.png)
+![hosts 등록 후 정상 출력된 unika.htb 랜딩 페이지](./images/responder_landing_page.png)
 파라미터가 파일 경로를 직접 받는다면 LFI를 먼저 시도해볼 수 있다.
 
 ### LFI 확인
 
-![](./images/responder_LFI.png)
+![page 파라미터 LFI로 읽어낸 Windows hosts 파일 내용](./images/responder_LFI.png)
 ```
 http://unika.htb/index.php?page=../../../../../../../../windows/system32/drivers/etc/hosts
 ```
@@ -273,3 +274,10 @@ RFI + UNC Path 조합은 Linux 환경의 RFI와 완전히 다른 공격 경로�
 | NTLM 해시 탈취 | Kerberos 강제 사용, SMB Signing 활성화 |
 | RFI → UNC | `allow_url_include = Off` (php.ini) |
 | NTLMv1 취약점 | GPO로 NTLMv2만 허용 |
+
+---
+
+## 관련 글
+
+- [HTB - Archetype](/posts/archetype/) — 동일한 Windows 침투 환경에서 자격증명 확보 후 evil-winrm으로 접속하는 흐름.
+- [HTB - Gettingstarted](/posts/gettingstarted/) — LFI/파일 인클루전 기반 웹 취약점의 입문 사례.

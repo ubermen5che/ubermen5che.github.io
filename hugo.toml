@@ -1,6 +1,6 @@
 baseURL = 'https://ubermen5che.github.io/'
 languageCode = 'ko-kr'
-title = "spooky38"
+title = "spooky38 | Red Team & Pentesting 학습 노트"
 theme = "kong-htop"
 paginate = 10
 pluralizelisttitles = false
@@ -12,10 +12,12 @@ name = "KYJ"
     title = "title"
     brand = "spooky38"
     profile_emoji = "👻"
+    author = "KYJ"
+    github_url = "https://github.com/ubermen5che"
     og_image = "/images/og-image.png"
     publisher_icon = "/images/favicon.png"
     favicon = "/images/favicon.png"
-    description = "Red Teaming, OSCP 준비, 실습형 침투테스트 학습 노트"
+    description = "HackTheBox 풀이, OSCP 준비, Red Team·침투테스트 실습 학습 노트. pfSense·SSRF·SQL Injection 등 실전 공격 체인과 권한 상승 기법을 정리한다."
     dark_mode = true
     mainSections = ["posts"]
     

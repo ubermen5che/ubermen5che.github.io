@@ -4,6 +4,7 @@ date = 2026-05-08T17:00:00+09:00
 draft = false
 tags = ["HTB", "pentest", "shells", "payloads", "tomcat", "eternalblue", "metasploit"]
 categories = ["HTB", "write-up"]
+description = "HTB Academy Shells & Payloads 모듈 마지막 Lab 풀이 — 내부망 세 호스트를 Tomcat 배포, EternalBlue, Metasploit 등 서로 다른 공격 벡터로 순차 공략하며 페이로드 생성과 쉘 획득 과정을 단계별로 정리한다."
 +++
 
 ## 개요

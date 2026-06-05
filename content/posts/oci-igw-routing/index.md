@@ -5,6 +5,7 @@ draft = false
 
 categories = ["Cloud Engineering", "Oracle Cloud", "Network"]
 tags = ["OCI", "VCN", "Troubleshooting", "Packet Flow", "Route Table"]
+description = "Oracle Cloud(OCI)에서 Public IP를 할당하고 Security List를 열었는데도 SSH가 timeout되는 문제를, VCN의 라우팅 결정 메커니즘과 Internet Gateway, Route Table 동작 원리로 추적해 해결한 트러블슈팅 기록이다."
 +++
 
 클라우드 인프라를 코드 레벨(IaC)이나 콘솔에서 수동으로 구축하다 보면, 가장 흔하게 마주하는 문제가 바로 **Connectivity(연결성) 이슈**다. 

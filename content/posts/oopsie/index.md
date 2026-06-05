@@ -5,6 +5,7 @@ draft = false
 
 categories = ["HTB", "pentesting"]
 tags = ["HTB", "write-up", "IDOR", "OWSAP ZAP", "SUID", "Command Injection"]
+description = "HackTheBox Oopsie 풀이 — Guest 로그인과 IDOR로 admin ID를 수집하고 쿠키를 변조해 웹쉘을 올린 뒤, DB 자격증명 재사용과 SUID 바이너리의 Command Injection을 엮어 root 권한까지 상승하는 Linux 공격 체인을 분석한다."
 +++
 
 # HTB - Oopsie (Retired Machine)
@@ -114,13 +115,13 @@ curl http://10.129.125.22 | grep -E 'href|script'
 
 ### Guest 로그인 → admin 페이지 접근
 
-![](./images/login_page.png)
+![Oopsie 웹 애플리케이션 로그인 페이지와 Login as Guest 옵션](./images/login_page.png)
 **Login as Guest** 옵션으로 접속하면 `admin.php`로 이동한다. 상단에 Account, Branding, Upload 탭이 보이는데, Upload 탭을 클릭하면 "This action require super admin rights"라는 메시지가 뜬다. 파일 업로드 기능이 존재하지만 admin 권한이 있어야 쓸 수 있다는 의미다.
 
-![](./images/upload_page.png)
+![admin 페이지의 Upload 탭과 super admin 권한 요구 메시지](./images/upload_page.png)
 이때 개발자 도구에서 쿠키를 확인하면 핵심 단서가 보인다:
 
-![](./images/cookie.png)
+![개발자 도구에서 확인한 role=guest, user=2233 평문 쿠키 값](./images/cookie.png)
 
 ```
 role=guest
@@ -133,7 +134,7 @@ user=2233
 
 Account 탭에서 자신의 계정 정보를 보여주는 페이지로 이동하면 URL 구조가 드러난다:
 
-![](./images/account_page.png)
+![Account 탭 URL에 노출된 id 파라미터 구조](./images/account_page.png)
 ```
 /cdn-cgi/login/admin.php?content=accounts&id=2
 ```
@@ -144,7 +145,7 @@ Account 탭에서 자신의 계정 정보를 보여주는 페이지로 이동하
 id=1   → Access ID: 1,     Name: admin
 ```
 
-![](./images/admin_account_info.png)
+![IDOR로 수집한 admin 계정의 Access ID 34322](./images/admin_account_info.png)
 Access ID 칼럼이 따로 존재한다. 여기서 admin의 Access ID는 `34322`임을 확인할 수 있다. URL의 `id`는 DB 내부 레코드 번호이고, 쿠키에 들어가야 하는 값은 이 Access ID다. 두 개념을 구분해서 읽어야 한다.
 
 ```
@@ -162,7 +163,7 @@ user=34322
 
 서버는 매 요청마다 쿠키의 `role`과 `user` 값만 보고 권한을 결정하기 때문에, 페이지를 새로고침하는 것만으로 admin으로 인식된다. Upload 탭이 활성화되면서 파일 업로드 폼이 나타난다.
 
-![](./images/upload_form.png)
+![쿠키 변조 후 활성화된 파일 업로드 폼](./images/upload_form.png)
 
 ### 웹쉘 업로드 → 리버스 쉘
 
@@ -336,3 +337,11 @@ cat /home/robert/user.txt
 | DB 자격증명 평문 저장 | 환경변수 또는 암호화된 설정 파일 사용 |
 | 자격증명 재사용 | 서비스별 고유 패스워드 정책 |
 | SUID 바이너리 Command Injection | 입력값 검증, 절대 경로 사용, SUID 최소화 |
+
+---
+
+## 관련 글
+
+- [HTB - Vaccine](/posts/vaccine/) — 발견한 자격증명을 다른 서비스·OS 계정에 재사용하는 동일한 사고 패턴.
+- [HTB - Sense](/posts/sense/) — 입력 미검증으로 인한 Command Injection을 root 권한 컨텍스트에서 트리거하는 사례.
+- [HTB - Sau](/posts/sau/) — 파라미터 기반 Command Injection과 Linux 권한 상승 흐름.
