@@ -17,7 +17,7 @@ name = "KYJ"
     og_image = "/images/og-image.png"
     publisher_icon = "/images/favicon.png"
     favicon = "/images/favicon.png"
-    description = "HackTheBox 풀이, OSCP 준비, Red Team·침투테스트 실습 학습 노트. pfSense·SSRF·SQL Injection 등 실전 공격 체인과 권한 상승 기법을 정리한다."
+    description = "HackTheBox 풀이, OSCP 준비, Red Team·침투테스트 실습 학습 노트."
     dark_mode = true
     mainSections = ["posts"]
     
