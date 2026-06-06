@@ -33,20 +33,6 @@ name = "KYJ"
         {Name = "Tags", URL = "/tags/", HasChildren = false},
     ]
 
-    # Giscus Comments Config
-    [params.giscus]
-    repo = "ubermen5che/ubermen5che.github.io"
-    repo_id = "R_kgDOQz5gCQ" 
-    category = "Announcements"
-    category_id = "DIC_kwDOQz5gCc4C0mHj"
-    mapping = "pathname" 
-    reactions_enabled = "1"
-    emit_metadata = "0"
-    input_position = "top"
-    theme = "noborder_dark"
-    lang = "ko"
-    loading = "lazy"
-
     rss_icon = true
     rss_section = "posts"
 
@@ -81,6 +67,20 @@ name = "KYJ"
     date_color_dark = "#9a9a9a"
     table_border_color_dark = "#515151"
     table_stripe_color_dark = "#202020"
+
+    # Giscus Comments Config
+    [params.giscus]
+    repo = "ubermen5che/ubermen5che.github.io"
+    repo_id = "R_kgDOQz5gCQ" 
+    category = "Announcements"
+    category_id = "DIC_kwDOQz5gCc4C0mHj"
+    mapping = "pathname" 
+    reactions_enabled = "1"
+    emit_metadata = "0"
+    input_position = "top"
+    theme = "noborder_dark"
+    lang = "ko"
+    loading = "lazy"
 
 [params.meta]
     favicon = true
