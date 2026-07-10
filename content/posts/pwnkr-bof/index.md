@@ -10,8 +10,6 @@ description = "pwnable.kr BOF 풀이 — gets()의 길이 미검증을 이용해
 
 # pwnable.kr - BOF
 
-> 나의 첫 pwnable write-up이다. 웹/시스템 침투에서 다뤄온 취약점과 달리, pwn은 **메모리 레이아웃을 직접 눈으로 확인하고 조작**하는 영역이라 접근법이 다르다. 이 글에서는 디버거로 스택을 관찰하며 오버플로우가 실제로 어떤 메모리를 덮는지 단계별로 따라간다.
-
 ## 요약
 
 - `gets()`는 입력값의 길이를 검증하지 않는 취약한 함수다.
@@ -39,7 +37,7 @@ char *gets(char *s);
 
 ## 코드 분석
 
-아래는 ELF 바이너리의 원본 소스코드다. 매우 간단하다. `main()`에서 `func()`에 `0xdeadbeef`를 인자로 넘기고, `func()` 내부에서 `gets()`로 `overflowme[32]` 배열에 입력을 받은 뒤, `key` 변수가 `0xcafebabe`와 같은지 비교한다. 참이면 현재 프로세스를 실행 중인 유저의 effective GID를 설정한 후 쉘을 실행한다.
+아래는 ELF 바이너리의 소스코드 원본이다. 매우 간단한 형식인데 `func()` 함수에서 `0xdeadbeef` 를 argument로 넘기고 `func()` 내부에서 `gets()` 로 `overflowme[32]` 변수에 입력을 받은 후 key 변수가 `0xcafebabe` 가 같은지 비교하여 참이면 현재 프로세스를 실행중인 유저의 effective GID를 설정 후 쉘을 실행 시킨다.
 
 ```c
 #include <stdio.h>
@@ -63,19 +61,19 @@ int main(int argc, char* argv[]){
 }
 ```
 
-그렇다면 어떻게 `key` 변수의 값을 변조할 수 있을까? 스택 메모리 레이아웃을 생각해보면 해답이 나온다.
+그렇다면 어떻게 key 변수의 값을 변조할 수 있을까? 스택 메모리 레이아웃을 생각해보면 해답이 나올 것 같다.
 
 ![func 호출 시 인자를 스택에 push하고 새 스택 프레임을 구성하는 과정](./images/stack_layout_call.png)
 
-우선 `main()`에서 `func()`를 호출할 때 인자 `0xdeadbeef` 값을 스택에 push한다. 그 후 function prologue 과정(`push ebp` / `mov ebp, esp`)을 거쳐 새로운 스택 프레임을 구성한다.
+우선 메인함수에서 `func()` 을 호출할 때 argument `0xdeadbeef` 값을 스택에 push한다. 그 후 function prologue 과정을 거치게 되어`(push ebp / mov ebp, esp)` 새로운 스택 프레임을 구성하게된다.
 
-바로 아래에 있는 `push esi`, `push ebx`는 `main()`에서 사용하던 레지스터 값이 `func()` 내부에서 훼손되지 않도록 스택에 보관하는 역할이다. (esi, ebx는 범용 레지스터라 여러 용도로 쓰인다.)
+바로밑에 있는 `push esi, push ebx` 의 경우 main함수에서 사용하던 레지스터값이 func 함수내에서 수정되지않도록 스택에 보관하는 역할을 한다.(esi, ebx는 범용 레지스터라 여러 용도로 사용된다)
 
 ![gets 호출 직전, overflowme 주소를 lea eax, [ebp-0x2c]로 전달하는 디스어셈블](./images/gets_disasm.png)
 
-여기서 중요하게 관찰할 부분은 `overflowme[]`에 입력을 넣어주는 `gets` 함수 주변부다. `gets`로 실행 흐름을 넘기기 전에, 함수의 파라미터로 입력이 들어갈 주소를 전달하는 부분이 `lea eax, [ebp-0x2c]`다. 실제로 그런지 의심이 들기 때문에 직접 관찰해보기로 했다.
+여기서 중요하게 관찰해야할 부분은 `overflowme[]` 에 input을 넣어주는 `gets` 함수 주변부이다. gets함수로 실행흐름을 넘기기전에 함수의 파라미터로 값이 들어갈 주소를 전달하는 부분이 `lea eax, [ebp-0x2c]` 다. 실제로 그럴까 의심이 들기때문에 직접 관찰해보기로 했다.
 
-우선 `gets`가 호출되기 전에 breakpoint를 건다. 참고로 위 스크린샷에 보이는 `0x00001234` 같은 주소는 PIE(위치 독립 실행) 때문에 "진짜 주소"가 아니라 파일 기준 오프셋일 뿐이다. 아래와 같이 `func` 함수의 base 주소를 기준으로 offset을 활용해 bp를 건다.
+우선 gets가 호출되기전에 breakpoint를 걸어둔다. 참고로 위 스크린샷에 보이는 `0x00001234` 같은 주소는 PIE(위치독립실행) 때문에 진짜 주소가 아니라 파일 기준 오프셋일 뿐이다. 아래와 같이 func함수의 base주소를 기준으로 offset을 활용해 bp를 걸도록 한다.
 
 ```bash
 pwndbg> b *func+54   # push eax가 존재하는 offset
@@ -104,12 +102,11 @@ pwndbg> x/40wx 0xffffdb3c
 0xffffdbcc:     0xf7ffd020      0xc162b489      0x8d1c5e99      0x00000000
 ```
 
-아직 `gets` 실행 전이기 때문에 `overflowme` 배열에는 쓰레기값들이 채워져 있는 것을 볼 수 있다. 눈여겨볼 점은 4번째 줄의 `0xdeadbeef`다 — 이게 바로 `main()`이 넘긴 `key` 인자이며, 배열 시작보다 높은 주소에 위치한다. 메모리를 시각화하면 아래와 같다.
+아직 `gets` 실행 전이기 때문에 `overflowme` 배열에는 쓰레기값들이 채워져 있는 것을 볼 수 있다. 눈여겨볼 점은 4번째 줄의 `0xdeadbeef`다. 이게 바로 `main()`이 넘긴 `key` 인자이며, 배열 시작보다 높은 주소에 위치한다. 메모리를 시각화하면 아래와 같다.
 
 ![gets 실행 전 스택 메모리 레이아웃 시각화 — overflowme 배열과 key(0xdeadbeef)의 상대적 위치](./images/stack_before_overflow.png)
 
-이제 스택 레이아웃이 어떻게 구성되는지 이해했다. 실제로 해당 주소가 `overflowme` 배열의 주소가 맞는지 확인함과 동시에, `gets`의 입력으로 배열 크기보다 더 큰 값을 넣고 메모리가 어떻게 변조되는지 직접 확인해보자.
-
+이제 스택 레이아웃이 어떻게 구성되고있는지 이해했다. 실제로 해당 주소가 `overflowme` 배열의 주소가 맞는지 확인함과 동시에  `gets` 의 input으로 배열의 크기보다 더 큰 입력값을 넣고 메모리가 어떻게 변조되는지 직접 확인해보자. 
 ```
 # payload: AAAAAAAAA...XXXX
 
@@ -126,7 +123,7 @@ pwndbg> x/40wx 0xffffdb3c
 0xffffdbcc:     0xf7ffd020      0x44982f7d      0x08e6c56d      0x00000000
 ```
 
-원래 `func` 호출 시 전달된 `key` 값이 `0xdeadbeef`였어야 하는데, 자세히 보면 `0x58585858`로 바뀌어 있다. 이것은 우리가 전달한 payload 끝부분에 위치한 `X` 문자의 hex 값(`0x58`)이다. 즉 **입력이 배열을 넘어 `key`가 있던 자리까지 도달했다**는 증거다.
+원래 main함수에서 func 호출시 전달된 key 변수의 값이 `0xdeadbeef` 여야 하는데 자세히 보면 `0x58585858` 로 확인되며, 이것은 우리가 전달한 payload의 끝부분에 위치한 X 문자의 hex값인것을 알 수 있다. 
 
 ### Payload 구성
 
@@ -149,18 +146,3 @@ pwndbg> x/40wx 0xffffdb3c
 - `\n` — `gets`가 입력을 종료하도록 하는 개행
 
 ![구성한 페이로드로 key를 0xcafebabe로 덮어 쉘을 획득한 결과](./images/payload_result.png)
-
----
-
-## 배운 것들
-
-첫 pwn 문제였지만 핵심은 명확했다. **"입력이 어디까지 도달하는가"를 추측하지 않고 디버거로 직접 확인하는 것**이 pwn의 기본기다. 웹 취약점은 요청/응답이라는 추상 레이어에서 다뤘다면, pwn은 그 아래 메모리 바이트 단위로 내려가서 봐야 한다.
-
-이번에 몸에 익힌 패턴:
-
-- `gets()`, `strcpy()`, `sprintf()` 같은 **길이 미검증 함수**를 보면 즉시 BOF를 의심한다.
-- 오프셋은 계산으로 추정하되, `pwndbg`의 `x/wx`로 실제 메모리를 찍어 **눈으로 검증**한다.
-- 덮으려는 타깃(여기선 `key`)이 버퍼보다 **높은 주소**에 있어야 오버플로우로 도달 가능하다. 스택이 자라는 방향과 쓰기 방향을 항상 구분한다.
-- 값을 메모리에 쓸 때는 **엔디언**을 신경 쓴다. `0xcafebabe` → `\xbe\xba\xfe\xca`.
-
-다음 단계는 이번처럼 지역변수를 덮는 걸 넘어, **return address를 덮어 실행 흐름을 탈취**하는 것이다. 그게 pwn의 본격적인 시작점이다.
